@@ -1,0 +1,22 @@
+<div class="parking-page">
+    <!-- Google Maps Section -->
+    <div class="map-container">
+      <!-- Placeholder for Google Map -->
+      <div class="google-map-placeholder">
+        <h2>Map Loading...</h2>
+      </div>
+    </div>
+  
+    <!-- Location Cards Section -->
+    <div class="locations-container">
+      <div class="location-card" *ngFor="let location of locations">
+        <div class="card-header">
+          <h3>{{ location.name }}</h3>
+        </div>
+        <div class="card-body">
+          <p>Charges: {{ location.chargePerHour }} per hour</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

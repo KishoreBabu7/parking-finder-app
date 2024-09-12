@@ -1,0 +1,99 @@
+/* Global Styles */
+:root {
+    --primary-color: #7A1CAC; /* Bright Purple */
+    --secondary-color: #EBD3F8; /* Light Lavender */
+    --background-color: #2E073F; /* Deep Purple */
+    --highlight-color: #EBD3F8; /* Light Lavender */
+    --accent-color: #FF7C7C; /* Vibrant Accent Color */
+    --font-family-primary: 'Montserrat', sans-serif;
+    --font-family-secondary: 'Roboto', sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-family-primary);
+    background-color: var(--background-color);
+    color: #EBD3F8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  /* Parking Page Styles */
+  .parking-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+  }
+  
+  /* Map Container */
+  .map-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 400px;
+    background-color: #4A0E60; /* Slightly darker shade for contrast */
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .google-map-placeholder {
+    color: var(--highlight-color);
+    font-size: 24px;
+    font-family: var(--font-family-secondary);
+  }
+  
+  /* Locations Container */
+  .locations-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Location Card */
+  .location-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--highlight-color);
+  }
+  
+  .location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Card Header */
+  .card-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-family: var(--font-family-secondary);
+    text-transform: uppercase;
+    color: var(--highlight-color);
+  }
+  
+  /* Card Body */
+  .card-body {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--highlight-color);
+    font-family: var(--font-family-secondary);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .map-container {
+      height: 300px;
+    }
+    .location-card {
+      padding: 15px;
+    }
+  }
+  
