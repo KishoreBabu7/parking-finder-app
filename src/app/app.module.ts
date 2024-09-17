@@ -12,6 +12,7 @@ import { ContactComponent } from './contact/contact.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserComponent } from './user/user.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AdminComponent,
     ContactComponent,
     UserComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

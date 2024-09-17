@@ -8,6 +8,9 @@ import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/co
 export class NavbarComponent implements OnInit {
   @ViewChild('menuToggle', { static: true }) menuToggle!: ElementRef;
   @ViewChild('navLinks', { static: true }) navLinks!: ElementRef;
+  @ViewChild('loginBtn', { static: true }) loginBtn!: ElementRef;
+  @ViewChild('loginModal', { static: true }) loginModal!: ElementRef;
+  @ViewChild('closeModal', { static: true }) closeModal!: ElementRef;
 
   constructor(private renderer: Renderer2) { }
 
@@ -28,5 +31,45 @@ export class NavbarComponent implements OnInit {
         this.navLinks.nativeElement.classList.remove('active');
       }
     });
+
+    this.renderer.listen(this.loginBtn.nativeElement, 'click', () => {
+      this.openLoginModal();
+    });
+    
+
+    this.renderer.listen(this.closeModal.nativeElement, 'click', () => {
+      this.closeLoginModal();
+    });
+
+    this.renderer.listen(this.navLinks.nativeElement, 'click', (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest('a')) {
+        this.menuToggle.nativeElement.classList.remove('open');
+        this.navLinks.nativeElement.classList.remove('active');
+      }
+    });
+
+    this.renderer.listen(this.loginModal.nativeElement, 'click', (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target.tagName === 'BUTTON') {
+        this.closeLoginModal();
+      }
+    });
+
+    this.renderer.listen('window', 'click', (event: Event) => {
+      if (event.target === this.loginModal.nativeElement) {
+        this.closeLoginModal();
+      }
+    });
   }
+
+  openLoginModal(): void {
+    this.renderer.setStyle(this.loginModal.nativeElement, 'display', 'block');
+  }
+
+  closeLoginModal(): void {
+    this.renderer.setStyle(this.loginModal.nativeElement, 'display', 'none');
+  }
+
+  
 }

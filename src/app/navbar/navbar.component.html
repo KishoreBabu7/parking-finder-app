@@ -10,7 +10,16 @@
     <li><a routerLink="/about"><i class="fas fa-info-circle"></i> About</a></li>
     <li><a routerLink="/parking"><i class="fas fa-parking"></i> Parking</a></li>
     <li><a routerLink="/contact"><i class="fas fa-envelope"></i> Contact</a></li>
-    <li><a routerLink="/admin"><i class="fas fa-cogs"></i> Admin</a></li>
-    <li><a routerLink="/user"><i class="fas fa-user"></i> User Login</a></li>
+    <li><a routerLink="/report"><i class="fas fa-file"></i> Report</a></li>
+    <li><a (click)="openLoginModal()" #loginBtn><i class="fas fa-sign-in-alt"></i> Login</a></li>
   </ul>
+
+  <!-- Modal -->
+  <div class="modal" #loginModal>
+    <div class="modal-content">
+      <span class="close" #closeModal>&times;</span>
+      <button routerLink="/admin"><i class="fas fa-user-tie"></i> Admin Login</button>
+      <button routerLink="/user"><i class="fas fa-user"></i> User Login</button>
+    </div>
+  </div>
 </nav>
