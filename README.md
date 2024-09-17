@@ -32,3 +32,12 @@ Built with the robust power of [Angular CLI](https://github.com/angular/angular-
    ```bash
    git clone https://github.com/your-repo/parking-finder-app.git
    cd parking-finder-app
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   
+3. **Run the development server**:
+   ```bash
+   ng serve --open
+
