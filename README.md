@@ -6,7 +6,7 @@ Welcome to the **ParkingFinderApp** – Your go-to solution for finding and mana
 
 Built with the robust power of [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0, **ParkingFinderApp** is designed to provide users with a seamless and real-time parking experience. Whether you're looking for a spot in a crowded city or managing parking spaces in your building, this app has got you covered!
 
-[🌐 Visit the website](parking-finder-app.vercel.app) 
+[🌐 Visit the website]([parking-finder-app.vercel.app](https://parking-finder-app.vercel.app/)) 
 
 ---
 
