@@ -256,6 +256,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .team-member{
+    width: 100%;
+    padding: 0px;
+  }
   .about-section {
       flex-direction: column;
       align-items: center;
@@ -267,11 +271,17 @@ body {
       max-width: 100%;
   }
 
+  .team-member img{
+    margin-top: 5%;
+  }
+
   .team-container,
   .tech-icons,
   .collaborators-list {
       flex-direction: column;
       align-items: center;
+      max-width: 100%;
   }
+
 }
 
