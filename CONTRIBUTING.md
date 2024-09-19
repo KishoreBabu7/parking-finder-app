@@ -49,7 +49,7 @@ We’re excited that you want to contribute to **ParkingFinderApp**! To ensure a
 Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) to maintain a respectful environment.
 
 ## 💬 Need Help?
-For questions or assistance, contact us at [tulugukishorebabu@example.com](mailto:tulugukishorebabu@example.com).
+For questions or assistance, contact us at [tulugukishorebabu@gmail.com](mailto:tulugukishorebabu@gmail.com).
 
 ## 🚀 Thank You!
 Thank you for contributing to **ParkingFinderApp**! Your efforts make the project better for everyone.
