@@ -9,10 +9,10 @@ import { ParkingComponent } from './parking/parking.component';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { ContactComponent } from './contact/contact.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { UserComponent } from './user/user.component';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { ReportComponent } from './report/report.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -25,11 +25,11 @@ import { ReportComponent } from './report/report.component';
     AdminComponent,
     ContactComponent,
     UserComponent,
-    ReportComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
-    GoogleMapsModule,
+    GoogleMapsModule, 
     AppRoutingModule
   ],
   providers: [
