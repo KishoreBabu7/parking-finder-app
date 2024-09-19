@@ -13,6 +13,8 @@ import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BillingComponent } from './billing/billing.component';
+import { ChallanComponent } from './challan/challan.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AdminComponent,
     ContactComponent,
     UserComponent,
-    ReportComponent
+    ReportComponent,
+    BillingComponent,
+    ChallanComponent
   ],
   imports: [
     BrowserModule,
