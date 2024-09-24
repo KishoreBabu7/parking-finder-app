@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BillingComponent } from './billing/billing.component';
 import { ChallanComponent } from './challan/challan.component';
+import { ParkingService } from './services/parking.service';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,11 @@ import { ChallanComponent } from './challan/challan.component';
   imports: [
     BrowserModule,
     GoogleMapsModule, 
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [
+    [ParkingService],
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

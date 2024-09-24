@@ -1,0 +1,71 @@
+.parking-module {
+    font-family: var(--font-family-secondary);
+    background-color: var(--background-color);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    backdrop-filter: blur(4px); /* Blur effect */
+    z-index: 999; /* Ensure it covers the content */
+}
+
+.login-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it is above the overlay */
+    text-align: center;
+}
+
+.popup-content button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.content {
+    display: block; /* Always display content */
+}
+
+.map-container {
+    height: 400px; /* Set height for the map */
+    margin-bottom: 20px; /* Space below the map */
+}
+
+.parking-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+}
+
+.parking-card {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px; /* Fixed width for cards */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
