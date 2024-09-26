@@ -1,1 +1,61 @@
-<p>user works!</p>
+<div class="user-container">
+    <div class="form-header">
+      <h2 *ngIf="isLoginMode">Login</h2>
+      <h2 *ngIf="!isLoginMode">Sign Up</h2>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+      </div>
+  
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+      </div>
+  
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="mobile-number">Mobile Number:</label>
+        <input type="tel" id="mobile-number" [(ngModel)]="mobile" name="mobile" required>
+      </div>
+  
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="vehicle-regno">Vehicle Reg. No.:</label>
+        <input type="text" id="vehicle-regno" [(ngModel)]="vehicleRegNo" name="vehicleRegNo" required>
+      </div>
+  
+      <div class="form-group" *ngIf="!isLoginMode">
+        <label for="vehicle-type">Vehicle Type:</label>
+        <select id="vehicle-type" [(ngModel)]="vehicleType" name="vehicleType" required>
+          <option value="" disabled selected>Select vehicle type</option>
+          <option value="2-wheeler">2 Wheeler</option>
+          <option value="3-wheeler">3 Wheeler</option>
+          <option value="4-wheeler">4 Wheeler</option>
+        </select>
+      </div>
+  
+      <div class="form-group add-vehicle-group" *ngIf="!isLoginMode">
+        <button type="button" (click)="addAnotherVehicle()" class="add-vehicle-button">Add Another Vehicle</button>
+      </div>
+  
+      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  
+      <div class="form-footer">
+        <p *ngIf="isLoginMode">Don't have an account? <span (click)="onSwitchMode()" class="switch-link">Register</span></p>
+        <p *ngIf="!isLoginMode">Already have an account? <span (click)="onSwitchMode()" class="switch-link">Login</span></p>
+        <button type="submit" class="submit-button">Submit</button>
+      </div>
+    </form>
+  </div>
+  
