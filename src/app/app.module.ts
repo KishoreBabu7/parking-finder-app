@@ -17,6 +17,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BillingComponent } from './billing/billing.component';
 import { ChallanComponent } from './challan/challan.component';
 import { ParkingService } from './services/parking.service';
+import { FormsModule } from '@angular/forms'; // Add this import
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ParkingService } from './services/parking.service';
     BrowserModule,
     GoogleMapsModule, 
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule // Add FormsModule here
   ],
   providers: [
     [ParkingService],
