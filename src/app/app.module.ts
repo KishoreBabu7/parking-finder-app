@@ -19,7 +19,7 @@ import { ChallanComponent } from './challan/challan.component';
 import { ParkingService } from './services/parking.service';
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
-import { TransactionHistoryComponent } from './transaction-history/transaction-history.component'; // Add this import
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component'; 
 
 @NgModule({
   declarations: [
