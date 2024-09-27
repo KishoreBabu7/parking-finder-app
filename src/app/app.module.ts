@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,10 +14,12 @@ import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { BillingComponent } from './billing/billing.component';
+import { from } from 'rxjs';
 import { ChallanComponent } from './challan/challan.component';
 import { ParkingService } from './services/parking.service';
-import { FormsModule } from '@angular/forms'; // Add this import
+import { FormsModule } from '@angular/forms';
+import { PaymentComponent } from './payment/payment.component';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component'; 
 
 @NgModule({
   declarations: [
@@ -31,12 +33,13 @@ import { FormsModule } from '@angular/forms'; // Add this import
     ContactComponent,
     UserComponent,
     ReportComponent,
-    BillingComponent,
-    ChallanComponent
+    ChallanComponent,
+    PaymentComponent,
+    TransactionHistoryComponent
   ],
   imports: [
     BrowserModule,
-    GoogleMapsModule, 
+    GoogleMapsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule // Add FormsModule here

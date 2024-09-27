@@ -7,6 +7,6 @@ import { ParkingService } from '../services/parking.service';
   templateUrl: './parking.component.html',
   styleUrls: ['./parking.component.css']
 })
-export class ParkingComponent implements OnInit {
-  
+export class ParkingComponent {
+
 }
