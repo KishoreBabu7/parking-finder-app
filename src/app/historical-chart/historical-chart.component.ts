@@ -9,10 +9,10 @@ import { ReportingService, MonthlyUser } from '../reporting.service';
 })
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {}; // Initialize as empty
-  monthlyUserData: MonthlyUser[] = []; // Holds the fetched data
+  chartOptions: Highcharts.Options = {}; 
+  monthlyUserData: MonthlyUser[] = []; 
   
-  // Define properties for total, active, and new users
+
   totalUsers: number = 0; 
   activeUsers: number = 0; 
   newUsersThisMonth: number = 0; 
@@ -20,13 +20,11 @@ export class HistoricalChartComponent implements OnInit {
   constructor(private reportingService: ReportingService) { }
 
   ngOnInit(): void {
-    // Fetch data when component initializes
     this.reportingService.getMonthlyUsers().subscribe({
       next: (data: MonthlyUser[]) => {
-        console.log('Data fetched from backend: ', data); // Check the response
+        console.log('Data fetched from backend: ', data);
         this.monthlyUserData = data;
 
-        // Calculate total users, active users, and new users this month
         this.calculateUserStatistics();
         this.initializeChart();
       },
@@ -37,17 +35,15 @@ export class HistoricalChartComponent implements OnInit {
   }
 
   calculateUserStatistics(): void {
-    // Calculate total users
     this.totalUsers = this.monthlyUserData.reduce((acc, curr) => acc + curr.count, 0);
 
-    // Example logic for active users and new users this month
-    this.activeUsers = Math.floor(Math.random() * this.totalUsers); // Replace with actual logic
-    this.newUsersThisMonth = Math.floor(Math.random() * 20); // Replace with actual logic
+    this.activeUsers = Math.floor(Math.random() * this.totalUsers); 
+    this.newUsersThisMonth = Math.floor(Math.random() * 20); 
   }
 
   initializeChart(): void {
-    const months = this.monthlyUserData.map(item => item.month); // Extract month names
-    const userCounts = this.monthlyUserData.map(item => item.count); // Extract user counts
+    const months = this.monthlyUserData.map(item => item.month); 
+    const userCounts = this.monthlyUserData.map(item => item.count); 
 
     this.chartOptions = {
       chart: {
@@ -57,7 +53,7 @@ export class HistoricalChartComponent implements OnInit {
         text: 'Monthly User Growth'
       },
       xAxis: {
-        categories: months, // Use months from the fetched data
+        categories: months, 
         title: {
           text: 'Month'
         }
@@ -71,7 +67,7 @@ export class HistoricalChartComponent implements OnInit {
       series: [{
         name: 'Users',
         type: 'column',
-        data: userCounts // Use user counts from the fetched data
+        data: userCounts 
       }]
     };
   }
