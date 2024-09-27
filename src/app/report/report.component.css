@@ -34,12 +34,8 @@
   animation: slideIn 1s ease;
 }
 @keyframes slideIn {
-  0% {
-      width: 0;
-  }
-  100% {
-      width: 50px;
-  }
+  0% { width: 0; }
+  100% { width: 50px; }
 }
 
 .report-text p {
@@ -66,26 +62,15 @@
 }
 
 @keyframes fadeInUp {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes zoomIn {
-  0% {
-      transform: scale(0.8);
-  }
-  100% {
-      transform: scale(1);
-  }
+  0% { transform: scale(0.8); }
+  100% { transform: scale(1); }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .report-container {
       flex-direction: column;
