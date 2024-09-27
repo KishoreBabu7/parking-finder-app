@@ -42,16 +42,14 @@ export class ParkingComponent implements OnInit {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-          this.fetchParkingSpaces(); // Fetch parking spaces based on user location
+          this.fetchParkingSpaces(); 
         },
         (error) => {
           console.error("Error getting user location", error);
-          // Handle location error (e.g., show a message to the user)
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-      // Handle the case when geolocation is not supported
     }
   }
 
