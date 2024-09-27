@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ParkingService {
-  // private apiUrl = 'http://your-backend-api-url.com/api/parking'; 
+  private apiUrl = 'http://your-backend-api-url.com/api/parking'; 
 
-  // constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  // getParkingSpaces(location: { lat: number; lng: number }): Observable<any[]> {
-  //   return this.http.get<any[]>(`${this.apiUrl}/spaces?lat=${location.lat}&lng=${location.lng}`);
-  // }
+  getParkingSpaces(location: { lat: number; lng: number }): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/spaces?lat=${location.lat}&lng=${location.lng}`);
+  }
 }
