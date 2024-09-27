@@ -17,7 +17,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BillingComponent } from './billing/billing.component';
 import { ChallanComponent } from './challan/challan.component';
 import { ParkingService } from './services/parking.service';
-import { FormsModule } from '@angular/forms'; // Add this import
+import { FormsModule } from '@angular/forms';
+import { PaymentComponent } from './payment/payment.component';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component'; // Add this import
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { FormsModule } from '@angular/forms'; // Add this import
     UserComponent,
     ReportComponent,
     BillingComponent,
-    ChallanComponent
+    ChallanComponent,
+    PaymentComponent,
+    TransactionHistoryComponent
   ],
   imports: [
     BrowserModule,
