@@ -7,6 +7,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
+import { PaymentComponent } from './payment/payment.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,14 +16,23 @@ const routes: Routes = [
   { path: 'parking', component: ParkingComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+
+  // Add Payment route
+  { path: 'payment', component: PaymentComponent },
+
+  // Admin, User, and Report routes
   { path: 'admin', component: AdminComponent },
   { path: 'user', component: UserComponent },
   { path: 'report', component: ReportComponent },
-  { path: '**', redirectTo: '/home' }  
+
+  // Wildcard route (for non-existent routes)
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }), 
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
