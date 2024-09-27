@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RazorpayService } from '../../services/razorpay.service';
+import { RazorpayService } from '../services/razorpay.service';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 declare var Razorpay: any;
