@@ -1,10 +1,3 @@
-<div class="chart-container" *ngIf="monthlyUserData.length > 0; else loading">
-  <highcharts-chart 
-    [Highcharts]="Highcharts"
-    [options]="chartOptions"
-    style="width: 100%; height: 100%; display: block;"
-  ></highcharts-chart>
-</div>
 <div class="container">
   <div class="card-container">
     <div class="card">
@@ -20,6 +13,13 @@
       <p>{{ newUsersThisMonth }}</p>
     </div>
   </div>
+</div>
+<div class="chart-container" *ngIf="monthlyUserData.length > 0; else loading">
+  <highcharts-chart 
+    [Highcharts]="Highcharts"
+    [options]="chartOptions"
+    style="width: 100%; height: 100%; display: block;"
+  ></highcharts-chart>
 </div>
 <ng-template #loading>
   <div class="loading-message">Loading user data.....</div>
