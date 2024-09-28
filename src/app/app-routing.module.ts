@@ -8,7 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { PaymentComponent } from './payment/payment.component';
-
+import {TransactionHistoryComponent} from './transaction-history/transaction-history.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,7 +19,7 @@ const routes: Routes = [
 
   // Add Payment route
   { path: 'payment', component: PaymentComponent },
-
+  { path: 'transaction-history', component: TransactionHistoryComponent},
   // Admin, User, and Report routes
   { path: 'admin', component: AdminComponent },
   { path: 'user', component: UserComponent },
@@ -31,7 +31,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }), 
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
   ],
   exports: [RouterModule],
 })
