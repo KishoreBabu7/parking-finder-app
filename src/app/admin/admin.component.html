@@ -1,1 +1,22 @@
-<p>admin works!</p>
+<div class="login-container">
+    <h2>Admin Login</h2>
+    <form action="/admin/login" method="POST">
+        <div class="error" id="error-msg"></div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<script>
+    // Example script to handle error messages (you can customize this with your backend logic)
+    const error = ""; // Replace with actual error message from backend if needed
+    if (error) {
+        document.getElementById("error-msg").innerText = error;
+    }
+</script>
+
