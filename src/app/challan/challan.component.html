@@ -1,1 +1,40 @@
-<p>challan works!</p>
+<div class="challan-form">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" type="text" class="form-control" [(ngModel)]="challanData.name" name="name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input id="mobile" type="text" class="form-control" [(ngModel)]="challanData.mobile" name="mobile" required />
+    </div>
+
+    <div class="form-group">
+      <label for="vehicleType">Vehicle Type:</label>
+      <select id="vehicleType" class="form-control" [(ngModel)]="challanData.vehicleType" name="vehicleType" required>
+        <option value="two-wheeler">Two-Wheeler</option>
+        <option value="three-wheeler">Three-Wheeler</option>
+        <option value="four-wheeler">Four-Wheeler</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="startTime">Start Time:</label>
+      <input id="startTime" type="time" class="form-control" [(ngModel)]="challanData.startTime" name="startTime" required />
+    </div>
+
+    <div class="form-group">
+      <label for="endTime">End Time:</label>
+      <input id="endTime" type="time" class="form-control" [(ngModel)]="challanData.endTime" name="endTime" required />
+    </div>
+
+    <div class="form-group payment-options">
+      <label>Payment Options:</label>
+      <button type="button" class="btn btn-primary" (click)="payAtStation()">Pay at Station</button>
+      <button type="button" class="btn btn-secondary" (click)="payLater()">Pay Later</button>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
