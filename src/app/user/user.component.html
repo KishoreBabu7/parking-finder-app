@@ -1,41 +1,47 @@
-<p>user works!</p>
-<div class="user-container"></div>
+<div class="user-container">
     <div class="form-header">
       <h2 *ngIf="isLoginMode">Login</h2>
       <h2 *ngIf="!isLoginMode">Sign Up</h2>
     </div>
-    
+  
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <!-- Username field, shown only for sign-up -->
       <div class="form-group" *ngIf="!isLoginMode">
         <label for="username">Username:</label>
         <input type="text" id="username" [(ngModel)]="username" name="username" required>
       </div>
   
+      <!-- Email field -->
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" [(ngModel)]="email" name="email" required>
       </div>
-      
+  
+      <!-- Password field -->
       <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" id="password" [(ngModel)]="password" name="password" required>
       </div>
   
+      <!-- Confirm password field, shown only for sign-up -->
       <div class="form-group" *ngIf="!isLoginMode">
         <label for="confirm-password">Confirm Password:</label>
         <input type="password" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
       </div>
   
+      <!-- Mobile number field, shown only for sign-up -->
       <div class="form-group" *ngIf="!isLoginMode">
         <label for="mobile-number">Mobile Number:</label>
         <input type="tel" id="mobile-number" [(ngModel)]="mobileNumber" name="mobileNumber" required>
       </div>
   
+      <!-- Vehicle registration number field, shown only for sign-up -->
       <div class="form-group" *ngIf="!isLoginMode">
         <label for="vehicle-regno">Vehicle Reg. No.:</label>
         <input type="text" id="vehicle-regno" [(ngModel)]="vehicleRegNo" name="vehicleRegNo" required>
       </div>
   
+      <!-- Vehicle type dropdown, shown only for sign-up -->
       <div class="form-group" *ngIf="!isLoginMode">
         <label for="vehicle-type">Vehicle Type:</label>
         <select id="vehicle-type" [(ngModel)]="vehicleType" name="vehicleType" required>
@@ -46,16 +52,24 @@
         </select>
       </div>
   
+      <!-- Add another vehicle button, shown only for sign-up -->
       <div class="form-group add-vehicle-group" *ngIf="!isLoginMode">
         <button type="button" (click)="addAnotherVehicle()" class="add-vehicle-button">Add Another Vehicle</button>
       </div>
   
+      <!-- Error message -->
       <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
   
+      <!-- Footer section with real button elements styled like links -->
       <div class="form-footer">
-        <p *ngIf="isLoginMode">Don't have an account? <span (click)="onSwitchMode()" class="switch-link">Register</span></p>
-        <p *ngIf="!isLoginMode">Already have an account? <span (click)="onSwitchMode()" class="switch-link">Login</span></p>
+        <p *ngIf="isLoginMode">Don't have an account? 
+          <button type="button" (click)="onSwitchMode()" class="switch-link">Register</button>
+        </p>
+        <p *ngIf="!isLoginMode">Already have an account? 
+          <button type="button" (click)="onSwitchMode()" class="switch-link">Login</button>
+        </p>
         <button type="submit" class="submit-button">Submit</button>
       </div>
     </form>
   </div>
+  

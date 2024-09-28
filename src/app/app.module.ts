@@ -14,12 +14,11 @@ import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { from } from 'rxjs';
 import { ChallanComponent } from './challan/challan.component';
 import { ParkingService } from './services/parking.service';
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
-import { TransactionHistoryComponent } from './transaction-history/transaction-history.component'; 
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,7 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     FormsModule // Add FormsModule here
   ],
   providers: [
-    [ParkingService],
+    ParkingService, // Removed array brackets
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
