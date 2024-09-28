@@ -14,7 +14,6 @@ import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ChallanComponent } from './challan/challan.component';
 import { ParkingService } from './services/parking.service';
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
@@ -32,7 +31,6 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     ContactComponent,
     UserComponent,
     ReportComponent,
-    ChallanComponent,
     PaymentComponent,
     TransactionHistoryComponent
   ],
