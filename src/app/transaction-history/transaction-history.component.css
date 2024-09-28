@@ -1,0 +1,142 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #ecf0f1; /* Light background for contrast */
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 380px; /* Sidebar width */
+  height: 100%;
+  background-color: #2c3e50; /* Darker background for sidebar */
+  color: #ecf0f1; /* Light text color */
+  transition: transform 0.3s ease;
+  transform: translateX(-100%); /* Hide sidebar by default */
+  z-index: 1000; /* Ensure sidebar is above other content */
+  padding: 20px; /* Padding around the sidebar */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
+  border-right: 2px solid #3498db; /* Decorative border */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Show sidebar */
+}
+
+.sidebar-header {
+  padding: 15px 0; /* Padding for the header */
+  border-bottom: 1px solid #34495e; /* Divider line */
+  text-align: center; /* Centered header text */
+  margin-top: 60px; /* Space below toggle button */
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 24px; /* Header font size */
+  font-weight: bold; /* Bold header text */
+  color: #3498db; /* Bright color for header */
+}
+
+/* Transaction List Styles */
+.transaction-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0; /* Margin for spacing above and below the list */
+  max-height: calc(100% - 150px); /* Avoid overflow with header */
+  overflow-y: auto; /* Scrollable if too many items */
+}
+.transaction-item i {
+    font-size: 24px; /* Increased icon size */
+    color: #d17e36; /* Icon color */
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  padding: 15px; /* Comfortable padding */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s, transform 0.2s; /* Animation for hover effect */
+  background-color: #34495e; /* Darker background for items */
+  margin-bottom: 10px; /* Space between items */
+}
+
+.transaction-item:hover {
+  background-color: #3b5998; /* Highlight color on hover */
+  transform: scale(1.02); /* Slight scale effect */
+}
+
+.transaction-item span {
+  margin-right: 15px; /* Space between icon and text */
+}
+
+.transaction-details {
+  flex-grow: 1; /* Use full width */
+}
+
+/* Text styles */
+.transaction-details p {
+  margin: 5px 0; /* Margin for spacing between lines */
+}
+
+/* Toggle button styles */
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #3498db; /* Button color */
+  color: white;
+  border: none;
+  padding: 12px; /* Padding */
+  border-radius: 50%; /* Rounded button */
+  font-size: 26px; /* Icon size */
+  cursor: pointer;
+  z-index: 1001; /* Above sidebar */
+  transition: background-color 0.3s, transform 0.2s; /* Animation for hover effect */
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.toggle-btn:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight scale effect */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 220px; /* Adjusted width for smaller screens */
+    transform: translateX(-100%); /* Hide sidebar by default */
+  }
+
+  .toggle-btn {
+    font-size: 22px; /* Smaller button on mobile */
+    padding: 10px; /* Smaller padding */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Show sidebar */
+    height: 100%; /* Full height for the sidebar */
+    width: 80%; /* Use 80% of the screen width */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%; /* Full width on very small screens */
+    padding: 10px; /* Padding adjustments for mobile */
+  }
+
+  .sidebar-header {
+    padding: 5px; /* Smaller padding for mobile */
+    margin-top: 50px; /* Adjust margin for mobile view */
+  }
+
+  .sidebar-header h3 {
+    font-size: 20px; /* Smaller font for header */
+  }
+
+  .transaction-item {
+    padding: 10px; /* More padding for items on mobile */
+  }
+}
