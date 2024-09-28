@@ -7,24 +7,24 @@ import { Component } from '@angular/core';
 })
 export class UserComponent {
   isLoginMode = true;
-  username: string = ''; // New username field
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = ''; // New confirm password field
-  mobile: string = ''; // New mobile number field
-  vehicleRegNo: string = ''; // Vehicle registration number field
-  vehicleType: string = '2'; // Default to 2 wheeler
-  errorMessage: string = '';
-mobileNumber: any;
+  username = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+  mobile = '';
+  vehicleRegNo = '';
+  vehicleType = '2';
+  errorMessage = '';
 
-  constructor() {}
 
-  // Toggle between login and signup modes
+  constructor() { }
+
+
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  // Handle form submission
+
   onSubmit() {
     if (!this.email || !this.password || (!this.isLoginMode && !this.username)) {
       this.errorMessage = 'Please fill all required fields.';
@@ -52,7 +52,7 @@ mobileNumber: any;
     }
   }
 
-  // Add another vehicle handler (for future implementation)
+
   addAnotherVehicle() {
     console.log('Adding another vehicle');
   }
