@@ -17,7 +17,6 @@ import { HistoricalChartComponent } from './historical-chart/historical-chart.co
 import { HighchartsChartModule } from 'highcharts-angular';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ParkingService } from './services/parking.service';
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 
@@ -49,7 +48,6 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     FormsModule // Add FormsModule here
   ],
   providers: [
-    ParkingService, // Removed array brackets
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
