@@ -18,8 +18,8 @@
   <div class="parking-cards-container">
     <div *ngFor="let spot of filteredCards" class="parking-card">
       <h3>{{ spot.name }}</h3>
-      <p>Location: {{ spot.location }}</p>
-      <p>Available Spots: {{ spot.availability }}</p>
+      <p><i class="fas fa-map-marker-alt"></i> :  {{ spot.location }}</p>
+      <p><i class="fas fa-parking"></i> Slots : {{ spot.availability }}</p>
       <div class="map-container">
         <iframe
           [src]="spot.mapUrl | safe"
