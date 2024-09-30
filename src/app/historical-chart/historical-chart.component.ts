@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { ReportingService, MonthlyUser } from '../reporting.service';
+import { ReportingService, MonthlyUser } from '../services/reporting.service';
 
 @Component({
   selector: 'app-historical-chart',

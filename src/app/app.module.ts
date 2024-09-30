@@ -12,7 +12,6 @@ import { AdminComponent } from './admin/admin.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
-import { SafePipe } from './safe.pipe'; 
 import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ParkingService } from './services/parking.service';
@@ -34,7 +33,6 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     UserComponent,
     ReportComponent,
     PaymentComponent,
-    SafePipe,
     TransactionHistoryComponent
   ],
   imports: [
@@ -42,6 +40,7 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     GoogleMapsModule,
     HttpClientModule,
     AppRoutingModule,
+    HighchartsChartModule,
     FormsModule // Add FormsModule here
   ],
   providers: [
