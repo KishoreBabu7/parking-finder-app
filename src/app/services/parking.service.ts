@@ -1,16 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
+interface ParkingSpot {
+  name: string;
+  location: string;
+  availability: number;
+  slots: { name: string; booked: boolean }[];
+  mapUrl: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParkingService {
-  private apiUrl = 'http://your-backend-api-url.com/api/parking'; 
+  private parkingSpots: ParkingSpot[] = [
+    // Your initial parking spots
+  ];
 
-  constructor(private http: HttpClient) {}
+  private parkingSpotsSubject = new BehaviorSubject<ParkingSpot[]>(this.parkingSpots);
+  parkingSpots$ = this.parkingSpotsSubject.asObservable();
 
-  getParkingSpaces(location: { lat: number; lng: number }): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/spaces?lat=${location.lat}&lng=${location.lng}`);
+  addParkingSpot(newSpot: ParkingSpot) {
+    this.parkingSpots.push(newSpot);
+    this.parkingSpotsSubject.next(this.parkingSpots);
   }
+
+  bookSlot(parkingSpot: ParkingSpot, slotName: string) {
+    const slot = parkingSpot.slots.find(s => s.name === slotName);
+    if (slot && !slot.booked) {
+      slot.booked = true;
+      parkingSpot.availability--;
+      this.parkingSpotsSubject.next(this.parkingSpots);
+    }
+  }
+
+  // Other methods...
 }
