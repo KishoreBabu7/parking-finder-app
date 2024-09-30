@@ -18,8 +18,8 @@
   <div class="parking-cards-container">
     <div *ngFor="let spot of filteredCards" class="parking-card">
       <h3>{{ spot.name }}</h3>
-      <p><i class="fas fa-map-marker-alt"></i> :  {{ spot.location }}</p>
-      <p><i class="fas fa-parking"></i> Slots : {{ spot.availability }}</p>
+      <p><i class="fas fa-map-marker-alt"></i> : {{ spot.location }}</p>
+      <p><i class="fas fa-parking"></i> Slots: {{ spot.availability }}</p>
       <div class="map-container">
         <iframe
           [src]="spot.mapUrl | safe"
@@ -30,7 +30,7 @@
           loading="lazy"
         ></iframe>
       </div>
-      <button class="reserve-btn">Reserve</button>
+      <button class="reserve-btn" (click)="openSlotBookingModal(spot)">Reserve</button>
     </div>
     <div class="add-card" (click)="openAddParkingModal()">
       <i class="add-icon fas fa-plus"></i>
@@ -60,6 +60,7 @@
         type="number"
         [(ngModel)]="newParkingSpot.availability"
         placeholder="Number of spots available"
+        min="0"
       />
       <label>Map URL</label>
       <input
@@ -70,4 +71,29 @@
       <button type="submit" (click)="addParkingSpot()">Add Spot</button>
     </div>
   </div>
+
+<!-- Slot Booking Modal -->
+<div class="modal booking-modal" *ngIf="isSlotModalOpen">
+  <div class="modal-content booking-container">
+    <span class="close booking-close" (click)="closeSlotModal()">&times;</span>
+    <h2 class="booking-header">Available Parking Slots for {{ selectedParkingArea?.name }}</h2>
+    <table class="booking-table">
+      <thead>
+        <tr>
+          <th class="table-header">Slot Name</th>
+          <th class="table-header">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of selectedParkingArea?.slots">
+          <td class="slot-name">{{ slot.name }}</td>
+          <td class="slot-action">
+            <button *ngIf="!slot.booked" class="book-slot-btn" (click)="bookSlot(slot)">Book Slot</button>
+            <button *ngIf="slot.booked" class="booked-btn" disabled>Booked</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+

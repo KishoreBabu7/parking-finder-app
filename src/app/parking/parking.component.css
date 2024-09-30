@@ -158,6 +158,115 @@
   font-family: var(--font-family-primary);
 }
 
+.modal.booking-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Dark background with a slight opacity */
+  z-index: 1000;
+  backdrop-filter: blur(8px); /* Blurred background */
+  transition: all 0.3s ease; /* Smooth transition for modal */
+}
+
+.modal-content.booking-container {
+  background: var(--background-color); /* Deep Purple background for the modal */
+  border-radius: 20px; /* Rounded corners */
+  padding: 30px; /* Padding for content */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  width: 90%;
+  max-width: 600px;
+  animation: fadeIn 0.5s ease-out; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* Slide in from the top */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booking-header {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--secondary-color); /* Light Lavender */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for text */
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse; /* Remove gaps between cells */
+}
+
+.table-header {
+  background-color: var(--primary-color); /* Bright Purple header */
+  color: #fff; /* White text */
+  padding: 15px; /* Padding in header */
+  text-align: left; /* Align text to left */
+  border-radius: 10px; /* Rounded corners for header */
+}
+
+.slot-name {
+  padding: 12px; /* Padding for slot cells */
+  border-bottom: 1px solid #444; /* Dark border for rows */
+  transition: background-color 0.3s; /* Smooth background change */
+}
+
+.slot-name:hover {
+  background-color: rgba(122, 28, 172, 0.1); /* Light hover effect using primary color */
+}
+
+.slot-action {
+  text-align: center; /* Center align buttons */
+}
+
+.book-slot-btn {
+  background-color: var(--background-color); /* Light Lavender background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding inside button */
+  border-radius: 5px; /* Rounded button corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.book-slot-btn:hover {
+  background-color: var(--primary-color); /* Slightly darker lavender on hover */
+}
+
+.booked-btn {
+  background-color: #dc3545; /* Red background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding inside button */
+  border-radius: 5px; /* Rounded button corners */
+  cursor: not-allowed; /* Not-allowed cursor */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for button */
+}
+
+.booking-close {
+  cursor: pointer; /* Pointer cursor for close button */
+  font-size: 1.8em; /* Larger close button */
+  position: absolute; /* Positioning close button */
+  top: 20px; /* Distance from top */
+  right: 30px; /* Distance from right */
+  color: var(--secondary-color); /* Light Lavender */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.booking-close:hover {
+  color: #dc3545; /* Change color on hover */
+  transform: rotate(90deg); /* Rotate close button on hover */
+}
+
 /* Close Button */
 .close {
   position: absolute;
