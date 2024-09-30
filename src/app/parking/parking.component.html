@@ -1,53 +1,73 @@
 <div class="parking-space-finder">
-    <!-- Search Bar Section -->
-    <div class="search-bar-container">
-      <input type="text" placeholder="Search parking spaces..." class="search-bar" />
-      <button class="search-btn">
-        <i class="material-icons">search</i>
-      </button>
-    </div>
-  
-    <!-- Map Section -->
-    <div class="map-container">
-      <div id="parking-map">
-        <!-- Real-time map will be embedded here -->
+  <h1>Parking Space Finder</h1>
+  <div class="search-bar-container">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="searchParking()"
+      class="search-bar"
+      placeholder="Search for parking spots..."
+    />
+    <button class="search-btn" (click)="searchParking()">
+      <i class="fas fa-search"></i> Search
+    </button>
+  </div>
+  <div class="no-parking-message" *ngIf="filteredCards.length === 0">
+    No parking spots found. Please try a different search.
+  </div>
+  <div class="parking-cards-container">
+    <div *ngFor="let spot of filteredCards" class="parking-card">
+      <h3>{{ spot.name }}</h3>
+      <p>Location: {{ spot.location }}</p>
+      <p>Available Spots: {{ spot.availability }}</p>
+      <div class="map-container">
+        <iframe
+          [src]="spot.mapUrl | safe"
+          width="400"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
       </div>
+      <button class="reserve-btn">Reserve</button>
     </div>
-  
-    <!-- Parking Cards Section -->
-    <div class="parking-cards-container" id="parking-cards-container">
-      <div class="parking-card" *ngFor="let card of parkingCards">
-        <h3>{{ card.name }}</h3>
-        <p>Location: {{ card.location }}</p>
-        <p>Availability: {{ card.availability }} spaces</p>
-        <button class="reserve-btn">Reserve Now</button>
-      </div>
-  
-      <!-- Add Parking Spot Button -->
-    <div class="parking-card add-card" (click)="openAddModal()">
-    <i class="fas fa-plus"></i>
+    <div class="add-card" (click)="openAddParkingModal()">
+      <i class="add-icon fas fa-plus"></i>
+      <p>Add New Parking Spot</p>
     </div>
-  
+  </div>
 
-  <!-- Modal for Adding a New Parking Spot -->
-<div class="modal" *ngIf="showModal">
-  <div class="modal-content">
-    <span class="close" (click)="closeAddModal()">&times;</span>
-    <h2>Add New Parking Spot</h2>
-    <form (ngSubmit)="addParkingSpot()">
-      <label for="name">Name:</label>
-      <input type="text" id="name" [(ngModel)]="newParkingSpot.name" name="name" required />
-
-      <label for="location">Location:</label>
-      <input type="text" id="location" [(ngModel)]="newParkingSpot.location" name="location" required />
-
-      <label for="availability">Availability (spaces):</label>
-      <input type="number" id="availability" [(ngModel)]="newParkingSpot.availability" name="availability" required min="0" />
-
-      <button type="submit">Add Parking Spot</button>
-    </form>
+  <!-- Modal for Adding New Parking Spot -->
+  <div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Add New Parking Spot</h2>
+      <label>Name</label>
+      <input
+        type="text"
+        [(ngModel)]="newParkingSpot.name"
+        placeholder="Enter parking spot name"
+      />
+      <label>Location</label>
+      <input
+        type="text"
+        [(ngModel)]="newParkingSpot.location"
+        placeholder="Enter location"
+      />
+      <label>Availability</label>
+      <input
+        type="number"
+        [(ngModel)]="newParkingSpot.availability"
+        placeholder="Number of spots available"
+      />
+      <label>Map URL</label>
+      <input
+        type="text"
+        [(ngModel)]="newParkingSpot.mapUrl"
+        placeholder="Enter Google Maps iframe URL"
+      />
+      <button type="submit" (click)="addParkingSpot()">Add Spot</button>
+    </div>
   </div>
 </div>
-
-  
-  
