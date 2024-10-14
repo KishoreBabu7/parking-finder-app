@@ -1,99 +1,20 @@
 <div class="parking-space-finder">
   <h1>Parking Space Finder</h1>
   <div class="search-bar-container">
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      (input)="searchParking()"
-      class="search-bar"
-      placeholder="Search for parking spots..."
-    />
+    <input type="text" [(ngModel)]="searchQuery" (input)="searchParking()" class="search-bar" placeholder="Search for parking spots..." />
     <button class="search-btn" (click)="searchParking()">
       <i class="fas fa-search"></i> Search
     </button>
   </div>
-  <div class="no-parking-message" *ngIf="filteredCards.length === 0">
-    No parking spots found. Please try a different search.
-  </div>
+  <div *ngIf="filteredCards.length === 0" class="no-parking-message">No parking spots found. Please try a different search.</div>
   <div class="parking-cards-container">
     <div *ngFor="let spot of filteredCards" class="parking-card">
       <h3>{{ spot.name }}</h3>
       <p><i class="fas fa-map-marker-alt"></i> : {{ spot.location }}</p>
       <p><i class="fas fa-parking"></i> Slots: {{ spot.availability }}</p>
       <div class="map-container">
-        <iframe
-          [src]="spot.mapUrl | safe"
-          width="400"
-          height="300"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-        ></iframe>
+        <iframe [src]="spot.mapUrl | safe" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
-      <button class="reserve-btn" (click)="openSlotBookingModal(spot)">Reserve</button>
     </div>
-    <div class="add-card" (click)="openAddParkingModal()">
-      <i class="add-icon fas fa-plus"></i>
-      <p>Add New Parking Spot</p>
-    </div>
-  </div>
-
-  <!-- Modal for Adding New Parking Spot -->
-  <div class="modal" *ngIf="isModalOpen">
-    <div class="modal-content">
-      <span class="close" (click)="closeModal()">&times;</span>
-      <h2>Add New Parking Spot</h2>
-      <label>Name</label>
-      <input
-        type="text"
-        [(ngModel)]="newParkingSpot.name"
-        placeholder="Enter parking spot name"
-      />
-      <label>Location</label>
-      <input
-        type="text"
-        [(ngModel)]="newParkingSpot.location"
-        placeholder="Enter location"
-      />
-      <label>Availability</label>
-      <input
-        type="number"
-        [(ngModel)]="newParkingSpot.availability"
-        placeholder="Number of spots available"
-        min="0"
-      />
-      <label>Map URL</label>
-      <input
-        type="text"
-        [(ngModel)]="newParkingSpot.mapUrl"
-        placeholder="Enter Google Maps iframe URL"
-      />
-      <button type="submit" (click)="addParkingSpot()">Add Spot</button>
-    </div>
-  </div>
-
-<!-- Slot Booking Modal -->
-<div class="modal booking-modal" *ngIf="isSlotModalOpen">
-  <div class="modal-content booking-container">
-    <span class="close booking-close" (click)="closeSlotModal()">&times;</span>
-    <h2 class="booking-header">Available Parking Slots for {{ selectedParkingArea?.name }}</h2>
-    <table class="booking-table">
-      <thead>
-        <tr>
-          <th class="table-header">Slot Name</th>
-          <th class="table-header">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let slot of selectedParkingArea?.slots">
-          <td class="slot-name">{{ slot.name }}</td>
-          <td class="slot-action">
-            <button *ngIf="!slot.booked" class="book-slot-btn" (click)="bookSlot(slot)">Book Slot</button>
-            <button *ngIf="slot.booked" class="booked-btn" disabled>Booked</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
-
