@@ -1,11 +1,15 @@
 // parking-spot.model.ts
-import { ParkingSlot } from './parking-slot.model';
+export interface ParkingSlot {
+  id: number;
+  name: string;
+  booked: boolean;
+}
 
 export interface ParkingSpot {
   id: number;
   name: string;
   location: string;
-  availability: number;
-  mapUrl: string;
-  slots?: ParkingSlot[]; // Changed to use ParkingSlot type
+  availability: number; // total available slots
+  slots: ParkingSlot[]; // available slots
+  mapUrl: string; // URL for the map
 }

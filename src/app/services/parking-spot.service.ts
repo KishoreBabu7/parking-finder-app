@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ParkingSpot } from '../models/parking-spot.model';
-import { ParkingSlot } from '../models/parking-slot.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +15,10 @@ export class ParkingSpotService {
   // Fetch all parking spots
   getParkingSpots(): Observable<ParkingSpot[]> {
     return this.http.get<ParkingSpot[]>(this.apiUrl);
+  }
+  // Fetch available parking slots for a specific location
+  getAvailableSlots(location: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?location=${location}`);
   }
 
   // Book a specific slot by its ID

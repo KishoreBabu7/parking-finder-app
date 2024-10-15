@@ -1,4 +1,3 @@
-// parking.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ParkingSpotService } from '../services/parking-spot.service';
 import { ParkingSpot } from '../models/parking-spot.model';
@@ -28,6 +27,7 @@ export class ParkingComponent implements OnInit {
       .subscribe((data: ParkingSpot[]) => {
         this.parkingSpots = data;
         this.filteredCards = [...this.parkingSpots];
+        console.log('Parking spots loaded:', this.parkingSpots); // Debugging line
       });
   }
 
@@ -39,6 +39,7 @@ export class ParkingComponent implements OnInit {
 
   openSlotBookingModal(spot: ParkingSpot) {
     this.selectedSpot = spot;
+    console.log('Selected spot:', this.selectedSpot); // Debugging line
     this.isSlotModalOpen = true;
   }
 
@@ -49,7 +50,12 @@ export class ParkingComponent implements OnInit {
 
   // Returns available slots for the selected parking spot
   getAvailableSlots(spot: ParkingSpot | null): ParkingSlot[] {
-    return spot ? spot.slots?.filter((slot) => !slot.booked) || [] : [];
+    if (spot) {
+      const availableSlots = spot.slots?.filter((slot) => !slot.booked) || [];
+      console.log('Available slots:', availableSlots); // Debugging line
+      return availableSlots;
+    }
+    return [];
   }
 
   // Handle booking and unbooking of slots
