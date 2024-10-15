@@ -1,20 +1,68 @@
+<!-- parking.component.html -->
 <div class="parking-space-finder">
   <h1>Parking Space Finder</h1>
   <div class="search-bar-container">
-    <input type="text" [(ngModel)]="searchQuery" (input)="searchParking()" class="search-bar" placeholder="Search for parking spots..." />
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="searchParking()"
+      class="search-bar"
+      placeholder="Search for parking spots..."
+    />
     <button class="search-btn" (click)="searchParking()">
       <i class="fas fa-search"></i> Search
     </button>
   </div>
-  <div *ngIf="filteredCards.length === 0" class="no-parking-message">No parking spots found. Please try a different search.</div>
+
+  <div class="no-parking-message" *ngIf="filteredCards.length === 0">
+    No parking spots found. Please try a different search.
+  </div>
+
   <div class="parking-cards-container">
     <div *ngFor="let spot of filteredCards" class="parking-card">
       <h3>{{ spot.name }}</h3>
-      <p><i class="fas fa-map-marker-alt"></i> : {{ spot.location }}</p>
+      <p><i class="fas fa-map-marker-alt"></i>: {{ spot.location }}</p>
       <p><i class="fas fa-parking"></i> Slots: {{ spot.availability }}</p>
       <div class="map-container">
-        <iframe [src]="spot.mapUrl | safe" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe
+          [src]="spot.mapUrl | safe"
+          width="400"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
       </div>
+      <button class="reserve-btn" (click)="openSlotBookingModal(spot)">Reserve</button>
+    </div>
+  </div>
+
+  <!-- Slot Booking Modal -->
+  <div class="modal booking-modal" *ngIf="isSlotModalOpen">
+    <div class="modal-content booking-container">
+      <span class="close booking-close" (click)="closeSlotModal()">&times;</span>
+      <h2 class="booking-header">Available Parking Slots for {{ selectedSpot?.name }}</h2>
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th class="table-header">Slot Name</th>
+            <th class="table-header">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let slot of getAvailableSlots(selectedSpot)">
+            <td class="slot-name">{{ slot.name }}</td>
+            <td class="slot-action">
+              <button
+                [ngClass]="{ 'booked-btn': slot.booked, 'book-slot-btn': !slot.booked }"
+                (click)="toggleSlotBooking(slot)"
+              >
+                {{ slot.booked ? 'Unbook' : 'Book Slot' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

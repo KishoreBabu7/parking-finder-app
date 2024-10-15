@@ -1,6 +1,8 @@
+// parking.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ParkingSpotService } from '../services/parking-spot.service';
 import { ParkingSpot } from '../models/parking-spot.model';
+import { ParkingSlot } from '../models/parking-slot.model';
 
 @Component({
   selector: 'app-parking',
@@ -9,16 +11,10 @@ import { ParkingSpot } from '../models/parking-spot.model';
 })
 export class ParkingComponent implements OnInit {
   searchQuery: string = '';
-  isModalOpen: boolean = false;
+  isSlotModalOpen: boolean = false;
   parkingSpots: ParkingSpot[] = [];
   filteredCards: ParkingSpot[] = [];
-  newParkingSpot: ParkingSpot = {
-    id: 0, // Initialize id appropriately
-    name: '',
-    location: '',
-    availability: 0,
-    mapUrl: '',
-  };
+  selectedSpot: ParkingSpot | null = null;
 
   constructor(private parkingSpotService: ParkingSpotService) {}
 
@@ -41,12 +37,61 @@ export class ParkingComponent implements OnInit {
     );
   }
 
-  openAddParkingModal() {
-    this.isModalOpen = true;
+  openSlotBookingModal(spot: ParkingSpot) {
+    this.selectedSpot = spot;
+    this.isSlotModalOpen = true;
   }
 
-  closeModal() {
-    this.isModalOpen = false;
+  closeSlotModal() {
+    this.isSlotModalOpen = false;
+    this.selectedSpot = null;
   }
 
+  // Returns available slots for the selected parking spot
+  getAvailableSlots(spot: ParkingSpot | null): ParkingSlot[] {
+    return spot ? spot.slots?.filter((slot) => !slot.booked) || [] : [];
+  }
+
+  // Handle booking and unbooking of slots
+  toggleSlotBooking(slot: ParkingSlot) {
+    if (slot.booked) {
+      this.unbookSlot(this.selectedSpot!.id, slot.id);
+    } else {
+      this.bookSlot(this.selectedSpot!.id, slot.id);
+    }
+  }
+
+  bookSlot(spotId: number, slotId: number) {
+    this.parkingSpotService.bookParkingSlot(spotId, slotId).subscribe(
+      () => {
+        const bookedSlot = this.selectedSpot?.slots?.find(
+          (s) => s.id === slotId
+        );
+        if (bookedSlot) bookedSlot.booked = true;
+        alert(
+          `You have successfully booked ${this.selectedSpot?.name} - Slot ${slotId}.`
+        );
+      },
+      (error: any) => {
+        alert('Failed to book the slot. Please try again.');
+      }
+    );
+  }
+
+  unbookSlot(spotId: number, slotId: number) {
+    this.parkingSpotService.unbookParkingSlot(spotId, slotId).subscribe(
+      () => {
+        const unbookedSlot = this.selectedSpot?.slots?.find(
+          (s) => s.id === slotId
+        );
+        if (unbookedSlot) unbookedSlot.booked = false;
+        alert(
+          `You have successfully unbooked ${this.selectedSpot?.name} - Slot ${slotId}.`
+        );
+      },
+      (error: any) => {
+        alert('Failed to unbook the slot. Please try again.');
+      }
+    );
+  }
 }
