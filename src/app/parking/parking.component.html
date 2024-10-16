@@ -48,13 +48,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let slot of getAvailableSlots(selectedSpot)">
+        <!-- Loop through all slots, showing their status -->
+        <tr *ngFor="let slot of getAvailableSlots()">
           <td class="slot-name">{{ slot.name }}</td>
           <td class="slot-action">
             <button
               [ngClass]="{ 'booked-btn': slot.booked, 'book-slot-btn': !slot.booked }"
               (click)="toggleSlotBooking(slot)"
-              [disabled]="slot.booked"
             >
               {{ slot.booked ? 'Unbook' : 'Book Slot' }}
             </button>

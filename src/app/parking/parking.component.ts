@@ -21,44 +21,43 @@ export class ParkingComponent implements OnInit {
     this.loadParkingSpots();
   }
 
+  // Load all parking spots
   loadParkingSpots() {
     this.parkingSpotService
       .getParkingSpots()
       .subscribe((data: ParkingSpot[]) => {
         this.parkingSpots = data;
         this.filteredCards = [...this.parkingSpots];
-        console.log('Parking spots loaded:', this.parkingSpots); // Debugging line
+        console.log('Parking spots loaded:', this.parkingSpots); // Debugging
       });
   }
 
+  // Search parking spots based on location
   searchParking() {
     this.filteredCards = this.parkingSpots.filter((spot) =>
       spot.location.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 
+  // Open the modal to view and book/unbook slots for a parking spot
   openSlotBookingModal(spot: ParkingSpot) {
     this.selectedSpot = spot;
-    console.log('Selected spot:', this.selectedSpot); // Debugging line
+    console.log('Selected spot for booking:', this.selectedSpot); // Debugging
     this.isSlotModalOpen = true;
   }
 
+  // Close the modal
   closeSlotModal() {
     this.isSlotModalOpen = false;
     this.selectedSpot = null;
   }
 
-  // Returns available slots for the selected parking spot
-  getAvailableSlots(spot: ParkingSpot | null): ParkingSlot[] {
-    if (spot) {
-      const availableSlots = spot.slots?.filter((slot) => !slot.booked) || [];
-      console.log('Available slots:', availableSlots); // Debugging line
-      return availableSlots;
-    }
-    return [];
+  // Returns all slots for the selected parking spot, not just available ones
+  getAvailableSlots(): ParkingSlot[] {
+    return this.selectedSpot ? this.selectedSpot.slots : [];
   }
 
-  // Handle booking and unbooking of slots
+  // Toggle booking/unbooking of a slot
   toggleSlotBooking(slot: ParkingSlot) {
     if (slot.booked) {
       this.unbookSlot(this.selectedSpot!.id, slot.id);
@@ -67,15 +66,16 @@ export class ParkingComponent implements OnInit {
     }
   }
 
+  // Book a slot by ID
   bookSlot(spotId: number, slotId: number) {
     this.parkingSpotService.bookParkingSlot(spotId, slotId).subscribe(
       () => {
-        const bookedSlot = this.selectedSpot?.slots?.find(
+        const bookedSlot = this.selectedSpot?.slots.find(
           (s) => s.id === slotId
         );
-        if (bookedSlot) bookedSlot.booked = true;
+        if (bookedSlot) bookedSlot.booked = true; // Update UI immediately
         alert(
-          `You have successfully booked ${this.selectedSpot?.name} - Slot ${slotId}.`
+          `You have successfully booked Slot ${slotId} at ${this.selectedSpot?.name}.`
         );
       },
       (error: any) => {
@@ -84,15 +84,16 @@ export class ParkingComponent implements OnInit {
     );
   }
 
+  // Unbook a slot by ID
   unbookSlot(spotId: number, slotId: number) {
     this.parkingSpotService.unbookParkingSlot(spotId, slotId).subscribe(
       () => {
-        const unbookedSlot = this.selectedSpot?.slots?.find(
+        const unbookedSlot = this.selectedSpot?.slots.find(
           (s) => s.id === slotId
         );
-        if (unbookedSlot) unbookedSlot.booked = false;
+        if (unbookedSlot) unbookedSlot.booked = false; // Update UI immediately
         alert(
-          `You have successfully unbooked ${this.selectedSpot?.name} - Slot ${slotId}.`
+          `You have successfully unbooked Slot ${slotId} at ${this.selectedSpot?.name}.`
         );
       },
       (error: any) => {
