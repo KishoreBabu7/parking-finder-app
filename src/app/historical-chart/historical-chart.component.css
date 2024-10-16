@@ -80,13 +80,15 @@
   }
 
   .chart-container {
-    height: 300px; /* Adjust the chart height for smaller screens */
+    height: 250px;
+    width: 90%; /* Adjust the chart height for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .card {
     padding: 15px;
+    margin: 10px;
   }
 
   .card h3 {

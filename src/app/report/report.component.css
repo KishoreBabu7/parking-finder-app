@@ -79,11 +79,10 @@
 
   .report-text {
       padding-right: 0;
-      max-width: 100%;
+      max-width: 90%;
   }
 
   .report-image img {
-      max-width: 100%;
-      max-height: 250px; 
+      max-height: 200px; 
   }
 }
