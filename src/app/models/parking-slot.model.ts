@@ -1,6 +1,6 @@
-// parking-slot.model.ts
 export interface ParkingSlot {
-  id: number; // Unique identification for slots
-  name: string; // Name of the slot
-  booked: boolean; // Indicates if the slot is booked
+  id: number;
+  name: string;
+  booked: boolean;  // Whether the slot is booked or not
+  parkingSpotId: number;
 }
