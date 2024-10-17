@@ -1,5 +1,5 @@
 .chart-container {
-  width: 90%; 
+  width: 100%; 
   max-width: 80em; 
   margin: 20px auto; 
   background-color: var(--secondary-color); 
@@ -59,11 +59,9 @@
   box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.4), 0px 0px 20px rgba(122, 28, 172, 0.8); 
 }
 
-
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .card-container {
-    flex-direction: column; /* Stacks the cards vertically */
+    flex-direction: column;
   }
 
   .card {
@@ -81,7 +79,7 @@
 
   .chart-container {
     height: 250px;
-    width: 90%; /* Adjust the chart height for smaller screens */
+    width: 90%; 
   }
 }
 
