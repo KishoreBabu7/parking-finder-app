@@ -27,7 +27,6 @@ export class ParkingComponent implements OnInit {
       (data: ParkingSpot[]) => {
         this.parkingSpots = data; // Fetch the parking spots and their slots
         this.filteredCards = [...this.parkingSpots]; // Clone the array for filtering
-        console.log('Parking spots loaded:', this.parkingSpots); // For debugging
       },
       (error) => {
         console.error('Error loading parking spots:', error);
@@ -46,7 +45,6 @@ export class ParkingComponent implements OnInit {
   // Open the modal to view and book/unbook slots for a parking spot
   openSlotBookingModal(spot: ParkingSpot) {
     this.selectedSpot = spot;
-    console.log('Selected spot for booking:', this.selectedSpot); // Debugging
     this.isSlotModalOpen = true;
   }
 
@@ -58,7 +56,7 @@ export class ParkingComponent implements OnInit {
 
   // Returns all slots for the selected parking spot (both booked and unbooked)
   getAvailableSlots(): ParkingSlot[] {
-    return this.selectedSpot ? this.selectedSpot.parkingSlots : []; // Adjust to 'parkingSlots'
+    return this.selectedSpot ? this.selectedSpot.parkingSlots : [];
   }
 
   // Toggle booking/unbooking of a slot

@@ -20,7 +20,7 @@
   <div class="parking-cards-container">
     <div *ngFor="let spot of filteredCards" class="parking-card">
       <h3>{{ spot.name }}</h3>
-      <p><i class="fas fa-map-marker-alt"></i> : {{ spot.location }}</p>
+      <p><i class="fas fa-map-marker-alt"></i> Location: {{ spot.location }}</p>
       <p><i class="fas fa-parking"></i> Slots: {{ spot.availability }}</p>
       <div class="map-container">
         <iframe
@@ -32,35 +32,38 @@
           loading="lazy"
         ></iframe>
       </div>
-      <button class="reserve-btn" (click)="openSlotBookingModal(spot)">Reserve</button>
+      <button class="reserve-btn" (click)="openSlotBookingModal(spot)">
+        Reserve
+      </button>
     </div>
   </div>
-<!-- Slot Booking Modal -->
-<div class="modal booking-modal" *ngIf="isSlotModalOpen">
-  <div class="modal-content booking-container">
-    <span class="close booking-close" (click)="closeSlotModal()">&times;</span>
-    <h2 class="booking-header">Available Parking Slots for {{ selectedSpot?.name }}</h2>
-    <table class="booking-table">
-      <thead>
-        <tr>
-          <th class="table-header">Slot Name</th>
-          <th class="table-header">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Loop through all slots, showing their status -->
-        <tr *ngFor="let slot of getAvailableSlots()">
-          <td class="slot-name">{{ slot.name }}</td>
-          <td class="slot-action">
-            <button
-              [ngClass]="{ 'booked-btn': slot.booked, 'book-slot-btn': !slot.booked }"
-              (click)="toggleSlotBooking(slot)"
-            >
-              {{ slot.booked ? 'Unbook' : 'Book Slot' }}
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+  <!-- Slot Booking Modal -->
+  <div class="modal booking-modal" *ngIf="isSlotModalOpen">
+    <div class="modal-content booking-container">
+      <span class="close booking-close" (click)="closeSlotModal()">&times;</span>
+      <h2 class="booking-header">Available Parking Slots for {{ selectedSpot?.name }}</h2>
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th>Slot Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let slot of getAvailableSlots()">
+            <td>{{ slot.name }}</td>
+            <td>
+              <button
+                [ngClass]="{ 'booked-btn': slot.booked, 'book-slot-btn': !slot.booked }"
+                (click)="toggleSlotBooking(slot)"
+              >
+                {{ slot.booked ? 'Unbook' : 'Book Slot' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
