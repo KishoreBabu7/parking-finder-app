@@ -44,8 +44,9 @@ export class ParkingComponent implements OnInit {
 
   // Open the modal to view and book/unbook slots for a parking spot
   openSlotBookingModal(spot: ParkingSpot) {
-    this.selectedSpot = spot;
-    this.isSlotModalOpen = true;
+    this.selectedSpot = spot; // Ensure you're setting the selected spot
+    console.log('Selected Spot:', this.selectedSpot); // Debug log
+    this.isSlotModalOpen = true; // Open the modal
   }
 
   // Close the modal
@@ -56,7 +57,9 @@ export class ParkingComponent implements OnInit {
 
   // Returns all slots for the selected parking spot (both booked and unbooked)
   getAvailableSlots(): ParkingSlot[] {
-    return this.selectedSpot ? this.selectedSpot.parkingSlots : [];
+    const slots = this.selectedSpot ? this.selectedSpot.parkingSlots : [];
+    console.log('Available Slots:', slots); // Debug log
+    return slots;
   }
 
   // Toggle booking/unbooking of a slot
