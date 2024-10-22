@@ -1,0 +1,25 @@
+/* src/app/user-dashboard/user-dashboard.component.css */
+.dashboard-container {
+    padding: 20px;
+  }
+  
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  button {
+    margin-right: 5px;
+  }
+  

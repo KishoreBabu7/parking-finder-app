@@ -23,7 +23,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
-
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
 @NgModule({
@@ -42,6 +41,7 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     SafePipe,
     HistoricalChartComponent,
     TransactionHistoryComponent
+    // UserDashboardComponent removed as per your request
   ],
   imports: [
     BrowserModule,
@@ -49,10 +49,11 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     HttpClientModule,
     AppRoutingModule,
     HighchartsChartModule,
-    FormsModule // Add FormsModule here
+    FormsModule // Keep FormsModule here
   ],
   providers: [
-    provideAnimationsAsync() , provideHttpClient(withFetch())
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
