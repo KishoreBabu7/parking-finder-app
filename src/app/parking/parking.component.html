@@ -42,7 +42,9 @@
   <div class="modal booking-modal" *ngIf="isSlotModalOpen">
     <div class="modal-content booking-container">
       <span class="close booking-close" (click)="closeSlotModal()">&times;</span>
-      <h2 class="booking-header">Available Parking Slots for {{ selectedSpot?.name }}</h2>
+      <h2 class="booking-header">
+        Available Parking Slots for {{ selectedSpot?.name }}
+      </h2>
       <table class="booking-table">
         <thead>
           <tr>
@@ -55,7 +57,10 @@
             <td>{{ slot.name }}</td>
             <td>
               <button
-                [ngClass]="{ 'booked-btn': slot.booked, 'book-slot-btn': !slot.booked }"
+                [ngClass]="{
+                  'booked-btn': slot.booked,
+                  'book-slot-btn': !slot.booked
+                }"
                 type="button"
                 (click)="toggleSlotBooking(slot)"
                 [disabled]="slot.booked"
