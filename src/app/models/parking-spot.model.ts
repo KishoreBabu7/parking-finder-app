@@ -1,7 +1,7 @@
+//parking-spot.model.ts
 import { ParkingSlot } from './parking-slot.model'; // Adjust the path as needed
-
 export interface ParkingSpot {
-  id: number; 
+  id: number;
   name: string;
   location: string;
   availability: number;
