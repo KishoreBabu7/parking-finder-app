@@ -56,7 +56,7 @@
           <tr *ngFor="let slot of getAvailableSlots()">
             <td>{{ slot.name }}</td>
             <td>
-              <button
+              <button routerLink="/challan"
                 [ngClass]="{
                   'booked-btn': slot.booked,
                   'book-slot-btn': !slot.booked
