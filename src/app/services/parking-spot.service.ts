@@ -21,7 +21,7 @@ export class ParkingSpotService {
   }
 
   // Fetch available parking slots for a specific location (assuming it's based on location filtering)
-  getAvailableSlots(location: string): Observable<ParkingSlot[]> 
+  getAvailableSlots(location: string): Observable<ParkingSlot[]> {
     return this.http
       .get<ParkingSlot[]>(`${this.apiUrl}?location=${location}`)
       .pipe(catchError(this.handleError));
