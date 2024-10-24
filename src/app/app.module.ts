@@ -24,6 +24,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { ChallanComponent } from './challan/challan.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
     PaymentComponent,
     SafePipe,
     HistoricalChartComponent,
-    TransactionHistoryComponent
+    TransactionHistoryComponent,
+    ChallanComponent
     // UserDashboardComponent removed as per your request
   ],
   imports: [
