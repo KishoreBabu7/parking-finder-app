@@ -8,12 +8,12 @@
   padding: 15px;
 }
 .pie-chart-container {
-  width: 600px; /* Adjust the width as needed */
-  height: 400px; /* Adjust the height as needed */
-  margin: 20px auto; /* Center the chart */
-  border: 2px solid var(--highlight-color); /* Border color for better visibility */
-  border-radius: 8px; /* Rounded corners */
-  background-color: var(--secondary-color); /* Background color */
+  width: 600px;
+  height: 400px; 
+  margin: 20px auto; 
+  border: 2px solid var(--highlight-color); 
+  border-radius: 8px; 
+  background-color: var(--secondary-color);
   padding: 15px; 
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
