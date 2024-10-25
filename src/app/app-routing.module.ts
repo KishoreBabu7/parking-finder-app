@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { ChallanComponent } from './challan/challan.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'user', component: UserComponent },
   { path: 'report', component: ReportComponent },
+  { path: 'challan', component: ChallanComponent }, 
   { path: '**', redirectTo: '/home' },
 ];
 
