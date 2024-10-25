@@ -1,1 +1,116 @@
-<p>challan works!</p>
+<div class="challan-form">
+  <form #challanForm="ngForm" (ngSubmit)="onSubmit(challanForm)">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        [(ngModel)]="challanData.name"
+        name="name"
+        required
+        #name="ngModel" />
+      <div *ngIf="name.invalid && name.touched" class="error-message">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobile Number:</label>
+      <input
+        id="mobile"
+        type="text"
+        class="form-control"
+        [(ngModel)]="challanData.mobile"
+        name="mobile"
+        required
+        pattern="[0-9]{10}"
+        #mobile="ngModel" />
+      <div *ngIf="mobile.invalid && mobile.touched" class="error-message">
+        Valid 10-digit Mobile Number is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="vehicleType">Vehicle Type:</label>
+      <select
+        id="vehicleType"
+        class="form-control"
+        [(ngModel)]="challanData.vehicleType"
+        name="vehicleType"
+        required
+        #vehicleType="ngModel">
+        <option value="">Select Vehicle Type</option>
+        <option value="two-wheeler">Two-Wheeler</option>
+        <option value="three-wheeler">Three-Wheeler</option>
+        <option value="four-wheeler">Four-Wheeler</option>
+      </select>
+      <div *ngIf="vehicleType.invalid && vehicleType.touched" class="error-message">
+        Vehicle Type is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="startTime">Start Time:</label>
+      <input
+        id="startTime"
+        type="time"
+        class="form-control"
+        [(ngModel)]="challanData.startTime"
+        name="startTime"
+        required
+        (change)="calculateFee()"
+        #startTime="ngModel" />
+      <select [(ngModel)]="challanData.startTimePeriod" name="startTimePeriod" required (change)="calculateFee()">
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+      <div *ngIf="startTime.invalid && startTime.touched" class="error-message">
+        Start Time is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="endTime">End Time:</label>
+      <input
+        id="endTime"
+        type="time"
+        class="form-control"
+        [(ngModel)]="challanData.endTime"
+        name="endTime"
+        required
+        (change)="calculateFee()"
+        #endTime="ngModel" />
+      <select [(ngModel)]="challanData.endTimePeriod" name="endTimePeriod" required (change)="calculateFee()">
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+      <div *ngIf="endTime.invalid && endTime.touched" class="error-message">
+        End Time is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="violationTime">Violation Time (in hours):</label>
+      <input id="violationTime" type="text" class="form-control" [(ngModel)]="challanData.violationTime" name="violationTime" readonly />
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount to Pay:</label>
+      <input
+        id="amount"
+        type="number"
+        class="form-control"
+        [(ngModel)]="challanData.amount"
+        name="amount"
+        readonly />
+    </div>
+
+    <div class="form-group payment-options">
+      <label>Payment Options:</label>
+      <button type="button" class="btn btn-primary" (click)="payAtStation()">Pay at Station</button>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="challanForm.invalid">Submit</button>
+  </form>
+</div>
