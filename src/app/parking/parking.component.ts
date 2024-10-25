@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; // Import Router
 import { ParkingSpotService } from '../services/parking-spot.service';
 import { ParkingSpot } from '../models/parking-spot.model';
 import { ParkingSlot } from '../models/parking-slot.model';
@@ -15,7 +16,10 @@ export class ParkingComponent implements OnInit {
   filteredCards: ParkingSpot[] = []; // Filtered cards for the search
   selectedSpot: ParkingSpot | null = null; // The selected parking spot for viewing slots
 
-  constructor(private parkingSpotService: ParkingSpotService) {}
+  constructor(
+    private parkingSpotService: ParkingSpotService,
+    private router: Router // Inject Router for navigation
+  ) {}
 
   ngOnInit() {
     this.loadParkingSpots();
@@ -83,7 +87,7 @@ export class ParkingComponent implements OnInit {
     }
   }
 
-  // Book a slot by ID
+  // Book a slot by ID and navigate to the challan form
   bookSlot(spotId: number, slotId: number) {
     this.parkingSpotService.bookParkingSlot(spotId, slotId).subscribe(
       () => {
@@ -94,6 +98,9 @@ export class ParkingComponent implements OnInit {
         alert(
           `You have successfully booked Slot ${slotId} at ${this.selectedSpot?.name}.`
         );
+
+        // After booking the slot, navigate to the challan form
+        this.router.navigate(['/challan']); // This will open the challan form
       },
       (error: any) => {
         alert('Failed to book the slot. Please try again.');
