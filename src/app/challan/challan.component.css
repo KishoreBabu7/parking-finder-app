@@ -1,0 +1,91 @@
+.challan-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #2a0134; /* Dark purple background */
+  color: #e4c2ff; /* Light lavender text */
+  text-align: center; /* Center align form text */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #e4c2ff; /* Light lavender for labels */
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #d5b1ff; /* Soft border */
+  background-color: #4b006d; /* Soft purple input background */
+  color: #e4c2ff; /* Input text color */
+}
+
+input::placeholder,
+select {
+  color: #e4c2ff; /* Placeholder and select text color */
+}
+
+/* Style for buttons */
+.payment-options,
+button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.payment-options button,
+button[type="submit"] {
+  padding: 12px 30px;
+  background-color: #8000c4; /* Bright purple for buttons */
+  border: none;
+  border-radius: 30px; /* Fully rounded buttons */
+  color: #e4c2ff; /* Light lavender text on buttons */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.payment-options button:hover,
+button[type="submit"]:hover {
+  background-color: #620099; /* Darker purple on hover */
+}
+
+.payment-options button:active,
+button[type="submit"]:active {
+  background-color: #52008c; /* Even darker on click */
+}
+
+.payment-options {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.payment-options button {
+  margin-right: 15px;
+}
+
+/* Style for the form border */
+.challan-form {
+  border: 1px solid #5d006d; /* Soft border to complement the form */
+}
+
+/* Styling for the select dropdown */
+.form-group select {
+  appearance: none; /* Hide default arrow */
+  background-color: #4b006d; /* Same background as input */
+  padding-right: 20px; /* Space for custom arrow */
+}
+/*Add error message styling */
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
