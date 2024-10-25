@@ -51,6 +51,21 @@
     </div>
 
     <div class="form-group">
+      <label for="plateNumber">Plate Number:</label>
+      <input
+        id="plateNumber"
+        type="text"
+        class="form-control"
+        [(ngModel)]="challanData.plateNumber"
+        name="plateNumber"
+        required
+        #plateNumber="ngModel" />
+      <div *ngIf="plateNumber.invalid && plateNumber.touched" class="error-message">
+        Plate Number is required
+      </div>
+    </div>
+
+    <div class="form-group">
       <label for="startTime">Start Time:</label>
       <input
         id="startTime"
@@ -107,10 +122,8 @@
     </div>
 
     <div class="form-group payment-options">
-      <label>Payment Options:</label>
+
       <button type="button" class="btn btn-primary" (click)="payAtStation()">Pay at Station</button>
     </div>
-
-    <button type="submit" class="btn btn-success" [disabled]="challanForm.invalid">Submit</button>
   </form>
 </div>
