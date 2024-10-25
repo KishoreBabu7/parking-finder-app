@@ -12,6 +12,7 @@ export class ChallanComponent {
     name: '',
     mobile: '',
     vehicleType: '',
+    plateNumber: '', // New Plate Number field
     startTime: '',
     startTimePeriod: 'AM',
     endTime: '',
