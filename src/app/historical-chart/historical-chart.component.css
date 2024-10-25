@@ -7,6 +7,16 @@
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); 
   padding: 15px;
 }
+.pie-chart-container {
+  width: 600px; /* Adjust the width as needed */
+  height: 400px; /* Adjust the height as needed */
+  margin: 20px auto; /* Center the chart */
+  border: 2px solid var(--highlight-color); /* Border color for better visibility */
+  border-radius: 8px; /* Rounded corners */
+  background-color: var(--secondary-color); /* Background color */
+  padding: 15px; 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
 
 .loading-message {
   text-align: center; 
@@ -76,11 +86,6 @@
   .card p {
     font-size: 1.2rem;
   }
-
-  .chart-container {
-    height: 250px;
-    width: 90%; 
-  }
 }
 
 @media (max-width: 480px) {
@@ -96,9 +101,22 @@
   .card p {
     font-size: 1.2rem;
   }
+}
 
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 250px;
+    width: 85%; 
+  }
+}
+
+@media (max-width: 480px) {
   .chart-container {
     height: 250px; 
+  }
+  .pie-chart-container {
+    width:85%
     
   }
 }
