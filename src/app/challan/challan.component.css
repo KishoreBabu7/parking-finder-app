@@ -73,13 +73,20 @@
 .amount-input i {
   color: #a83af2; /* Change this color as needed */
 }
-/* Button Styling */
+/* Align buttons side by side */
 .payment-options {
-  text-align: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Center-align buttons */
   margin-top: 20px;
 }
 
+.payment-options .pay-btn-wrapper {
+  flex: 1; /* Allow buttons to take equal space */
+}
+
 .payment-options .pay-btn {
+  width: 100%;
   padding: 12px 20px;
   background-color: #8000c4;
   border: none;
@@ -87,19 +94,27 @@
   color: #e4c2ff;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
 .payment-options .pay-btn:hover {
-  background-color: #620099;
+  background-color: #a83af2; /* Brighter shade on hover */
+  color: #ffffff; /* Change text color to stand out */
+  box-shadow: 0 8px 16px rgba(168, 58, 242, 0.4), 0 4px 8px rgba(0, 0, 0, 0.2); /* Glow effect */
+  transform: translateY(-2px); /* Slight lift on hover */
 }
 
 .payment-options .pay-btn:active {
   background-color: #52008c;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduce shadow on click */
+  transform: translateY(0); /* Reset position on click */
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
