@@ -6,6 +6,14 @@
   color: #e4c2ff;
   border-radius: 12px;
 }
+/* Form Heading */
+.form-heading {
+  text-align: center;
+  font-size: 1.8em;
+  color: #e4c2ff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
 
 /* Form Group Styling */
 .form-group {
@@ -50,13 +58,21 @@
 /* Side-by-side for inline groups */
 .inline-group {
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
 
 .inline-group .form-group {
-  width: 48%; /* Sets width to allow for even side-by-side alignment */
+  width: 50%; /* Sets width to allow for even side-by-side alignment */
+  align-items: center;
+}
+.amount-input {
+  display: flex;
+  align-items: center;
 }
 
+.amount-input i {
+  color: #a83af2; /* Change this color as needed */
+}
 /* Button Styling */
 .payment-options {
   text-align: center;

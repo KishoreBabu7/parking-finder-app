@@ -1,4 +1,5 @@
 <div class="challan-form">
+  <h2 class="form-heading">Enter Your Details For Booking the Slot</h2>
   <form #challanForm="ngForm" (ngSubmit)="onSubmit(challanForm)">
     <div class="inline-group">
       <div class="form-group">
@@ -106,23 +107,34 @@
     </div>
   </div>
  </div>
-
-
-    <div class="form-group">
-      <label for="violationTime"><i class="fas fa-hourglass-half"></i> Violation Time (in hours):</label>
-      <input id="violationTime" type="text" class="form-control" [(ngModel)]="challanData.violationTime" name="violationTime" readonly />
-    </div>
-
-    <div class="form-group">
-      <label for="amount"><i class="fas fa-money-bill-wave"></i> Amount to Pay:</label>
+ <div class="form-group inline-group">
+  <div>
+    <label for="violationTime"><i class="fa-solid fa-hourglass-start"></i> Violation Time (in hours):</label>
+    <input
+      id="violationTime"
+      type="text"
+      class="form-control"
+      [(ngModel)]="challanData.violationTime"
+      name="violationTime"
+      readonly
+    />
+  </div>
+  
+  <div>
+    <label for="amount"> <i class="fas fa-dollar-sign"></i> Amount to Pay:</label>
+    <div class="amount-input"> <!-- Example icon from Font Awesome -->
       <input
         id="amount"
         type="number"
         class="form-control"
         [(ngModel)]="challanData.amount"
         name="amount"
-        readonly />
+        readonly
+      />
     </div>
+  </div>
+ </div>
+
 
     <div class="form-group payment-options">
       <button routerLink="/payment" type="button" class="btn btn-primary pay-btn" (click)="payAtStation()">
