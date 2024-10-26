@@ -1,5 +1,5 @@
 <div class="challan-form">
-  <h2 class="form-heading">Enter Your Details For Booking the Slot</h2>
+  <h2 class="form-heading">Enter Your <i class="fa-regular fa-file-lines"></i> Details For Booking the Slot <i class="fa-sharp fa-solid fa-map-location"></i></h2>
   <form #challanForm="ngForm" (ngSubmit)="onSubmit(challanForm)">
     <div class="inline-group">
       <div class="form-group">
@@ -7,6 +7,7 @@
         <input
           id="name"
           type="text"
+          placeholder="Enter Your Name"
           class="form-control"
           [(ngModel)]="challanData.name"
           name="name"
@@ -22,6 +23,7 @@
         <input
           id="mobile"
           type="text"
+          placeholder="Enter Your Mobile Number"
           class="form-control"
           [(ngModel)]="challanData.mobile"
           name="mobile"
@@ -59,6 +61,7 @@
         <input
           id="plateNumber"
           type="text"
+          placeholder="Enter Your Vehicle Number"
           class="form-control"
           [(ngModel)]="challanData.plateNumber"
           name="plateNumber"
@@ -107,12 +110,15 @@
     </div>
   </div>
  </div>
- <div class="form-group inline-group">
-  <div>
-    <label for="violationTime"><i class="fa-solid fa-hourglass-start"></i> Violation Time (in hours):</label>
+ <div class="centered-fields">
+  <div class="violation-time">
+    <label for="violationTime">
+      <i class="fa-solid fa-hourglass-start"></i> Violation Time (in hours):
+    </label>
     <input
       id="violationTime"
       type="text"
+      placeholder="Total Time"
       class="form-control"
       [(ngModel)]="challanData.violationTime"
       name="violationTime"
@@ -120,20 +126,21 @@
     />
   </div>
   
-  <div>
-    <label for="amount"> <i class="fas fa-dollar-sign"></i> Amount to Pay:</label>
-    <div class="amount-input"> 
-      <input
-        id="amount"
-        type="number"
-        class="form-control"
-        [(ngModel)]="challanData.amount"
-        name="amount"
-        readonly
-      />
-    </div>
+  <div class="amount-to-pay">
+    <label for="amount">
+      <i class="fas fa-dollar-sign"></i> Amount to Pay:
+    </label>
+    <input
+      id="amount"
+      type="number"
+      class="form-control"
+      [(ngModel)]="challanData.amount"
+      name="amount"
+      readonly
+    />
   </div>
- </div>
+</div>
+
  <div class="form-group payment-options">
   <div class="pay-btn-wrapper">
     <button routerLink="/payment" type="button" class="btn btn-primary pay-btn" (click)="payAtStation()">

@@ -2,15 +2,19 @@
 .challan-form {
   max-width: 900px;
   margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 25px;
   color: #e4c2ff;
   border-radius: 12px;
+  background-color: #4a006dd6;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.518);
 }
 /* Form Heading */
 .form-heading {
   text-align: center;
   font-size: 1.8em;
-  color: #e4c2ff;
+  color: #d5b9ec;
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -65,14 +69,48 @@
   width: 50%; /* Sets width to allow for even side-by-side alignment */
   align-items: center;
 }
-.amount-input {
+/* Centered Fields Container */
+.centered-fields {
   display: flex;
+  justify-content: center;
+  gap: 40px; /* Spacing between the fields */
+  margin-top: 20px;
+  align-items: center; /* Align items to center vertically */
+}
+
+/* Individual Field Styling */
+.violation-time, .amount-to-pay {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.amount-input i {
-  color: #a83af2; /* Change this color as needed */
+.violation-time label, .amount-to-pay label {
+  font-weight: bold;
+  color: #e4c2ff;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  margin-bottom: 10px;
 }
+
+.violation-time input, .amount-to-pay input {
+  width: 200px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d5b1ff;
+  background-color: #4b006d;
+  color: #e4c2ff;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.violation-time input:focus, .amount-to-pay input:focus {
+  border-color: #8000c4;
+  background-color: #52008c;
+}
+
+
 /* Align buttons side by side */
 .payment-options {
   display: flex;
@@ -129,5 +167,32 @@
   .challan-form {
     max-width: 90%;
     padding: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .centered-fields {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .violation-time input, .amount-to-pay input {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .challan-form {
+    max-width: 90%; /* Makes the form take most of the screen width */
+    padding: 20px; /* Reduces padding for smaller screens */
+   margin: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Softens the shadow on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .challan-form {
+    margin: 10px;
+    max-width: 95%; /* Further adjustment for very small screens */
+    padding: 15px; /* Less padding for a compact view */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Even softer shadow on smaller screens */
   }
 }
