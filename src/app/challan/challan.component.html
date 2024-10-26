@@ -17,7 +17,6 @@
           Name is required
         </div>
       </div>
-
       <div class="form-group">
         <label for="mobile"><i class="fas fa-phone-alt"></i> Mobile Number:</label>
         <input
@@ -35,7 +34,6 @@
         </div>
       </div>
     </div>
-
     <div class="inline-group">
       <div class="form-group">
         <label for="vehicleType"><i class="fas fa-car"></i> Vehicle Type:</label>
@@ -55,7 +53,6 @@
           Vehicle Type is required
         </div>
       </div>
-
       <div class="form-group">
         <label for="plateNumber"><i class="fas fa-id-badge"></i> Plate Number:</label>
         <input
@@ -72,25 +69,24 @@
         </div>
       </div>
     </div>
-    <!-- Start Time and End Time Inline Group -->
-<div class="inline-group">
-  <div class="form-group">
-    <label for="startTime"><i class="fas fa-clock"></i> Start Time:</label>
-    <div class="time-group">
-      <input
-        id="startTime"
-        type="time"
-        class="form-control"
-        [(ngModel)]="challanData.startTime"
-        name="startTime"
-        required
-        (change)="calculateFee()"
-        #startTime="ngModel" />
-    </div>
-    <div *ngIf="startTime.invalid && startTime.touched" class="error-message">
-      Start Time is required
-    </div>
-  </div>
+    <div class="inline-group">
+      <div class="form-group">
+        <label for="startTime"><i class="fas fa-clock"></i> Start Time:</label>
+        <div class="time-group">
+          <input
+           id="startTime"
+           type="time"
+           class="form-control"
+           [(ngModel)]="challanData.startTime"
+           name="startTime"
+           required
+           (change)="calculateFee()"
+           #startTime="ngModel" />
+          </div>
+          <div *ngIf="startTime.invalid && startTime.touched" class="error-message">
+             Start Time is required
+            </div>
+          </div>
 
   <div class="form-group">
     <label for="endTime"><i class="fas fa-clock"></i> End Time:</label>
