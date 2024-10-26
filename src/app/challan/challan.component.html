@@ -87,8 +87,7 @@
              Start Time is required
             </div>
           </div>
-
-  <div class="form-group">
+          <div class="form-group">
     <label for="endTime"><i class="fas fa-clock"></i> End Time:</label>
     <div class="time-group">
       <input
@@ -100,42 +99,39 @@
         required
         (change)="calculateFee()"
         #endTime="ngModel" />
+      </div>
+      <div *ngIf="endTime.invalid && endTime.touched" class="error-message">
+        End Time is required
+      </div>
+     </div>
     </div>
-    <div *ngIf="endTime.invalid && endTime.touched" class="error-message">
-      End Time is required
+    <div class="centered-fields">
+      <div class="violation-time">
+        <label for="violationTime">
+          <i class="fa-solid fa-hourglass-start"></i> Violation Time (in hours):
+        </label>
+        <input
+         id="violationTime"
+         type="text"
+         placeholder="Total Time"
+         class="form-control"
+         [(ngModel)]="challanData.violationTime"
+         name="violationTime"
+         readonly/>
+      </div>
+      <div class="amount-to-pay">
+        <label for="amount">
+          <i class="fas fa-dollar-sign"></i> Amount to Pay:
+        </label>
+        <input
+         id="amount"
+         type="number"
+         class="form-control"
+         [(ngModel)]="challanData.amount"
+         name="amount"
+        readonly/>
+      </div>
     </div>
-  </div>
- </div>
- <div class="centered-fields">
-  <div class="violation-time">
-    <label for="violationTime">
-      <i class="fa-solid fa-hourglass-start"></i> Violation Time (in hours):
-    </label>
-    <input
-      id="violationTime"
-      type="text"
-      placeholder="Total Time"
-      class="form-control"
-      [(ngModel)]="challanData.violationTime"
-      name="violationTime"
-      readonly
-    />
-  </div>
-  
-  <div class="amount-to-pay">
-    <label for="amount">
-      <i class="fas fa-dollar-sign"></i> Amount to Pay:
-    </label>
-    <input
-      id="amount"
-      type="number"
-      class="form-control"
-      [(ngModel)]="challanData.amount"
-      name="amount"
-      readonly
-    />
-  </div>
-</div>
 
  <div class="form-group payment-options">
   <div class="pay-btn-wrapper">
