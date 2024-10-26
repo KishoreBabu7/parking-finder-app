@@ -1,86 +1,91 @@
+/* Form Container */
 .challan-form {
-  max-width: 600px; /* Max width for the form */
+  max-width: 900px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 25px;
+  color: #e4c2ff;
   border-radius: 12px;
-  background-color: #2a0134; /* Dark purple background */
-  color: #e4c2ff; /* Light lavender text */
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  text-align: left;
 }
 
-/* Form Group styling */
+/* Form Group Styling */
 .form-group {
   margin-bottom: 20px;
 }
 
-/* Form label styling */
+.error-message {
+  text-align: center;
+  margin-top: 10px;
+  color: red;
+}
+
 .form-group label {
-  display: block;
-  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
   font-weight: bold;
   color: #e4c2ff;
 }
 
-/* Input field styling */
+.form-group label i {
+  margin: 8px;
+  color: #d796e5;
+}
+
 .form-group input,
 .form-group select {
-  width: 100%;
+  width: 90%; /* Align inputs to full width of their container */
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #d5b1ff;
-  background-color: #4b006d; /* Soft purple input background */
+  background-color: #4b006d;
   color: #e4c2ff;
   transition: all 0.3s ease-in-out;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #8000c4; /* Bright purple border on focus */
-  background-color: #52008c; /* Slightly darker on focus */
+  border-color: #8000c4;
+  background-color: #52008c;
 }
 
-/* For the time picker icon to show white */
-input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Makes the clock icon white */
-}
-
-/* Styling for side-by-side layout */
+/* Side-by-side for inline groups */
 .inline-group {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
 }
 
 .inline-group .form-group {
-  width: 48%;
+  width: 48%; /* Sets width to allow for even side-by-side alignment */
 }
 
-/* Center-align the Pay at Station button */
+/* Button Styling */
 .payment-options {
   text-align: center;
   margin-top: 20px;
 }
 
-.payment-options button {
-  padding: 12px 30px;
-  background-color: #8000c4; /* Bright purple for buttons */
+.payment-options .pay-btn {
+  padding: 12px 20px;
+  background-color: #8000c4;
   border: none;
-  border-radius: 30px;
+  border-radius: 8px;
   color: #e4c2ff;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.payment-options button:hover {
+.payment-options .pay-btn:hover {
   background-color: #620099;
 }
 
-.payment-options button:active {
+.payment-options .pay-btn:active {
   background-color: #52008c;
 }
 
-/* Mobile Responsive Design */
+/* Responsive Design */
 @media (max-width: 768px) {
   .inline-group {
     flex-direction: column;
@@ -91,7 +96,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   .challan-form {
-    max-width: 90%; /* Ensure it looks good on mobile */
+    max-width: 90%;
     padding: 20px;
   }
 }
