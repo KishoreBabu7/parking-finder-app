@@ -18,7 +18,7 @@ export interface UserStatistics {
 })
 export class ReportingService {
 
-  private apiUrl = 'http://localhost:8080/api'; // Base URL for your API
+  private apiUrl = 'http://localhost:8080/api'; 
 
   constructor(private http: HttpClient) { }
 

@@ -10,28 +10,22 @@ import { ReportingService, MonthlyUser } from '../services/reporting.service';
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
 
-  // Options for the pie chart (user distribution)
   pieChartOptions: Highcharts.Options = {};
 
-  // Options for the bar chart (monthly user data)
   chartOptions: Highcharts.Options = {};
+  totalUsers: number = 1000; 
+  activeUsers: number = 50; 
+  newUsersThisMonth: number = 200; 
 
-  // Properties for user statistics
-  totalUsers: number = 1000; // Example: total number of users
-  activeUsers: number = 50; // Example: active users
-  newUsersThisMonth: number = 200; // Example: new users this month
-
-  // Array to store monthly user data fetched from the service
   monthlyUserData: MonthlyUser[] = [];
 
   constructor(private reportingService: ReportingService) {}
 
   ngOnInit(): void {
-    this.initializePieChart(); // Initialize the pie chart for user distribution
-    this.fetchMonthlyUserData(); // Fetch monthly data and initialize the bar chart
+    this.initializePieChart(); 
+    this.fetchMonthlyUserData();
   }
 
-  // Initialize the pie chart to show user distribution
   initializePieChart(): void {
     this.pieChartOptions = {
       chart: {
@@ -70,14 +64,12 @@ export class HistoricalChartComponent implements OnInit {
       }]
     };
   }
-
-  // Fetch monthly user data from the service and initialize the bar chart
   fetchMonthlyUserData(): void {
     this.reportingService.getMonthlyUsers().subscribe({
       next: (data: MonthlyUser[]) => {
         console.log('Data fetched from backend: ', data);
         this.monthlyUserData = data;
-        this.initializeBarChart(); // Initialize the bar chart with fetched data
+        this.initializeBarChart(); 
       },
       error: (error) => {
         console.error('Error fetching data', error);
@@ -85,7 +77,6 @@ export class HistoricalChartComponent implements OnInit {
     });
   }
 
-  // Initialize the bar chart to show monthly user growth
   initializeBarChart(): void {
     const months = this.monthlyUserData.map(item => item.month);
     const userCounts = this.monthlyUserData.map(item => item.count);
