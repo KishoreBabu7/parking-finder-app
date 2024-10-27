@@ -14,16 +14,15 @@ export class ChallanComponent {
     vehicleType: '',
     plateNumber: '',
     startTime: '',
-    startTimePeriod: 'AM', // AM/PM for start time
+    startTimePeriod: 'AM',
     endTime: '',
-    endTimePeriod: 'AM', // AM/PM for end time
+    endTimePeriod: 'AM',
     violationTime: '',
     amount: 0,
   };
 
   constructor(private challanService: ChallanService) {}
 
-  // Function to handle the calculation of fee and violation time
   calculateFee() {
     if (this.challanData.startTime && this.challanData.endTime) {
       const startTime = this.convertToDate(
@@ -49,7 +48,6 @@ export class ChallanComponent {
     }
   }
 
-  // Function to convert time with AM/PM into a Date object
   convertToDate(time: string, period: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
@@ -65,7 +63,6 @@ export class ChallanComponent {
     return now;
   }
 
-  // Function to submit the form data
   onSubmit(form: NgForm) {
     if (form.valid) {
       console.log('Submitting Challan Data:', this.challanData);
@@ -77,7 +74,7 @@ export class ChallanComponent {
         },
         (error) => {
           console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
+          alert('Failed to submit challan: ' + error.error);
         }
       );
     } else {
@@ -85,7 +82,33 @@ export class ChallanComponent {
     }
   }
 
-  // Function for Pay Now and Pay at Station buttons
+  payNow(challanForm: NgForm) {
+    if (challanForm.valid) {
+      console.log(
+        'Proceeding to payment with the following data:',
+        this.challanData
+      );
+
+      this.challanService.processPayment(this.challanData).subscribe(
+        (response: any) => {
+          console.log('Payment processed successfully:', response);
+          alert('Payment successful, redirecting to payment page.');
+
+          // Navigate to payment page
+          window.location.href = '/payment'; // Replace with router navigation if using Angular routing
+        },
+        (error: any) => {
+          console.error('Error processing payment:', error);
+          alert('Failed to process payment: ' + error.error);
+        }
+      );
+    } else {
+      alert(
+        'Please fill out all required fields before proceeding to payment.'
+      );
+    }
+  }
+
   payAtStation() {
     const formFieldsFilled =
       this.challanData.name &&
@@ -100,6 +123,7 @@ export class ChallanComponent {
         'Submitting Challan Data for Pay at Station:',
         this.challanData
       );
+
       this.challanService.createChallan(this.challanData).subscribe(
         (response) => {
           console.log('Challan stored successfully:', response);
@@ -107,7 +131,7 @@ export class ChallanComponent {
         },
         (error) => {
           console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
+          alert('Failed to submit challan: ' + error.error);
         }
       );
     } else {
@@ -115,9 +139,5 @@ export class ChallanComponent {
         'Please fill out all required fields before proceeding to payment.'
       );
     }
-  }
-
-  payNow() {
-    this.payAtStation(); // Same validation and backend storage logic for 'Pay Now'
   }
 }
