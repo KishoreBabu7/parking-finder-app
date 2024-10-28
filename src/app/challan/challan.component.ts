@@ -44,7 +44,7 @@ export class ChallanComponent {
     }
   }
 
-  // Function to convert time with AM/PM into a Date object
+  // Function to convert time into a Date object
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
@@ -54,21 +54,28 @@ export class ChallanComponent {
 
   // Function to submit the form data
   onSubmit(form: NgForm) {
-    if (form.valid) {
-      console.log('Submitting Challan Data:', this.challanData);
-      this.challanService.createChallan(this.challanData).subscribe(
-        (response) => {
-          console.log('Challan stored successfully:', response);
-          alert('Challan submitted successfully');
-        },
-        (error) => {
-          console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
-        }
-      );
-    } else {
+    // Prevent navigation if the form is invalid
+    if (!form.valid) {
       alert('Please fill out all required fields.');
+      return; // Stay on the same page if form is invalid
     }
+
+    // Set status to 'Paid' for Pay Now
+    this.challanData.status = 'Paid';
+
+    // If valid, proceed with submission logic
+    console.log('Submitting Challan Data:', this.challanData);
+    this.challanService.createChallan(this.challanData).subscribe(
+      (response) => {
+        console.log('Challan stored successfully:', response);
+        alert('Challan submitted successfully. Status: Paid');
+        // Optionally navigate to the payment confirmation page
+      },
+      (error) => {
+        console.error('Error storing challan:', error);
+        alert('Failed to submit challan: ' + error.error); // Show error message
+      }
+    );
   }
 
   // Function for Pay At Station
@@ -82,6 +89,9 @@ export class ChallanComponent {
       this.challanData.endTime;
 
     if (formFieldsFilled) {
+      // Set status to 'Unpaid' for Pay at Station
+      this.challanData.status = 'Unpaid';
+
       console.log(
         'Submitting Challan Data for Pay at Station:',
         this.challanData
@@ -89,7 +99,8 @@ export class ChallanComponent {
       this.challanService.createChallan(this.challanData).subscribe(
         (response) => {
           console.log('Challan stored successfully:', response);
-          alert('Challan submitted successfully, payment at station.');
+          alert('Challan submitted successfully. Status: Unpaid');
+          // Optionally navigate to another page or display confirmation
         },
         (error) => {
           console.error('Error storing challan:', error);
@@ -101,10 +112,5 @@ export class ChallanComponent {
         'Please fill out all required fields before proceeding to payment.'
       );
     }
-  }
-
-  // Function for Pay Now
-  payNow() {
-    this.onSubmit; // Call the onSubmit function to handle the submission
   }
 }
