@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChallanService } from '../services/challan.service';
-import { Challan } from '../models/challan.model'; // Import the Challan model
 
 @Component({
   selector: 'app-challan',
@@ -9,8 +8,7 @@ import { Challan } from '../models/challan.model'; // Import the Challan model
   styleUrls: ['./challan.component.css'],
 })
 export class ChallanComponent {
-  // Initialize challanData using the Challan model
-  challanData: Challan = {
+  challanData = {
     name: '',
     mobile: '',
     vehicleType: '',
@@ -19,16 +17,16 @@ export class ChallanComponent {
     endTime: '',
     violationTime: '',
     amount: 0,
-    status: 'Unpaid', // Default status
+    status: '', // Added status field
   };
 
   constructor(private challanService: ChallanService) {}
 
-  // Function to handle the calculation of fee and violation time
+  // Function to calculate violation time and amount
   calculateFee() {
     if (this.challanData.startTime && this.challanData.endTime) {
-      const startTime = this.convertToDate(this.challanData.startTime);
-      const endTime = this.convertToDate(this.challanData.endTime);
+      const startTime = new Date(`1970-01-01T${this.challanData.startTime}:00`);
+      const endTime = new Date(`1970-01-01T${this.challanData.endTime}:00`);
 
       let violationTimeMillis = endTime.getTime() - startTime.getTime();
       if (violationTimeMillis < 0) {
@@ -40,30 +38,28 @@ export class ChallanComponent {
       const minutes = Math.round(violationMinutes % 60);
 
       this.challanData.violationTime = `${hours} hours ${minutes} minutes`;
-      this.challanData.amount = hours * 50 + (minutes > 0 ? 50 : 0); // Calculate amount
+      this.challanData.amount = hours * 50 + (minutes > 0 ? 50 : 0);
     }
   }
 
-  // Function to convert time with AM/PM into a Date object
-  convertToDate(time: string): Date {
-    const [hours, minutes] = time.split(':').map(Number);
-    const now = new Date();
-    now.setHours(hours, minutes, 0, 0);
-    return now;
-  }
-
-  // Function to submit the form data
+  // Common function for submitting the form data
   onSubmit(form: NgForm) {
     if (form.valid) {
+      // Checking the button clicked to set the status field
+      if (form.submitted) {
+        this.challanData.status = 'paid'; // Assuming Pay Now sets it to 'paid'
+      }
+
       console.log('Submitting Challan Data:', this.challanData);
+
       this.challanService.createChallan(this.challanData).subscribe(
         (response) => {
           console.log('Challan stored successfully:', response);
-          alert('Challan submitted successfully');
+          alert('Challan submitted successfully.');
         },
         (error) => {
           console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
+          alert('Failed to submit challan: ' + error.error);
         }
       );
     } else {
@@ -71,21 +67,15 @@ export class ChallanComponent {
     }
   }
 
-  // Function for Pay At Station
-  payAtStation() {
-    const formFieldsFilled =
-      this.challanData.name &&
-      this.challanData.mobile &&
-      this.challanData.vehicleType &&
-      this.challanData.plateNumber &&
-      this.challanData.startTime &&
-      this.challanData.endTime;
-
-    if (formFieldsFilled) {
+  // For Pay at Station: Sets status to 'unpaid' and submits the form
+  payAtStation(form: NgForm) {
+    if (form.valid) {
+      this.challanData.status = 'unpaid'; // Set status to 'unpaid'
       console.log(
         'Submitting Challan Data for Pay at Station:',
         this.challanData
       );
+
       this.challanService.createChallan(this.challanData).subscribe(
         (response) => {
           console.log('Challan stored successfully:', response);
@@ -93,7 +83,32 @@ export class ChallanComponent {
         },
         (error) => {
           console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
+          alert('Failed to submit challan: ' + error.error);
+        }
+      );
+    } else {
+      alert('Please fill out all required fields.');
+    }
+  }
+
+  // For Pay Now: Sets status to 'paid' and proceeds to payment page
+  payNow(form: NgForm) {
+    if (form.valid) {
+      this.challanData.status = 'paid'; // Set status to 'paid'
+      console.log(
+        'Proceeding to payment with the following data:',
+        this.challanData
+      );
+
+      this.challanService.createChallan(this.challanData).subscribe(
+        (response: any) => {
+          console.log('Payment processed successfully:', response);
+          alert('Payment successful, redirecting to payment page.');
+          window.location.href = '/payment'; // Redirect to payment page
+        },
+        (error: any) => {
+          console.error('Error processing payment:', error);
+          alert('Failed to process payment: ' + error.error);
         }
       );
     } else {
@@ -101,10 +116,5 @@ export class ChallanComponent {
         'Please fill out all required fields before proceeding to payment.'
       );
     }
-  }
-
-  // Function for Pay Now
-  payNow() {
-    this.onSubmit; // Call the onSubmit function to handle the submission
   }
 }
