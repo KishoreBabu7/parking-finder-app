@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RazorpayService } from '../services/razorpay.service';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
@@ -10,6 +10,9 @@ declare var Razorpay: any;
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent {
+  @Input() name: string = ''; // Input for name
+  @Input() amount: number = 0; // Input for amount
+
   constructor(
     private razorpayService: RazorpayService,
     private http: HttpClient
@@ -19,9 +22,11 @@ export class PaymentComponent {
   onSubmit(paymentForm: NgForm) {
     if (paymentForm.valid) {
       const paymentData = {
-        name: paymentForm.value.name,
+        name: paymentForm.value.name || this.name, // Use name from input or fallback
         email: paymentForm.value.email,
-        amount: paymentForm.value.amount * 1,
+        amount: paymentForm.value.amount
+          ? paymentForm.value.amount * 1
+          : this.amount, // Use amount from input or fallback
       };
 
       // Call the backend to initiate payment
@@ -30,7 +35,6 @@ export class PaymentComponent {
           this.openRazorpay(response); // Open Razorpay checkout on successful order creation
         },
         (error: any) => {
-          // Add explicit type for error
           console.error('Error initiating payment:', error);
         }
       );
@@ -39,7 +43,7 @@ export class PaymentComponent {
     }
   }
 
-  // Method to open the Razorpay checkout after receiving payment data from the backend
+  // Method to open the Razorpay checkout
   openRazorpay(orderDetails: any) {
     const options = {
       amount: orderDetails.amount, // Amount in paise
@@ -47,11 +51,11 @@ export class PaymentComponent {
       name: 'Parking Space Finder',
       description: 'Parking Fee Payment',
       order_id: orderDetails.id, // Razorpay Order ID from backend
-      handler: (response: any) => {
-        this.verifyPayment(response); // Verify payment on success
+      handler: (paymentResponse: any) => {
+        this.verifyPayment(paymentResponse); // Verify payment on success
       },
       prefill: {
-        name: orderDetails.name,
+        name: this.name,
         email: orderDetails.email,
       },
       notes: {
@@ -59,15 +63,6 @@ export class PaymentComponent {
       },
       theme: {
         color: '#CC6CE7',
-      },
-      // Enable UPI and other methods
-      method: {
-        upi: true, // Enable UPI
-        qr: true, // Enable QR Code (Razorpay automatically handles this)
-        card: true, // Enable Cards
-        netbanking: true, // Enable Netbanking
-        wallet: true, // Enable Wallets
-        paylater: true, // Enable PayLater options
       },
       modal: {
         ondismiss: function () {
@@ -83,7 +78,7 @@ export class PaymentComponent {
   // Method to verify the payment after success
   verifyPayment(paymentResponse: any) {
     this.http
-      .post('http://localhost:8080/api/verify-payment', paymentResponse) // Replace with backend verification API
+      .post('http://localhost:8080/api/verify-payment', paymentResponse)
       .subscribe(
         (res) => {
           console.log('Payment successful!', res);
