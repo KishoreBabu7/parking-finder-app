@@ -1,97 +1,286 @@
+/* Modern Container with Enhanced Spacing */
 .challan-form {
-  max-width: 600px; /* Max width for the form */
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 12px;
-  background-color: #2a0134; /* Dark purple background */
-  color: #e4c2ff; /* Light lavender text */
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  text-align: left;
-}
-
-/* Form Group styling */
-.form-group {
-  margin-bottom: 20px;
-}
-
-/* Form label styling */
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  max-width: 650px;
+  margin: 3rem auto;
+  padding: 3.5rem 3rem;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #2a0134, #3a0149);
   color: #e4c2ff;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 80px rgba(128, 0, 196, 0.15);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(228, 194, 255, 0.1);
 }
 
-/* Input field styling */
+/* Decorative Top Border */
+.challan-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    #8000c4, 
+    #b066ff, 
+    #8000c4
+  );
+  background-size: 200% 100%;
+  animation: gradientMove 8s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* Form Title Styling */
+.form-title {
+  margin-bottom: 2.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced Form Group Spacing */
+.form-group {
+  margin-bottom: 2rem;
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+/* Modern Input Fields with Better Spacing */
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #d5b1ff;
-  background-color: #4b006d; /* Soft purple input background */
+  padding: 1.2rem 1.5rem;
+  border-radius: 16px;
+  border: 2px solid rgba(213, 177, 255, 0.2);
+  background-color: rgba(75, 0, 109, 0.4);
   color: #e4c2ff;
-  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
+  margin-top: 0.5rem;
 }
 
+/* Enhanced Label Styling */
+.form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: #e4c2ff;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  padding-left: 0.5rem;
+}
+
+/* Modern Inline Group with Better Spacing */
+.inline-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+/* Enhanced Payment Options Section */
+.payment-options {
+  margin-top: 3rem;
+  padding: 0 0.5rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Modern Button Styling */
+.payment-options button {
+  padding: 1.2rem 2.8rem;
+  background: linear-gradient(135deg, #8000c4, #9500e6);
+  border: none;
+  border-radius: 50px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(128, 0, 196, 0.3);
+  position: relative;
+  overflow: hidden;
+  min-width: 180px;
+}
+
+/* Button Hover Effects */
+.payment-options button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(128, 0, 196, 0.4);
+  background: linear-gradient(135deg, #9500e6, #8000c4);
+}
+
+/* Button Active State */
+.payment-options button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(128, 0, 196, 0.3);
+}
+
+/* Secondary Button Variant */
+.payment-options button.secondary {
+  background: transparent;
+  border: 2px solid #8000c4;
+  box-shadow: 0 4px 15px rgba(128, 0, 196, 0.15);
+}
+
+.payment-options button.secondary:hover {
+  background: rgba(128, 0, 196, 0.1);
+  border-color: #9500e6;
+}
+
+/* Input Focus Enhancement */
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #8000c4; /* Bright purple border on focus */
-  background-color: #52008c; /* Slightly darker on focus */
+  outline: none;
+  border-color: #8000c4;
+  background-color: rgba(82, 0, 140, 0.6);
+  box-shadow: 
+    0 0 0 4px rgba(128, 0, 196, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
-/* For the time picker icon to show white */
+/* Enhanced Time Picker */
 input[type="time"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Makes the clock icon white */
-}
-
-/* Styling for side-by-side layout */
-.inline-group {
-  display: flex;
-  justify-content: space-between;
-}
-
-.inline-group .form-group {
-  width: 48%;
-}
-
-/* Center-align the Pay at Station button */
-.payment-options {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.payment-options button {
-  padding: 12px 30px;
-  background-color: #8000c4; /* Bright purple for buttons */
-  border: none;
-  border-radius: 30px;
-  color: #e4c2ff;
+  filter: invert(1);
+  opacity: 0.8;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
-.payment-options button:hover {
-  background-color: #620099;
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background-color: rgba(228, 194, 255, 0.1);
 }
 
-.payment-options button:active {
-  background-color: #52008c;
-}
-
-/* Mobile Responsive Design */
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
-  .inline-group {
-    flex-direction: column;
-  }
-
-  .inline-group .form-group {
-    width: 100%;
-  }
-
   .challan-form {
-    max-width: 90%; /* Ensure it looks good on mobile */
-    padding: 20px;
+    max-width: 92%;
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
   }
+
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .inline-group {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 1rem 1.2rem;
+    font-size: 16px;
+  }
+
+  /* Updated payment options for mobile */
+  .payment-options {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    order: 2; /* Moves the payment options section below */
+  }
+
+  .payment-options button {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* Search button specific styling for mobile */
+  .search-button {
+    order: 1;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Modal styling for better mobile visibility */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #2a0134, #3a0149);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 90%;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(228, 194, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .modal {
+    max-width: 95%;
+    padding: 1.5rem;
+    margin: 1rem;
+    max-height: 85vh;
+  }
+
+  .modal-content {
+    padding: 0.5rem;
+  }
+  
+}
+
+/* Loading Animation for Form Submission */
+@keyframes buttonLoading {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.payment-options button.loading {
+  background: linear-gradient(270deg, #8000c4, #9500e6, #b066ff);
+  background-size: 200% 200%;
+  animation: buttonLoading 2s ease infinite;
+  pointer-events: none;
+}
+
+/* Form Section Dividers */
+.form-section {
+  position: relative;
+  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.form-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(228, 194, 255, 0.1),
+    transparent
+  );
 }

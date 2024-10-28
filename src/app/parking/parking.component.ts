@@ -15,6 +15,7 @@ export class ParkingComponent implements OnInit {
   parkingSpots: ParkingSpot[] = []; // All parking spots with their slots
   filteredCards: ParkingSpot[] = []; // Filtered cards for the search
   selectedSpot: ParkingSpot | null = null; // The selected parking spot for viewing slots
+slots: any;
 
   constructor(
     private parkingSpotService: ParkingSpotService,
