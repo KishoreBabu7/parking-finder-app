@@ -12,7 +12,7 @@ export interface MonthlyUser {
   providedIn: 'root'
 })
 export class ReportingService {
-  private baseUrl = 'http://localhost:8080/api'; // Ensure this URL is correct
+  private baseUrl = 'http://localhost:8080/api'; 
 
   constructor(private http: HttpClient) {}
 

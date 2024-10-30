@@ -12,12 +12,12 @@ export class HistoricalChartComponent implements OnInit {
   chartOptions: Highcharts.Options = {};
   pieChartOptions: Highcharts.Options = {};
   monthlyUserData: MonthlyUser[] = [];
-  selectedYear: number = 2023; // Default selected year
+  selectedYear: number = 2023; 
 
   // Declare properties for user counts
   totalUsers: number = 0;
-  activeUsers: number = 0; // Add activeUsers property
-  newUsersThisMonth: number = 0; // Add newUsersThisMonth property
+  activeUsers: number = 0; 
+  newUsersThisMonth: number = 0;
 
   constructor(private reportingService: ReportingService) {}
 
