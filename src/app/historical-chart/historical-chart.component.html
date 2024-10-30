@@ -18,9 +18,8 @@
     </div>
   </div>
 
-
   <div class="col-md-8">
-    <div class="pie-chart-container">
+    <div class="pie-chart-container" *ngIf="monthlyUserData.length > 0; else loading">
       <highcharts-chart 
         [Highcharts]="Highcharts" 
         [options]="pieChartOptions" 
@@ -30,7 +29,16 @@
   </div>
 </div>
 
-<div class="chart-container" *ngIf="monthlyUserData.length > 0; else loading">
+<div>
+  <label for="yearSelect">Select Year: </label>
+  <select id="yearSelect" (change)="onYearChange($event)">
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <!-- Add more years as needed -->
+  </select>
+</div>
+
+<div id="chart-container" *ngIf="monthlyUserData.length > 0; else loading">
   <highcharts-chart 
     [Highcharts]="Highcharts"
     [options]="chartOptions"
@@ -39,5 +47,5 @@
 </div>
 
 <ng-template #loading>
-  <div class="loading-message">Loading user data.....</div>
+  <div class="loading-message">Loading user data...</div>
 </ng-template>

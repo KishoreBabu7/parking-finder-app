@@ -9,67 +9,31 @@ import { ReportingService, MonthlyUser } from '../services/reporting.service';
 })
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-
-  pieChartOptions: Highcharts.Options = {};
-
   chartOptions: Highcharts.Options = {};
-  totalUsers: number = 1000; 
-  activeUsers: number = 50; 
-  newUsersThisMonth: number = 200; 
-
+  pieChartOptions: Highcharts.Options = {};
   monthlyUserData: MonthlyUser[] = [];
+  selectedYear: number = 2023; // Default selected year
+
+  // Declare properties for user counts
+  totalUsers: number = 0;
+  activeUsers: number = 0; // Add activeUsers property
+  newUsersThisMonth: number = 0; // Add newUsersThisMonth property
 
   constructor(private reportingService: ReportingService) {}
 
   ngOnInit(): void {
-    this.initializePieChart(); 
-    this.fetchMonthlyUserData();
+    this.fetchMonthlyUserData(this.selectedYear);
   }
 
-  initializePieChart(): void {
-    this.pieChartOptions = {
-      chart: {
-        type: 'pie'
-      },
-      title: {
-        text: 'User Distribution'
-      },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-          },
-          colorByPoint: true
-        } as any
-      },
-      series: [{
-        name: 'Users',
-        type: 'pie',
-        data: [
-          { name: 'Total Users', y: this.totalUsers },
-          { name: 'Active Users', y: this.activeUsers },
-          { name: 'New Users This Month', y: this.newUsersThisMonth }
-        ]
-      }]
-    };
-  }
-  fetchMonthlyUserData(): void {
-    this.reportingService.getMonthlyUsers().subscribe({
+  fetchMonthlyUserData(year: number): void {
+    this.reportingService.getMonthlyUsers(year).subscribe({
       next: (data: MonthlyUser[]) => {
-        console.log('Data fetched from backend: ', data);
         this.monthlyUserData = data;
-        this.initializeBarChart(); 
+        this.updateChartOptions();
+        this.updatePieChartOptions(); // Call to update pie chart options
+
+        // Update the user counts based on fetched data
+        this.calculateUserStatistics();
       },
       error: (error) => {
         console.error('Error fetching data', error);
@@ -77,34 +41,53 @@ export class HistoricalChartComponent implements OnInit {
     });
   }
 
-  initializeBarChart(): void {
+  calculateUserStatistics(): void {
+    // Calculate total users
+    this.totalUsers = this.monthlyUserData.reduce((acc, user) => acc + user.count, 0);
+
+    // Calculate active users (you can modify the logic as needed)
+    this.activeUsers = this.monthlyUserData.length > 0 ? this.monthlyUserData.filter(user => user.count > 0).length : 0;
+
+    // Calculate new users for the current month (assuming the current month is in the data)
+    const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+    const currentYear = new Date().getFullYear();
+    const currentMonthData = this.monthlyUserData.find(user => user.month === currentMonth && user.year === currentYear);
+    this.newUsersThisMonth = currentMonthData ? currentMonthData.count : 0;
+  }
+
+  updateChartOptions(): void {
     const months = this.monthlyUserData.map(item => item.month);
     const userCounts = this.monthlyUserData.map(item => item.count);
 
     this.chartOptions = {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: 'Monthly User Growth'
-      },
-      xAxis: {
-        categories: months,
-        title: {
-          text: 'Month'
-        }
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Number of Users'
-        }
-      },
+      chart: { type: 'column' },
+      title: { text: 'Monthly User Growth' },
+      xAxis: { categories: months, title: { text: 'Month' } },
+      yAxis: { min: 0, title: { text: 'Number of Users' } },
+      series: [{ name: 'Users', type: 'column', data: userCounts }]
+    };
+  }
+
+  updatePieChartOptions(): void {
+    const pieData = this.monthlyUserData.map(item => ({ name: item.month, y: item.count }));
+
+    this.pieChartOptions = {
+      chart: { type: 'pie' },
+      title: { text: 'User Distribution' },
       series: [{
         name: 'Users',
-        type: 'column',
-        data: userCounts
+        type: 'pie',
+        data: pieData,
+        showInLegend: true,
+        dataLabels: { enabled: true }
       }]
     };
+  }
+
+  onYearChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const year = parseInt(selectElement.value, 10);
+    this.selectedYear = year;
+    this.fetchMonthlyUserData(this.selectedYear);
   }
 }
