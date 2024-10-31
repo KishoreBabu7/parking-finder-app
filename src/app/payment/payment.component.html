@@ -1,22 +1,21 @@
-<div class="center-wrapper">
-  <div class="payment-container">
-    <h2>Payment Section</h2>
-    <div class="form-container">
-      <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
-        <div class="input-container">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Name" name="name" ngModel required />
-        </div>
-        <div class="input-container">
-          <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" name="email" ngModel required />
-        </div>
-        <div class="input-container">
-          <i class="fas fa-dollar-sign"></i>
-          <input type="number" placeholder="Amount" name="amount" ngModel required />
-        </div>
-        <button type="submit">Pay Now</button>
-      </form>
-    </div>
+<div class="payment-container">
+  <app-transaction-history></app-transaction-history>
+  <h2>Payment Section</h2>
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
+      <div class="input-container">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Name" name="name" ngModel required />
+      </div>
+      <div class="input-container">
+        <i class="fas fa-envelope"></i>
+        <input type="email" placeholder="Email" name="email" ngModel required />
+      </div>
+      <div class="input-container">
+        <i class="fas fa-dollar-sign"></i>
+        <input type="number" placeholder="Amount" name="amount" ngModel required />
+      </div>
+      <button type="submit">Pay Now</button>
+    </form>
   </div>
 </div>

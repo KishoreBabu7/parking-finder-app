@@ -1,10 +1,10 @@
 /* General Sidebar Styles */
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: 60px; /* Adjust this if your navbar height changes */
   left: 0;
   width: 280px;
-  height: calc(100% - 60px);
+  height: calc(100% - 60px); /* Ensure it doesn’t cover the navbar */
   background: linear-gradient(145deg, #a445b2, #4b0082, #d41872);
   overflow-y: auto;
   overflow-x: hidden;
@@ -91,46 +91,28 @@
 /* Toggle Button */
 .toggle-btn {
   position: fixed;
-  top: 70px;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  background: #6a0dad;
-  color: #ffc371;
+  top: 110px; /* Set to 110px from the top */
+  left: 10px; /* Position it close to the sidebar */
+  width: 50px; /* Increased width for better visibility */
+  height: 50px; /* Increased height for better visibility */
+  background: #6a0dad; /* Updated color for better visibility */
+  color: #ffc371; /* Icon color */
   border: none;
-  border-radius: 50%;
+  border-radius: 50%; /* Circular shape */
   cursor: pointer;
-  z-index: 11;
-  transition: background 0.3s ease, transform 0.3s ease;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 11; /* Ensure it stays above the sidebar */
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Improved shadow for depth */
 }
 
 .toggle-btn:hover {
-  background: #a445b2;
-  transform: scale(1.1);
+  background: #a445b2; /* Lighter color on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 .toggle-btn i {
-  font-size: 1.2em;
+  font-size: 1.5em; /* Increased icon size */
   transition: transform 0.3s;
-}
-
-.toggle-btn.open i {
-  transform: rotate(180deg);
-}
-
-/* Scrollbar Styles */
-.sidebar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Responsive Design */
@@ -143,6 +125,11 @@
   .toggle-btn {
     left: auto;
     right: 15px;
-    top: 65px;
+    top: 110px; /* Match the position for responsiveness */
   }
+}
+
+/* Additional styles for heading spacing */
+.sidebar.open ~ .sidebar-header {
+  margin-left: 280px; /* Adjust header margin when sidebar is open */
 }
