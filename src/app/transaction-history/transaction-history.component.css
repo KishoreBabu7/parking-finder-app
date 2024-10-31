@@ -1,12 +1,12 @@
 /* General Sidebar Styles */
 .sidebar {
   position: fixed;
-  top: 60px; /* Adjust this if your navbar height changes */
+  top: 60px; /* Adjust this to your navbar height */
   left: 0;
-  width: 280px;
-  height: calc(100% - 60px); /* Ensure it doesn’t cover the navbar */
+  width: 300px; /* Sidebar width */
+  height: calc(100% - 70px); /* Full height minus navbar (60px) and footer (60px) */
   background: linear-gradient(145deg, #a445b2, #4b0082, #d41872);
-  overflow-y: auto;
+  overflow-y: auto; /* Enable smooth scrolling */
   overflow-x: hidden;
   transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1), box-shadow 0.4s;
   transform: translateX(-100%);
@@ -20,8 +20,7 @@
 
 /* Sidebar Header */
 .sidebar-header {
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 50px;
   color: white;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -33,11 +32,6 @@
   font-weight: bold;
   color: #ffebcd;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  transition: color 0.3s;
-}
-
-.sidebar-header h3:hover {
-  color: #ffc371;
 }
 
 /* Transaction List */
@@ -55,24 +49,11 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
+  transition: background 0.3s ease;
 }
 
 .transaction-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
-}
-
-.transaction-item span i {
-  font-size: 1.6em;
-  color: #ffc371;
-  margin-right: 12px;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.transaction-item:hover span i {
-  color: #ffebcd;
-  transform: rotate(20deg);
+  background: rgba(255, 255, 255, 0.1); /* Light hover effect */
 }
 
 /* Transaction Details */
@@ -88,38 +69,56 @@
   font-size: 1.05em;
 }
 
+/* Sidebar Icons */
+.sidebar-icon {
+  font-size: 1.6em; /* Increased icon size */
+  color: #ffc371; /* Default icon color */
+  margin-right: 12px; /* Space between icon and text */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.sidebar-icon:hover {
+  color: #ffebcd; /* Color change on hover */
+}
+
 /* Toggle Button */
 .toggle-btn {
   position: fixed;
   top: 110px; /* Set to 110px from the top */
   left: 10px; /* Position it close to the sidebar */
-  width: 50px; /* Increased width for better visibility */
-  height: 50px; /* Increased height for better visibility */
-  background: #6a0dad; /* Updated color for better visibility */
+  width: 50px; /* Width for better visibility */
+  height: 50px; /* Height for better visibility */
+  background: none; /* No background */
   color: #ffc371; /* Icon color */
   border: none;
-  border-radius: 50%; /* Circular shape */
   cursor: pointer;
   z-index: 11; /* Ensure it stays above the sidebar */
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Improved shadow for depth */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .toggle-btn:hover {
-  background: #a445b2; /* Lighter color on hover */
+  color: #ffebcd; /* Change color on hover */
   transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
-.toggle-btn i {
-  font-size: 1.5em; /* Increased icon size */
-  transition: transform 0.3s;
+/* Scrollbar Styles */
+.sidebar::-webkit-scrollbar {
+  width: 8px; /* Wider scrollbar for better visibility */
 }
 
-/* Responsive Design */
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px; /* Slightly rounded edges */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.7); /* Darker on hover */
+}
+
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%;
-    height: calc(100% - 60px);
+    width: 100%; /* Full width on smaller screens */
+    height: calc(100% - 60px); /* Adjust height for mobile (only navbar) */
   }
 
   .toggle-btn {
@@ -127,9 +126,4 @@
     right: 15px;
     top: 110px; /* Match the position for responsiveness */
   }
-}
-
-/* Additional styles for heading spacing */
-.sidebar.open ~ .sidebar-header {
-  margin-left: 280px; /* Adjust header margin when sidebar is open */
 }
