@@ -12,6 +12,7 @@
           <p>{{ transaction.email }}</p>
           <p>Amount: ₹{{ transaction.amount }}</p>
           <p>Status: {{ transaction.status }}</p>
+          <p>Date: {{ transaction.createdAt | date: 'dd-MM-yyyy HH:mm:ss' }}</p>
         </div>
       </div>
     </li>
