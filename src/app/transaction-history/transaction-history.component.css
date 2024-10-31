@@ -1,142 +1,148 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #ecf0f1; /* Light background for contrast */
-}
-
-/* Sidebar styles */
+/* General Sidebar Styles */
 .sidebar {
   position: fixed;
+  top: 60px;
   left: 0;
-  top: 0;
-  width: 380px; /* Sidebar width */
-  height: 100%;
-  background-color: #2c3e50; /* Darker background for sidebar */
-  color: #ecf0f1; /* Light text color */
-  transition: transform 0.3s ease;
-  transform: translateX(-100%); /* Hide sidebar by default */
-  z-index: 1000; /* Ensure sidebar is above other content */
-  padding: 20px; /* Padding around the sidebar */
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
-  border-right: 2px solid #3498db; /* Decorative border */
+  width: 280px;
+  height: calc(100% - 60px);
+  background: linear-gradient(145deg, #a445b2, #4b0082, #d41872);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1), box-shadow 0.4s;
+  transform: translateX(-100%);
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .sidebar.open {
-  transform: translateX(0); /* Show sidebar */
+  transform: translateX(0);
 }
 
+/* Sidebar Header */
 .sidebar-header {
-  padding: 15px 0; /* Padding for the header */
-  border-bottom: 1px solid #34495e; /* Divider line */
-  text-align: center; /* Centered header text */
-  margin-top: 60px; /* Space below toggle button */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-header h3 {
-  margin: 0;
-  font-size: 24px; /* Header font size */
-  font-weight: bold; /* Bold header text */
-  color: #3498db; /* Bright color for header */
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #ffebcd;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  transition: color 0.3s;
 }
 
-/* Transaction List Styles */
+.sidebar-header h3:hover {
+  color: #ffc371;
+}
+
+/* Transaction List */
 .transaction-list {
   list-style: none;
   padding: 0;
-  margin: 20px 0; /* Margin for spacing above and below the list */
-  max-height: calc(100% - 150px); /* Avoid overflow with header */
-  overflow-y: auto; /* Scrollable if too many items */
-}
-.transaction-item i {
-    font-size: 24px; /* Increased icon size */
-    color: #d17e36; /* Icon color */
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
 .transaction-item {
   display: flex;
-  align-items: center; /* Center items vertically */
-  padding: 15px; /* Comfortable padding */
-  border-radius: 8px; /* Rounded corners */
-  transition: background-color 0.3s, transform 0.2s; /* Animation for hover effect */
-  background-color: #34495e; /* Darker background for items */
-  margin-bottom: 10px; /* Space between items */
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
 .transaction-item:hover {
-  background-color: #3b5998; /* Highlight color on hover */
-  transform: scale(1.02); /* Slight scale effect */
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
 }
 
-.transaction-item span {
-  margin-right: 15px; /* Space between icon and text */
+.transaction-item span i {
+  font-size: 1.6em;
+  color: #ffc371;
+  margin-right: 12px;
+  transition: color 0.3s, transform 0.3s;
 }
 
-.transaction-details {
-  flex-grow: 1; /* Use full width */
+.transaction-item:hover span i {
+  color: #ffebcd;
+  transform: rotate(20deg);
 }
 
-/* Text styles */
+/* Transaction Details */
 .transaction-details p {
-  margin: 5px 0; /* Margin for spacing between lines */
+  margin: 3px 0;
+  color: #f0e6f6;
+  font-size: 0.95em;
 }
 
-/* Toggle button styles */
+.transaction-details p:first-child {
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 1.05em;
+}
+
+/* Toggle Button */
 .toggle-btn {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #3498db; /* Button color */
-  color: white;
+  top: 70px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  background: #6a0dad;
+  color: #ffc371;
   border: none;
-  padding: 12px; /* Padding */
-  border-radius: 50%; /* Rounded button */
-  font-size: 26px; /* Icon size */
+  border-radius: 50%;
   cursor: pointer;
-  z-index: 1001; /* Above sidebar */
-  transition: background-color 0.3s, transform 0.2s; /* Animation for hover effect */
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 11;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-btn:hover {
-  background-color: #2980b9; /* Darker blue on hover */
-  transform: scale(1.05); /* Slight scale effect */
+  background: #a445b2;
+  transform: scale(1.1);
 }
 
-/* Responsive styles */
+.toggle-btn i {
+  font-size: 1.2em;
+  transition: transform 0.3s;
+}
+
+.toggle-btn.open i {
+  transform: rotate(180deg);
+}
+
+/* Scrollbar Styles */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 220px; /* Adjusted width for smaller screens */
-    transform: translateX(-100%); /* Hide sidebar by default */
+    width: 100%;
+    height: calc(100% - 60px);
   }
 
   .toggle-btn {
-    font-size: 22px; /* Smaller button on mobile */
-    padding: 10px; /* Smaller padding */
-  }
-
-  .sidebar.open {
-    transform: translateX(0); /* Show sidebar */
-    height: 100%; /* Full height for the sidebar */
-    width: 80%; /* Use 80% of the screen width */
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    width: 100%; /* Full width on very small screens */
-    padding: 10px; /* Padding adjustments for mobile */
-  }
-
-  .sidebar-header {
-    padding: 5px; /* Smaller padding for mobile */
-    margin-top: 50px; /* Adjust margin for mobile view */
-  }
-
-  .sidebar-header h3 {
-    font-size: 20px; /* Smaller font for header */
-  }
-
-  .transaction-item {
-    padding: 10px; /* More padding for items on mobile */
+    left: auto;
+    right: 15px;
+    top: 65px;
   }
 }
