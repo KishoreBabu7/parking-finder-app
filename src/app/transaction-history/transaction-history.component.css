@@ -4,7 +4,7 @@
   top: 60px; /* Adjust this to your navbar height */
   left: 0;
   width: 300px; /* Sidebar width */
-  height: calc(100% - 70px); /* Full height minus navbar (60px) and footer (60px) */
+  height: calc(100% - 10px); /* Full height minus navbar (60px) and footer (60px) */
   background: linear-gradient(145deg, #a445b2, #4b0082, #d41872);
   overflow-y: auto; /* Enable smooth scrolling */
   overflow-x: hidden;
@@ -20,7 +20,7 @@
 
 /* Sidebar Header */
 .sidebar-header {
-  padding: 50px;
+  padding: 60px;
   color: white;
   text-align: center;
   font-family: 'Roboto', sans-serif;
@@ -73,7 +73,7 @@
 .sidebar-icon {
   font-size: 1.6em; /* Increased icon size */
   color: #ffc371; /* Default icon color */
-  margin-right: 12px; /* Space between icon and text */
+  margin-right: 12  px; /* Space between icon and text */
   transition: color 0.3s ease; /* Smooth color transition */
 }
 
