@@ -86,14 +86,14 @@
 }
 
 .year-dropdown option {
-  background-color: var(--background-color);
-  color: var(--primary-color);
+  background-color: rgb(206, 188, 234);
+  color: purple;
 }
 
 .year-dropdown:hover,
 .year-dropdown:focus {
   border-color: var(--primary-color);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(164, 68, 216, 0.568);
 }
 
 .line-chart-container {
