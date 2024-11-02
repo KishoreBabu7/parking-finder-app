@@ -1,31 +1,45 @@
 <div class="register-container user-container">
   <h2 class="form-header">Register</h2>
-  <form (submit)="registerUser()">
+  <form (submit)="registerUser()" #registerForm="ngForm">
     <div class="form-group">
       <input type="text" placeholder="Name" [(ngModel)]="user.name" name="name" required />
+      <div *ngIf="registerForm.submitted && !user.name" class="error">Name is required.</div>
     </div>
     <div class="form-group">
       <input type="text" placeholder="Username" [(ngModel)]="user.username" name="username" required />
+      <div *ngIf="registerForm.submitted && !user.username" class="error">Username is required.</div>
     </div>
     <div class="form-group">
       <input type="email" placeholder="Email" [(ngModel)]="user.email" name="email" required />
+      <div *ngIf="registerForm.submitted && !user.email" class="error">Email is required.</div>
     </div>
     <div class="form-group">
       <input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required />
+      <div *ngIf="registerForm.submitted && !user.password" class="error">Password is required.</div>
     </div>
     <div class="form-group">
       <input type="password" placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" name="confirmPassword" required />
+      <div *ngIf="registerForm.submitted && !user.confirmPassword" class="error">Confirm Password is required.</div>
     </div>
     <div class="form-group">
       <input type="text" placeholder="Mobile Number" [(ngModel)]="user.mobileNumber" name="mobileNumber" required />
+      <div *ngIf="registerForm.submitted && !user.mobileNumber" class="error">Mobile Number is required.</div>
     </div>
-    <div class="form-group">
-      <input type="text" placeholder="Vehicle Reg No" [(ngModel)]="user.vehicles[0].vehicleRegNo" name="vehicleRegNo" required />
+
+    <div *ngFor="let vehicle of user.vehicles; let i = index">
+      <div class="form-group">
+        <input type="text" placeholder="Vehicle Reg No" [(ngModel)]="vehicle.vehicleRegNo" name="vehicleRegNo{{i}}" required />
+        <div *ngIf="registerForm.submitted && !vehicle.vehicleRegNo" class="error">Vehicle Reg No is required.</div>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Vehicle Type" [(ngModel)]="vehicle.vehicleType" name="vehicleType{{i}}" required />
+        <div *ngIf="registerForm.submitted && !vehicle.vehicleType" class="error">Vehicle Type is required.</div>
+      </div>
     </div>
-    <div class="form-group">
-      <input type="text" placeholder="Vehicle Type" [(ngModel)]="user.vehicles[0].vehicleType" name="vehicleType" required />
-    </div>
-    <button type="submit" class="submit-button">Register</button>
+    <button type="button" (click)="addVehicle()">Add Another Vehicle</button>
+
+    <button type="submit" class="submit-button" [disabled]="registerForm.invalid">Register</button>
   </form>
+  <p *ngIf="passwordMismatch" class="error">Passwords do not match. Please try again.</p>
   <p>{{ message }}</p>
 </div>
