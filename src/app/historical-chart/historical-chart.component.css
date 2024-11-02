@@ -113,7 +113,6 @@
     align-items: center;
   }
 }
-
 @media (max-width: 768px) {
   .card-container {
     flex-direction: column;
