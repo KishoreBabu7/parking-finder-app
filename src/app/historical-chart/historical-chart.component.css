@@ -1,53 +1,45 @@
 .chart-container {
-  width: 100%; 
-  max-width: 80em; 
-  margin: 20px auto; 
-  background-color: var(--secondary-color); 
-  border-radius: 8px; 
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); 
-  padding: 15px;
-}
-.pie-chart-container {
-  width: 600px;
-  height: 400px; 
-  margin: 20px auto; 
-  border: 2px solid var(--highlight-color); 
-  border-radius: 8px; 
+  width: 100%;
+  max-width: 80em;
+  margin: 20px auto;
   background-color: var(--secondary-color);
-  padding: 15px; 
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
 }
 
 .loading-message {
-  text-align: center; 
-  font-size: 1.5em; 
-  color: var(--highlight-color); 
+  text-align: center;
+  font-size: 1.5em;
+  color: var(--highlight-color);
   margin: 20px;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0; /* Unified margin */
 }
 
 .card-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; /* Allow wrapping */
   width: 100%;
-  max-width: 1200px; 
+  max-width: 1200px;
   margin-top: 20px;
-  gap: 20px; 
+  gap: 20px;
 }
 
 .card {
   background-color: var(--secondary-color);
   border-radius: 8px;
   padding: 20px;
-  flex: 1; 
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  flex: 1;
+  min-width: 250px; /* Ensure cards have a minimum width */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
@@ -55,7 +47,7 @@
 .card h3 {
   font-family: var(--font-family-secondary);
   color: var(--primary-color);
-  margin: 0 0 10px; 
+  margin: 0 0 10px;
 }
 
 .card p {
@@ -65,10 +57,63 @@
 }
 
 .card:hover {
-  transform: scale(1.05); 
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.4), 0px 0px 20px rgba(122, 28, 172, 0.8); 
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(122, 28, 172, 0.8);
 }
 
+.year-selection {
+  display: flex;
+  flex-direction: column; /* Stack label and dropdown vertically */
+  align-items: center; /* Center align items */
+  margin: 20px 0; /* Space above and below */
+}
+
+.year-selection label {
+  font-size: 1.5rem;
+  color:rgb(225, 174, 225) ; /* Label color */
+  margin-bottom: 10px; /* Space below label */
+}
+
+.year-dropdown {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid var(--highlight-color);
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color:rgb(198, 153, 225);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  width: 200px; /* Fixed width for dropdown */
+}
+
+/* Dropdown options styling */
+.year-dropdown option {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+.year-dropdown:hover,
+.year-dropdown:focus {
+  border-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.line-chart-container {
+  width: 90%; /* Full width of the parent */
+  max-width: 100%; /* Ensure it can expand fully on mobile */
+  margin: 20px auto; /* Center the container */
+  background-color: var(--secondary-color); /* Background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 15px; /* Padding inside the container */
+  overflow: hidden; /* Prevent overflow for better aesthetics */
+}
+
+@media (max-width: 768px) {
+  .year-selection {
+    flex-direction: column; /* Stack elements on smaller screens */
+    align-items: center; /* Center alignment */
+  }
+
+}
 @media (max-width: 768px) {
   .card-container {
     flex-direction: column;
@@ -78,7 +123,7 @@
     flex: 1 1 100%;
     margin: 10px;
   }
-  
+
   .card h3 {
     font-size: 1.5rem;
   }
@@ -87,6 +132,10 @@
     font-size: 1.2rem;
   }
 
+  .chart-container {
+    height: 250px; /* Adjust height as needed */
+    width: 90%; /* Slightly increased for better responsiveness */
+  }
 }
 
 @media (max-width: 480px) {
@@ -94,6 +143,10 @@
     padding: 15px;
     margin: 10px;
   }
+  .line-chart-container {
+    padding: 10px; /* Reduce padding on smaller screens */
+    width: 90%;
+  }
 
   .card h3 {
     font-size: 1.5rem;
@@ -101,23 +154,5 @@
 
   .card p {
     font-size: 1.2rem;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .chart-container {
-    height: 250px;
-    width: 85%; 
-  }
-}
-
-@media (max-width: 480px) {
-  .chart-container {
-    height: 250px; 
-  }
-  .pie-chart-container {
-    width:85%
-    
   }
 }
