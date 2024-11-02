@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { ChallanComponent } from './challan/challan.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +44,9 @@ import { ChallanComponent } from './challan/challan.component';
     SafePipe,
     HistoricalChartComponent,
     TransactionHistoryComponent,
-    ChallanComponent
-    // UserDashboardComponent removed as per your request
+    ChallanComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +54,11 @@ import { ChallanComponent } from './challan/challan.component';
     HttpClientModule,
     AppRoutingModule,
     HighchartsChartModule,
-    FormsModule // Keep FormsModule here
+    FormsModule // FormsModule for template-driven forms, essential for ngModel
   ],
   providers: [
     provideAnimationsAsync(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()) // Setting up HttpClient with fetch
   ],
   bootstrap: [AppComponent]
 })

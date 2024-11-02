@@ -5,62 +5,66 @@
   </div>
 
   <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-    <!-- Username field, shown only for sign-up -->
+    <!-- Username field shown only in registration mode -->
     <div class="form-group" *ngIf="!isLoginMode">
       <label for="username">Username:</label>
       <input type="text" id="username" [(ngModel)]="username" name="username" required>
     </div>
 
-    <!-- Email field -->
+    <!-- Email field shown in both modes -->
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" id="email" [(ngModel)]="email" name="email" required>
     </div>
 
-    <!-- Password field -->
+    <!-- Password field shown in both modes -->
     <div class="form-group">
       <label for="password">Password:</label>
       <input type="password" id="password" [(ngModel)]="password" name="password" required>
     </div>
 
-    <!-- Confirm password field, shown only for sign-up -->
+    <!-- Confirm Password field shown only in registration mode -->
     <div class="form-group" *ngIf="!isLoginMode">
       <label for="confirm-password">Confirm Password:</label>
       <input type="password" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
     </div>
 
-    <!-- Mobile number field, shown only for sign-up -->
+    <!-- Mobile Number field shown only in registration mode -->
     <div class="form-group" *ngIf="!isLoginMode">
       <label for="mobile-number">Mobile Number:</label>
       <input type="tel" id="mobile-number" [(ngModel)]="mobileNumber" name="mobileNumber" required>
     </div>
 
-    <!-- Vehicle registration number field, shown only for sign-up -->
-    <div class="form-group" *ngIf="!isLoginMode">
-      <label for="vehicle-regno">Vehicle Reg. No.:</label>
-      <input type="text" id="vehicle-regno" [(ngModel)]="vehicleRegNo" name="vehicleRegNo" required>
-    </div>
+    <!-- Dynamic vehicle entries shown only in registration mode -->
+    <div *ngIf="!isLoginMode">
+      <h3>Vehicle Information</h3>
+      <div *ngFor="let vehicle of vehicles; let i = index" class="vehicle-entry">
+        <div class="form-group">
+          <label for="vehicle-regno-{{ i }}">Vehicle Reg. No.:</label>
+          <input type="text" id="vehicle-regno-{{ i }}" [(ngModel)]="vehicle.vehicleRegNo" name="vehicleRegNo{{ i }}" required>
+        </div>
 
-    <!-- Vehicle type dropdown, shown only for sign-up -->
-    <div class="form-group" *ngIf="!isLoginMode">
-      <label for="vehicle-type">Vehicle Type:</label>
-      <select id="vehicle-type" [(ngModel)]="vehicleType" name="vehicleType" required>
-        <option value="" disabled selected>Select vehicle type</option>
-        <option value="2-wheeler">2 Wheeler</option>
-        <option value="3-wheeler">3 Wheeler</option>
-        <option value="4-wheeler">4 Wheeler</option>
-      </select>
-    </div>
+        <div class="form-group">
+          <label for="vehicle-type-{{ i }}">Vehicle Type:</label>
+          <select id="vehicle-type-{{ i }}" [(ngModel)]="vehicle.vehicleType" name="vehicleType{{ i }}" required>
+            <option value="" disabled>Select vehicle type</option>
+            <option value="2-wheeler">2 Wheeler</option>
+            <option value="3-wheeler">3 Wheeler</option>
+            <option value="4-wheeler">4 Wheeler</option>
+          </select>
+        </div>
 
-    <!-- Add another vehicle button, shown only for sign-up -->
-    <div class="form-group add-vehicle-group" *ngIf="!isLoginMode">
+        <!-- Remove vehicle button, only show if more than one vehicle entry -->
+        <button type="button" (click)="removeVehicle(i)" *ngIf="vehicles.length > 1" class="remove-vehicle-button">
+          Remove Vehicle
+        </button>
+      </div>
+
       <button type="button" (click)="addAnotherVehicle()" class="add-vehicle-button">Add Another Vehicle</button>
     </div>
 
-    <!-- Error message -->
     <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-    <!-- Footer section with real button elements styled like links -->
     <div class="form-footer">
       <p *ngIf="isLoginMode">Don't have an account? 
         <button type="button" (click)="onSwitchMode()" class="switch-link">Register</button>

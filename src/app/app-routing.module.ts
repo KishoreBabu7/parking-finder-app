@@ -10,6 +10,8 @@ import { ReportComponent } from './report/report.component';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { ChallanComponent } from './challan/challan.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,8 +24,10 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'user', component: UserComponent },
   { path: 'report', component: ReportComponent },
-  { path: 'challan', component: ChallanComponent }, 
-  { path: '**', redirectTo: '/home' },
+  { path: 'challan', component: ChallanComponent },
+  { path: 'register', component: RegisterComponent }, // Place register route here
+  { path: 'login', component: LoginComponent }, // Place login route here
+  { path: '**', redirectTo: '/home' }, // Wildcard route at the end
 ];
 
 @NgModule({
