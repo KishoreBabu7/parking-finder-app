@@ -4,7 +4,7 @@
   top: 60px; /* Adjust this to your navbar height */
   left: 0;
   width: 300px; /* Sidebar width */
-  height: calc(100% - 10px); /* Full height minus navbar (60px) and footer (60px) */
+  height: calc(100vh - 60px); /* Full height minus navbar height */
   background: linear-gradient(145deg, #a445b2, #4b0082, #d41872);
   overflow-y: auto; /* Enable smooth scrolling */
   overflow-x: hidden;
