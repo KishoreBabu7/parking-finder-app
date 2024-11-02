@@ -6,9 +6,12 @@
   <ul class="transaction-list">
     <li *ngFor="let transaction of transactions">
       <div class="transaction-item">
-        <span><i class="fas fa-receipt"></i></span>
         <div class="transaction-details">
-          <p><strong>{{ transaction.name }}</strong></p>
+          <!-- Icon positioned next to the name -->
+          <p>
+            <i class="fas fa-receipt animated-receipt-icon"> </i>
+              <strong>  {{ transaction.name }}</strong>
+          </p>
           <p>{{ transaction.email }}</p>
           <p>Amount: ₹{{ transaction.amount }}</p>
           <p>Status: {{ transaction.status }}</p>
