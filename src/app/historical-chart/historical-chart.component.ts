@@ -58,11 +58,11 @@ export class HistoricalChartComponent implements OnInit {
     const userCounts = this.monthlyUserData.map(item => item.count);
 
     this.chartOptions = {
-      chart: { type: 'line' },  // Change to line graph
+      chart: { type: 'line' },  
       title: { text: 'Monthly User Growth' },
       xAxis: { categories: months, title: { text: 'Month' } },
       yAxis: { min: 0, title: { text: 'Number of Users' } },
-      series: [{ name: 'Users', type: 'line', data: userCounts }]  // Line graph data
+      series: [{ name: 'Users', type: 'line', data: userCounts }]  
     };
   }
 

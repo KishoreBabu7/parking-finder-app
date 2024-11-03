@@ -95,7 +95,6 @@
   border-color: var(--primary-color);
   background-color: rgba(164, 68, 216, 0.568);
 }
-
 .line-chart-container {
   width: 90%;
   max-width: 100%;
@@ -106,7 +105,6 @@
   padding: 15px;
   overflow: hidden;
 }
-
 @media (max-width: 768px) {
   .year-selection {
     flex-direction: column;
