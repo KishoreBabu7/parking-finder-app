@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  getUserDetails() {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://localhost:8080/user'; // Backend base URL
 
   constructor(private http: HttpClient, private router: Router) {}

@@ -40,6 +40,15 @@
 
     <button type="submit" class="submit-button" [disabled]="registerForm.invalid">Register</button>
   </form>
+
+  <!-- Error message for password mismatch -->
   <p *ngIf="passwordMismatch" class="error">Passwords do not match. Please try again.</p>
+  
+  <!-- Login prompt message for users with an existing account -->
+  <p class="login-prompt">
+    Already have an account? 
+    <a routerLink="/login" class="login-link">Log in here</a>
+  </p>
+
   <p>{{ message }}</p>
 </div>

@@ -42,8 +42,22 @@ export class RegisterComponent {
     this.authService.register(this.user).subscribe(
       response => {
         this.message = 'Registration successful! Redirecting to login...';
+        
+        // Clear form fields after successful registration
+        this.user = {
+          name: '',
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          mobileNumber: '',
+          vehicles: [{ vehicleRegNo: '', vehicleType: '' }]
+        };
+
         // Navigate to login page after successful registration
-        this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000); // Add a slight delay for the success message to be read
       },
       error => {
         console.log('Error occurred:', error);

@@ -46,7 +46,7 @@ import { LoginComponent } from './login/login.component';
     TransactionHistoryComponent,
     ChallanComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

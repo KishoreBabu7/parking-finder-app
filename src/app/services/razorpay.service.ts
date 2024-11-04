@@ -26,3 +26,8 @@ export class RazorpayService {
     return this.http.get<Transaction[]>(this.apiUrl);
   }
 }
+
+
+
+
+
