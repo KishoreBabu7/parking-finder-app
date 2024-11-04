@@ -10,7 +10,6 @@ import { ReportingService, MonthlyUser } from '../services/reporting.service';
 export class HistoricalChartComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {};
-  pieChartOptions: Highcharts.Options = {};
   monthlyUserData: MonthlyUser[] = [];
   selectedYear: number = 2023; 
 
@@ -30,7 +29,6 @@ export class HistoricalChartComponent implements OnInit {
       next: (data: MonthlyUser[]) => {
         this.monthlyUserData = data;
         this.updateChartOptions();
-        this.updatePieChartOptions(); // Call to update pie chart options
 
         // Update the user counts based on fetched data
         this.calculateUserStatistics();
@@ -60,27 +58,11 @@ export class HistoricalChartComponent implements OnInit {
     const userCounts = this.monthlyUserData.map(item => item.count);
 
     this.chartOptions = {
-      chart: { type: 'column' },
+      chart: { type: 'line' },  
       title: { text: 'Monthly User Growth' },
       xAxis: { categories: months, title: { text: 'Month' } },
       yAxis: { min: 0, title: { text: 'Number of Users' } },
-      series: [{ name: 'Users', type: 'column', data: userCounts }]
-    };
-  }
-
-  updatePieChartOptions(): void {
-    const pieData = this.monthlyUserData.map(item => ({ name: item.month, y: item.count }));
-
-    this.pieChartOptions = {
-      chart: { type: 'pie' },
-      title: { text: 'User Distribution' },
-      series: [{
-        name: 'Users',
-        type: 'pie',
-        data: pieData,
-        showInLegend: true,
-        dataLabels: { enabled: true }
-      }]
+      series: [{ name: 'Users', type: 'line', data: userCounts }]  
     };
   }
 

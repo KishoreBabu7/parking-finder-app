@@ -14,7 +14,7 @@ body {
   background-color: var(--background-color);
   margin: 0;
   padding: 0;
-  color: #EBD3F8; 
+  color: #EBD3F8;
   overflow-x: hidden;
 }
 
@@ -60,16 +60,16 @@ button:hover {
 ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     background: var(--background-color);
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 10px;
   }
-  
+
   .scrollable-element {
     scrollbar-width: thin;
     scrollbar-color: var(--secondary-color) var(--background-color);
