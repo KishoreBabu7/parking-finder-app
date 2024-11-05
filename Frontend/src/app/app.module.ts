@@ -14,7 +14,6 @@ import { ParkingComponent } from './parking/parking.component';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { ContactComponent } from './contact/contact.component';
-import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { SafePipe } from './safe.pipe';
 import { HistoricalChartComponent } from './historical-chart/historical-chart.component';
@@ -38,7 +37,6 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     AdminComponent,
     ContactComponent,
-    UserComponent,
     ReportComponent,
     PaymentComponent,
     SafePipe,

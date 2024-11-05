@@ -5,7 +5,6 @@ import { ParkingComponent } from './parking/parking.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent },
   { path: 'transaction-history', component: TransactionHistoryComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'user', component: UserComponent },
   { path: 'report', component: ReportComponent },
   { path: 'challan', component: ChallanComponent },
   { path: 'register', component: RegisterComponent }, // Place register route here
