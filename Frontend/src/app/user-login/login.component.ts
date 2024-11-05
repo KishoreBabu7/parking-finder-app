@@ -21,7 +21,8 @@ export class LoginComponent {
       response => {
         this.message = response.message;
         if (response.success) {
-          this.authService.navigateToHome();
+          this.authService.setUserDetails(response.user); // Store user details
+          this.authService.navigateToHome(); // Navigate to user-dashboard
         }
       },
       error => {

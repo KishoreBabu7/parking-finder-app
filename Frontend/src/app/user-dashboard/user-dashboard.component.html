@@ -1,0 +1,26 @@
+<div class="dashboard-container">
+    
+    <h2>Welcome, {{ user.name }}</h2>
+  
+    <div class="user-details">
+      <h3>Your Details</h3>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Mobile Number:</strong> {{ user.mobileNumber }}</p>
+  
+      <div *ngFor="let vehicle of user.vehicles">
+        <h4>Vehicle Information</h4>
+        <p><strong>Vehicle Reg No:</strong> {{ vehicle.vehicleRegNo }}</p>
+        <p><strong>Vehicle Type:</strong> {{ vehicle.vehicleType }}</p>
+      </div>
+    </div>
+  
+    <div class="actions">
+      <button class="edit-button" (click)="editDetails()">Edit Details</button>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  
+    <p>{{ message }}</p>
+  </div>
+  

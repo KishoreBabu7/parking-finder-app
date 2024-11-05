@@ -24,8 +24,9 @@ import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { ChallanComponent } from './challan/challan.component';
-import { RegisterComponent } from './user-register/register.component';
+import { RegisterComponent } from './user-register/register.component'; 
 import { LoginComponent } from './user-login/login.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { LoginComponent } from './user-login/login.component';
     ChallanComponent,
     RegisterComponent,
     LoginComponent,
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,

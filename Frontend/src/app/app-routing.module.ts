@@ -11,6 +11,7 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
 import { ChallanComponent } from './challan/challan.component';
 import { RegisterComponent } from './user-register/register.component';
 import { LoginComponent } from './user-login/login.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,9 +24,10 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'report', component: ReportComponent },
   { path: 'challan', component: ChallanComponent },
-  { path: 'register', component: RegisterComponent }, // Place register route here
-  { path: 'login', component: LoginComponent }, // Place login route here
-  { path: '**', redirectTo: '/home' }, // Wildcard route at the end
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user-dashboard', component: UserDashboardComponent }, // Add the user-dashboard route
+  { path: '**', redirectTo: '/home' } // Wildcard route at the end
 ];
 
 @NgModule({

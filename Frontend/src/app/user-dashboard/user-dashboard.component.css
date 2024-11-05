@@ -1,0 +1,21 @@
+.dashboard-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .user-details {
+    margin-bottom: 20px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .edit-button,
+  .logout-button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
