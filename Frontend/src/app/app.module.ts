@@ -14,7 +14,6 @@ import { ParkingComponent } from './parking/parking.component';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { ContactComponent } from './contact/contact.component';
-import { UserComponent } from './user/user.component';
 import { ReportComponent } from './report/report.component';
 import { SafePipe } from './safe.pipe';
 import { HistoricalChartComponent } from './historical-chart/historical-chart.component';
@@ -25,8 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { ChallanComponent } from './challan/challan.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './user-register/register.component';
+import { LoginComponent } from './user-login/login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { LoginComponent } from './login/login.component';
     AboutComponent,
     AdminComponent,
     ContactComponent,
-    UserComponent,
     ReportComponent,
     PaymentComponent,
     SafePipe,
