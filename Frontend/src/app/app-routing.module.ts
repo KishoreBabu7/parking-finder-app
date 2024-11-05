@@ -9,8 +9,8 @@ import { ReportComponent } from './report/report.component';
 import { PaymentComponent } from './payment/payment.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { ChallanComponent } from './challan/challan.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './user-register/register.component';
+import { LoginComponent } from './user-login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
