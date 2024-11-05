@@ -1,0 +1,148 @@
+<div class="challan-form">
+  <h2 class="form-heading">Enter Your <i class="fa-regular fa-file-lines"></i> Details For Booking the Slot <i class="fa-sharp fa-solid fa-map-location"></i></h2>
+  <form #challanForm="ngForm" (ngSubmit)="onSubmit(challanForm)">
+    <div class="inline-group">
+      <div class="form-group">
+        <label for="name"><i class="fas fa-user"></i> Name:</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Enter Your Name"
+          class="form-control"
+          [(ngModel)]="challanData.name"
+          name="name"
+          required
+          #name="ngModel" />
+        <div *ngIf="name.invalid && name.touched" class="error-message">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mobile"><i class="fas fa-phone-alt"></i> Mobile Number:</label>
+        <input
+          id="mobile"
+          type="text"
+          placeholder="Enter Your Mobile Number"
+          class="form-control"
+          [(ngModel)]="challanData.mobile"
+          name="mobile"
+          required
+          pattern="[0-9]{10}"
+          #mobile="ngModel" />
+        <div *ngIf="mobile.invalid && mobile.touched" class="error-message">
+          Valid 10-digit Mobile Number is required
+        </div>
+      </div>
+    </div>
+    <div class="inline-group">
+      <div class="form-group">
+        <label for="vehicleType"><i class="fas fa-car"></i> Vehicle Type:</label>
+        <select
+          id="vehicleType"
+          class="form-control"
+          [(ngModel)]="challanData.vehicleType"
+          name="vehicleType"
+          required
+          #vehicleType="ngModel">
+          <option value="">Select Vehicle Type</option>
+          <option value="two-wheeler">Two-Wheeler</option>
+          <option value="three-wheeler">Three-Wheeler</option>
+          <option value="four-wheeler">Four-Wheeler</option>
+        </select>
+        <div *ngIf="vehicleType.invalid && vehicleType.touched" class="error-message">
+          Vehicle Type is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="plateNumber"><i class="fas fa-id-badge"></i> Plate Number:</label>
+        <input
+          id="plateNumber"
+          type="text"
+          placeholder="Enter Your Vehicle Number"
+          class="form-control"
+          [(ngModel)]="challanData.plateNumber"
+          name="plateNumber"
+          required
+          #plateNumber="ngModel" />
+        <div *ngIf="plateNumber.invalid && plateNumber.touched" class="error-message">
+          Plate Number is required
+        </div>
+      </div>
+    </div>
+    <div class="inline-group">
+      <div class="form-group">
+        <label for="startTime"><i class="fas fa-clock"></i> Start Time:</label>
+        <div class="time-group">
+          <input
+           id="startTime"
+           type="time"
+           class="form-control"
+           [(ngModel)]="challanData.startTime"
+           name="startTime"
+           required
+           (change)="calculateFee()"
+           #startTime="ngModel" />
+          </div>
+          <div *ngIf="startTime.invalid && startTime.touched" class="error-message">
+             Start Time is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="endTime"><i class="fas fa-clock"></i> End Time:</label>
+            <div class="time-group">
+              <input
+                id="endTime"
+                type="time"
+                class="form-control"
+                [(ngModel)]="challanData.endTime"
+                name="endTime"
+                required
+                (change)="calculateFee()"
+                #endTime="ngModel" />
+              </div>
+              <div *ngIf="endTime.invalid && endTime.touched" class="error-message">
+                End Time is required
+              </div>
+             </div>
+            </div>
+    <div class="centered-fields">
+      <div class="violation-time">
+        <label for="violationTime">
+          <i class="fa-solid fa-hourglass-start"></i> Violation Time (in hours):
+        </label>
+        <input
+         id="violationTime"
+         type="text"
+         placeholder="Total Time"
+         class="form-control"
+         [(ngModel)]="challanData.violationTime"
+         name="violationTime"
+         readonly/>
+      </div>
+      <div class="amount-to-pay">
+        <label for="amount">
+          <i class="fas fa-dollar-sign"></i> Amount to Pay:
+        </label>
+        <input
+         id="amount"
+         type="number"
+         class="form-control"
+         [(ngModel)]="challanData.amount"
+         name="amount"
+        readonly/>
+      </div>
+    </div>
+    <div class="form-group payment-options">
+      <div class="pay-btn-wrapper">
+        <button type="submit" class="btn btn-primary pay-btn" routerLink="/payment">
+          <i class="fas fa-dollar-sign"></i> Pay Now
+        </button>
+      </div>
+      <div class="pay-btn-wrapper">
+        <button type="button" class="btn btn-primary pay-btn" (click)="payAtStation()">
+          <i class="fas fa-building"></i> Pay at Station
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

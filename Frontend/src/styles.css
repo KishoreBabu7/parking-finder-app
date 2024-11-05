@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@500;600&display=swap');
+
+:root {
+  --primary-color: #7A1CAC; /* Bright Purple */
+  --secondary-color: #EBD3F8; /* Light Lavender */
+  --background-color: #2E073F; /* Deep Purple */
+  --highlight-color: #EBD3F8; /* Light Lavender */
+  --font-family-primary: 'Montserrat', sans-serif;
+  --font-family-secondary: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  color: #EBD3F8;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-family-secondary);
+  color: var(--highlight-color);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+h5, h6 {
+  font-family: var(--font-family-secondary);
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--highlight-color);
+}
+
+button {
+  font-family: var(--font-family-primary);
+  background-color: var(--primary-color);
+  color: var(--highlight-color);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background-color);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+  }
+
+  .scrollable-element {
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) var(--background-color);
+  }
+  
