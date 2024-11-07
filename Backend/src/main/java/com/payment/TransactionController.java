@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.service.EmailService;
-import com.backend.service.PaymentService;
-import com.backend.service.TransactionService;
-
 @RestController
 @RequestMapping("/api/transactions")
 @CrossOrigin(origins = "http://localhost:4200")
