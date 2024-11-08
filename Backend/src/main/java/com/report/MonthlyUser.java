@@ -27,7 +27,6 @@ public class MonthlyUser {
         this.year = year;
     }
 
-    // Getters and Setters
     public String getMonth() {
         return month;
     }
