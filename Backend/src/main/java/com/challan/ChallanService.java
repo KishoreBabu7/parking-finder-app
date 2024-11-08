@@ -26,7 +26,6 @@ public class ChallanService {
     public Optional<Challan> getChallanById(Long id) {
         return challanRepository.findById(id);
     }
-
     public void deleteChallan(Long id) {
         challanRepository.deleteById(id);
     }
