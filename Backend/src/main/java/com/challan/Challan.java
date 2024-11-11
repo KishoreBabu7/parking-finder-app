@@ -7,6 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ForeignKey;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import com.user.Vehicle;
 
@@ -28,7 +29,11 @@ public class Challan {
     private LocalDateTime endTime;    // Changed to LocalDateTime
     private LocalDateTime violationTime; // Changed to LocalDateTime
     private int amount;
-
+    
+    // Constructor to generate a tokenid automatically
+    public Challan() {
+        this.tokenid = UUID.randomUUID().toString(); // Automatically generate unique token ID
+    }
     // Getters and Setters
 
     public String getTokenid() {
