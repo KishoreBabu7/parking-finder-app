@@ -2,7 +2,7 @@ package com.payment;
 
 import java.util.List;
 import java.util.Map;
-import com.challan.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -89,7 +89,8 @@ public class PaymentController {
     public ResponseEntity<?> deletePayment(@PathVariable Long id) {
         try {
             // Check if the payment exists
-            if (paymentService.getPaymentById(id) != null) {
+            PaymentRequest paymentRequest = paymentService.getPaymentById(id);
+            if (paymentRequest != null) {
                 paymentService.deletePaymentById(id);
                 return ResponseEntity.ok("Payment deleted successfully.");
             } else {

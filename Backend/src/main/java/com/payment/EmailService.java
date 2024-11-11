@@ -12,12 +12,12 @@ public class EmailService {
     private JavaMailSender mailSender;
 
     // Method to send payment confirmation email
-    public void sendPaymentConfirmation(Transaction transaction) {
-        String to = transaction.getEmail();
+    public void sendPaymentConfirmation(PaymentRequest paymentRequest) {
+        String to = paymentRequest.getChallan().getEmail();  // Assuming `Challan` has an `email` field
         String subject = "Payment Confirmation";
-        String body = "Dear " + transaction.getName() + ",\n\n"
-                + "Thank you for your payment of " + transaction.getAmount() + " INR.\n"
-                + "Your transaction ID is: " + transaction.getId() + "\n\n"
+        String body = "Dear " + paymentRequest.getChallan().getName() + ",\n\n"  // Assuming `Challan` has a `name` field
+                + "Thank you for your payment of " + paymentRequest.getAmountPaid() + " INR.\n"
+                + "Your transaction ID is: " + paymentRequest.getPaymentId() + "\n\n"
                 + "Best Regards,\nYour Company Name";
 
         SimpleMailMessage message = new SimpleMailMessage();

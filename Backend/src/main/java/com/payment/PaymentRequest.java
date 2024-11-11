@@ -1,8 +1,9 @@
 package com.payment;
 
-import java.time.LocalDateTime;  // For handling the payment date and time
+import java.math.BigDecimal;  // For handling monetary values with precision
+import java.time.LocalDateTime;
 
-import com.challan.Challan;     // Assuming Challan is the related entity
+import com.challan.Challan;  // Assuming Challan is the related entity
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -17,17 +18,17 @@ public class PaymentRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-increment primary key
-    private Long paymentId;       // Primary Key
+    private Long paymentId;  // Primary Key
 
-    private String status;        // Payment status (Paid/Unpaid)
-    private double amountPaid;    // Amount paid by the user
-    private LocalDateTime dateTime; // Date and time of payment
-    
+    private String status;  // Payment status (Paid/Unpaid)
+    private BigDecimal amountPaid;  // Amount paid by the user, using BigDecimal for precision
+    private LocalDateTime dateTime;  // Date and time of payment
+
     @ManyToOne
     @JoinColumn(name = "tokenId", referencedColumnName = "tokenid", foreignKey = @ForeignKey(name = "FK_tokenid"))
-    private Challan challan;      // Foreign Key from the Challan entity
+    private Challan challan;  // Foreign Key from the Challan entity
 
-    private int count;            // Number of users using the application (to generate the report)
+    private int count;  // Number of users using the application (for report generation)
 
     // Getters and Setters
     public Long getPaymentId() {
@@ -46,11 +47,11 @@ public class PaymentRequest {
         this.status = status;
     }
 
-    public double getAmountPaid() {
+    public BigDecimal getAmountPaid() {
         return amountPaid;
     }
 
-    public void setAmountPaid(double amountPaid) {
+    public void setAmountPaid(BigDecimal amountPaid) {
         this.amountPaid = amountPaid;
     }
 
