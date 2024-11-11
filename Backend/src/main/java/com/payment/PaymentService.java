@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,12 @@ public class PaymentService {
     private PaymentRepository paymentRepository;
 
     // Method to create a Razorpay order
-    public Map<String, Object> createOrder(Double amount) throws Exception {
+    public Map<String, Object> createOrder(BigDecimal amount) throws Exception {
         RazorpayClient razorpayClient = new RazorpayClient(razorpayKeyId, razorpayKeySecret);
 
         // Create a JSON object for order data
         JSONObject orderData = new JSONObject();
-        orderData.put("amount", amount * 100); // Amount in paise (Razorpay expects paise for INR)
+        orderData.put("amount", amount.multiply(new BigDecimal(100)).intValue()); // Amount in paise (Razorpay expects paise for INR)
         orderData.put("currency", "INR");
         orderData.put("receipt", "receipt#1");
         orderData.put("payment_capture", 1); // Auto capture
@@ -38,11 +39,11 @@ public class PaymentService {
         // Create the order in Razorpay
         Order order = razorpayClient.orders.create(orderData);
 
-        // Save payment details to the database (optional, if required)
+        // Save payment details to the database
         PaymentRequest paymentRequest = new PaymentRequest();
-        paymentRequest.setAmount(amount);
+        paymentRequest.setAmountPaid(amount); // Assuming amountPaid is BigDecimal
         paymentRequest.setStatus("PENDING");
-        paymentRequest.setRazorpayOrderId(order.get("id").toString());
+        paymentRequest.setRazorpayOrderId(order.get("id").toString()); // Storing Razorpay order ID
         paymentRepository.save(paymentRequest);
 
         // Prepare response with order details
@@ -62,14 +63,12 @@ public class PaymentService {
             String razorpayPaymentId = paymentDetails.get("razorpay_payment_id").toString();
             String razorpaySignature = paymentDetails.get("razorpay_signature").toString();
 
-            // Create a JSONObject for signature verification
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("razorpay_order_id", razorpayOrderId);
-            jsonObject.put("razorpay_payment_id", razorpayPaymentId);
-            jsonObject.put("razorpay_signature", razorpaySignature);
-
             // Validate the payment signature
-            return Utils.verifyPaymentSignature(jsonObject, razorpayKeySecret);
+            JSONObject params = new JSONObject();
+            params.put("razorpay_order_id", razorpayOrderId);
+            params.put("razorpay_payment_id", razorpayPaymentId);
+
+            return Utils.verifyPaymentSignature(params, razorpaySignature);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

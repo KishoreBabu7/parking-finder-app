@@ -30,7 +30,7 @@ public class PaymentController {
     @Autowired
     private ChallanService challanService;
 
-    // 1. Initiate Payment
+ // 1. Initiate Payment
     @PostMapping("/initiate-payment")
     public ResponseEntity<Map<String, Object>> initiatePayment(@RequestBody PaymentRequest paymentRequest) {
         try {
@@ -40,7 +40,7 @@ public class PaymentController {
             paymentService.savePayment(paymentRequest);
 
             // Generate Razorpay order and include payment ID for tracking
-            Map<String, Object> orderResponse = paymentService.createOrder(paymentRequest.getAmount());
+            Map<String, Object> orderResponse = paymentService.createOrder(paymentRequest.getAmountPaid());
             orderResponse.put("paymentId", paymentRequest.getPaymentId()); // Attach payment ID
 
             return ResponseEntity.ok(orderResponse);
