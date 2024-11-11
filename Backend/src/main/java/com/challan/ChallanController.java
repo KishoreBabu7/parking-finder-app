@@ -1,14 +1,20 @@
 package com.challan;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import com.challan.ChallanService;
-
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/challan")
@@ -35,7 +41,7 @@ public class ChallanController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getChallanById(@PathVariable String id) {  // Changed id type to String as tokenid is a String
+    public ResponseEntity<?> getChallanById(@PathVariable String id) {  // String as the type for tokenid
         Optional<Challan> optionalChallan = challanService.getChallanById(id);
         
         if (optionalChallan.isPresent()) {
@@ -46,7 +52,7 @@ public class ChallanController {
     }
 
     @PutMapping("/payNow/{id}")
-    public ResponseEntity<?> payNow(@PathVariable String id) {  // Changed id type to String as tokenid is a String
+    public ResponseEntity<?> payNow(@PathVariable String id) {  // String as the type for tokenid
         Optional<Challan> optionalChallan = challanService.getChallanById(id);
         if (optionalChallan.isPresent()) {
             Challan challan = optionalChallan.get();
@@ -59,7 +65,7 @@ public class ChallanController {
     }
 
     @PutMapping("/payAtStation/{id}")
-    public ResponseEntity<?> payAtStation(@PathVariable String id) {  // Changed id type to String as tokenid is a String
+    public ResponseEntity<?> payAtStation(@PathVariable String id) {  // String as the type for tokenid
         Optional<Challan> optionalChallan = challanService.getChallanById(id);
         if (optionalChallan.isPresent()) {
             Challan challan = optionalChallan.get();
@@ -71,7 +77,7 @@ public class ChallanController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateChallan(@PathVariable String id, @RequestBody Challan updatedChallan) {  // Changed id type to String
+    public ResponseEntity<?> updateChallan(@PathVariable String id, @RequestBody Challan updatedChallan) {  // String as the type for tokenid
         Optional<Challan> existingChallan = challanService.getChallanById(id);
         if (existingChallan.isPresent()) {
             updatedChallan.setTokenid(id);  // Using tokenid to update Challan
@@ -83,7 +89,7 @@ public class ChallanController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteChallan(@PathVariable String id) {  // Changed id type to String
+    public ResponseEntity<?> deleteChallan(@PathVariable String id) {  // String as the type for tokenid
         Optional<Challan> challan = challanService.getChallanById(id);
         if (challan.isPresent()) {
             challanService.deleteChallan(id);
