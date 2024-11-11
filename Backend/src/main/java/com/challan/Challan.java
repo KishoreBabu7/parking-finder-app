@@ -18,7 +18,7 @@ public class Challan {
     private String name;
     private String email;     // Added email field
     private String mobile;
-    private String vehicleType;
+    private String vehicleNo;
     
     @ManyToOne
     @JoinColumn(name = "license_plate", referencedColumnName = "licensePlate", foreignKey = @ForeignKey(name = "FK_license_plate"))
@@ -64,11 +64,11 @@ public class Challan {
     }
 
     public String getVehicleType() {
-        return vehicleType;
+        return vehicleNo; 
     }
 
     public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
+        this.vehicleNo = vehicleType;
     }
 
     public Vehicle getVehicle() {
