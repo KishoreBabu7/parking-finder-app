@@ -109,4 +109,8 @@ public class PaymentService {
     public void deletePaymentById(Long id) {
         paymentRepository.deleteById(id);
     }
+    // Get all payments from the repository
+    public List<PaymentRequest> getAllPayments() {
+        return paymentRequestRepository.findAll();
+    }
 }

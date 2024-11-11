@@ -2,6 +2,7 @@ package com.payment;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +31,19 @@ public class PaymentController {
     @Autowired
     private ChallanService challanService;
     
-    @GetMapping("/transactions")
-    public List<PaymentRequest> getTransactions() {
-        return paymentService.getAllPayments();
+    @GetMapping
+    public List<TransactionDTO> getAllTransactions() {
+        // Fetch all payment transactions from the service
+        List<PaymentRequest> payments = paymentService.getAllPayments();
+
+        // Convert to DTOs before sending to frontend
+        return payments.stream()
+                .map(payment -> new TransactionDTO(
+                        payment.getChallan().getTokenid(), 
+                        payment.getAmountPaid(), 
+                        payment.getStatus(), 
+                        payment.getDateTime()))
+                .collect(Collectors.toList());
     }
     
  // 1. Initiate Payment
