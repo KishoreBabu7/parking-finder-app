@@ -92,7 +92,7 @@ public class PaymentService {
 
     // Method to fetch all payments
     public List<PaymentRequest> getAllPayments() {
-        return paymentRepository.findAll();
+        return paymentRepository.findAll(); // Use the correct repository (paymentRepository)
     }
 
     // Method to fetch payment by ID
@@ -108,9 +108,5 @@ public class PaymentService {
     // Method to delete payment by ID
     public void deletePaymentById(Long id) {
         paymentRepository.deleteById(id);
-    }
-    // Get all payments from the repository
-    public List<PaymentRequest> getAllPayments() {
-        return paymentRequestRepository.findAll();
     }
 }
