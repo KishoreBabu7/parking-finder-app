@@ -29,7 +29,12 @@ public class PaymentController {
 
     @Autowired
     private ChallanService challanService;
-
+    
+    @GetMapping("/transactions")
+    public List<PaymentRequest> getTransactions() {
+        return paymentService.getAllPayments();
+    }
+    
  // 1. Initiate Payment
     @PostMapping("/initiate-payment")
     public ResponseEntity<Map<String, Object>> initiatePayment(@RequestBody PaymentRequest paymentRequest) {
