@@ -1,4 +1,5 @@
 package com.parkingspace;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,15 +18,16 @@ public class ParkingSlot {
     private Long id; // Primary key
 
     @Column(nullable = false)
-    private String name;
+    private String name; // Slot name, e.g., "A1", "B2"
 
     @ManyToOne
     @JoinColumn(name = "parking_spot_id", nullable = false)
     private ParkingSpot parkingSpot; // Foreign key to ParkingSpot
 
-    private boolean booked;
+    @Column(nullable = false)
+    private boolean booked = false; // Default to not booked
 
-    // Constructor
+    // Constructors
     public ParkingSlot() {
     }
 
@@ -78,9 +80,8 @@ public class ParkingSlot {
         return "ParkingSlot{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", parkingSpot=" + parkingSpot +
                 ", booked=" + booked +
+                ", parkingSpot=" + (parkingSpot != null ? parkingSpot.getId() : null) +
                 '}';
     }
 }
-	
