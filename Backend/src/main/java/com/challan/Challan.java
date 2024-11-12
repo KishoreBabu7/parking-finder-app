@@ -25,6 +25,7 @@ public class Challan {
     @JoinColumn(name = "license_plate", referencedColumnName = "licensePlate", foreignKey = @ForeignKey(name = "FK_license_plate"))
     private Vehicle vehicle;  // Foreign key to the Vehicle entity
 
+    private String vehicletypeString;
     private LocalDateTime startTime;  // Changed to LocalDateTime for better time handling
     private LocalDateTime endTime;    // Changed to LocalDateTime
     private LocalDateTime violationTime; // Changed to LocalDateTime
@@ -115,4 +116,12 @@ public class Challan {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+	public String getVehicletypeString() {
+		return vehicletypeString;
+	}
+
+	public void setVehicletypeString(String vehicletypeString) {
+		this.vehicletypeString = vehicletypeString;
+	}
 }
