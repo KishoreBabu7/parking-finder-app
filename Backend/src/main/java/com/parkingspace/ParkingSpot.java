@@ -26,7 +26,7 @@ public class ParkingSpot {
 
     @Column(nullable = false)
     private String location; // Address or general location
-
+    private int availability; 
     private String mapUrl; // Optional: URL to a map location for the parking spot
 
     @OneToMany(mappedBy = "parkingSpot", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -74,7 +74,13 @@ public class ParkingSpot {
     public void setMapUrl(String mapUrl) {
         this.mapUrl = mapUrl;
     }
+    public int getAvailability() {
+		return availability;
+	}
 
+	public void setAvailability(int availability) {
+		this.availability = availability;
+	}
     public List<ParkingSlot> getSlots() {
         return slots;
     }
@@ -105,4 +111,6 @@ public class ParkingSpot {
                 ", totalSlots=" + slots.size() +
                 '}';
     }
+
+	
 }
