@@ -1,8 +1,5 @@
 package com.parkingspace;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,29 +7,38 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "parking_spot")
 public class ParkingSpot {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Primary key
 
-    private String name;
-    private String location;
-    private int availability;
-    private String mapUrl;
-    
-    @OneToMany(mappedBy = "parkingSpot", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<ParkingSlot> slots = new ArrayList<>();
-    
+    @Column(nullable = false)
+    private String name; // Name of the parking spot location
+
+    @Column(nullable = false)
+    private String location; // Address or general location
+
+    private String mapUrl; // Optional: URL to a map location for the parking spot
+
+    @OneToMany(mappedBy = "parkingSpot", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ParkingSlot> slots = new ArrayList<>(); // List of associated slots
+
     // Constructors
     public ParkingSpot() {
     }
 
-    public ParkingSpot(String name, String location, int availability, String mapUrl) {
+    public ParkingSpot(String name, String location, String mapUrl) {
         this.name = name;
         this.location = location;
-        this.availability = availability;
         this.mapUrl = mapUrl;
     }
 
@@ -61,14 +67,6 @@ public class ParkingSpot {
         this.location = location;
     }
 
-    public int getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(int availability) {
-        this.availability = availability;
-    }
-
     public String getMapUrl() {
         return mapUrl;
     }
@@ -77,4 +75,34 @@ public class ParkingSpot {
         this.mapUrl = mapUrl;
     }
 
+    public List<ParkingSlot> getSlots() {
+        return slots;
+    }
+
+    public void setSlots(List<ParkingSlot> slots) {
+        this.slots = slots;
+    }
+
+    // Add a slot to this parking spot
+    public void addSlot(ParkingSlot slot) {
+        slot.setParkingSpot(this);
+        this.slots.add(slot);
+    }
+
+    // Remove a slot from this parking spot
+    public void removeSlot(ParkingSlot slot) {
+        slot.setParkingSpot(null);
+        this.slots.remove(slot);
+    }
+
+    @Override
+    public String toString() {
+        return "ParkingSpot{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", mapUrl='" + mapUrl + '\'' +
+                ", totalSlots=" + slots.size() +
+                '}';
+    }
 }
