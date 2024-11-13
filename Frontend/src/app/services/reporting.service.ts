@@ -12,11 +12,12 @@ export interface MonthlyUser {
   providedIn: 'root'
 })
 export class ReportingService {
-  private baseUrl = 'http://localhost:8080/api'; 
+  private baseUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
   getMonthlyUsers(year: number): Observable<MonthlyUser[]> {
+    // Fixed template literal syntax
     return this.http.get<MonthlyUser[]>(`${this.baseUrl}/monthly-user/${year}`);
   }
 }

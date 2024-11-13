@@ -27,6 +27,7 @@ import { ChallanComponent } from './challan/challan.component';
 import { RegisterComponent } from './user-register/register.component'; 
 import { LoginComponent } from './user-login/login.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { SpotWiseAnalysisComponent } from './spot-wise-analysis/spot-wise-analysis.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     RegisterComponent,
     LoginComponent,
     UserDashboardComponent,
+    SpotWiseAnalysisComponent,
   ],
   imports: [
     BrowserModule,
