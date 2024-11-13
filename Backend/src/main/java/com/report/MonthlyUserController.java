@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200") // Allow CORS for your Angular app
+@CrossOrigin(origins = "http://localhost:4200") // Allow CORS for  Angular app
 public class MonthlyUserController {
 
     @Autowired
