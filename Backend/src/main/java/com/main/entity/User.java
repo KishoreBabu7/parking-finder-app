@@ -1,4 +1,4 @@
-package com.user;
+package com.main.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -102,7 +102,7 @@ public class User {
     }
 
 	public String getRole() {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
