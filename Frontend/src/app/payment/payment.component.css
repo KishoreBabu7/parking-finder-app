@@ -20,7 +20,7 @@
   font-size: 36px;
   background: linear-gradient(135deg, #a445b2, #d41872); /* Gradient color for text */
   color: transparent;
-
+  background-clip: text;
   -webkit-background-clip: text; /* For Safari */
   text-align: center;
   font-weight: 700;
