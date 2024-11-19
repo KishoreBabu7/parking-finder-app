@@ -26,6 +26,7 @@
 
 .cta-buttons-container {
     display: flex;
+    flex-direction: row; /* Side by side by default */
     gap: 20px; /* Space between the buttons */
     margin-bottom: 40px;
 }
@@ -181,6 +182,12 @@
 
     .home-subtitle {
         font-size: 1.2em;
+    }
+
+    /* Make buttons stack vertically on small screens */
+    .cta-buttons-container {
+        flex-direction: column; /* Stack vertically */
+        gap: 15px; /* Reduce gap between the buttons */
     }
 
     .features-grid {
