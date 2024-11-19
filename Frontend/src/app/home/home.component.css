@@ -24,8 +24,13 @@
     font-weight: 500;
 }
 
-.cta-button {
+.cta-buttons-container {
+    display: flex;
+    gap: 20px; /* Space between the buttons */
     margin-bottom: 40px;
+}
+
+.cta-button {
     font-size: 1.4em;
     background-color: var(--primary-color);
     color: var(--highlight-color);
@@ -42,6 +47,16 @@
     color: var(--primary-color);
     transform: translateY(-4px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cta-button.pay-with-token {
+    background-color: #FF5F6D; /* Slightly different color for Pay with Token */
+    color: #fff;
+}
+
+.cta-button.pay-with-token:hover {
+    background-color: #FFC371; /* Hover effect for Pay with Token */
+    color: #2E073F; /* Dark color for text */
 }
 
 .home-content {
