@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #8e44ad; /* Primary purple color */
-  --highlight-color: #fff; /* Highlight color */
+  --primary-color: #8e44ad;
+  --highlight-color: #fff;
 }
 
 /* General payment form styles */
@@ -21,7 +21,7 @@
   background: linear-gradient(135deg, #a445b2, #d41872); /* Gradient color for text */
   color: transparent;
   background-clip: text;
-  -webkit-background-clip: text; /* For Safari */
+  -webkit-background-clip: text;
   text-align: center;
   font-weight: 700;
   letter-spacing: 3px;
@@ -38,7 +38,7 @@
   position: absolute;
   height: 4px;
   width: 50px;
-  background: linear-gradient(135deg, #ff5f6d, #ffc371); /* Gradient underline */
+  background: linear-gradient(135deg, #ff5f6d, #ffc371); 
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
