@@ -1,37 +1,41 @@
-/* General Sidebar Styles */
+
+/* Sidebar Container */
 .sidebar {
   position: fixed;
-  top: 60px; /* Adjust this to your navbar height */
-  left: 0;
-  width: 300px; /* Sidebar width */
-  height: calc(100vh - 60px); /* Full height minus navbar height */
-  background: linear-gradient(145deg, #a445b2, #4b0082, #d41872);
-  overflow-y: auto; /* Enable smooth scrolling */
-  overflow-x: hidden;
-  transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1), box-shadow 0.4s;
-  transform: translateX(-100%);
-  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  top: 0;
+  left: 0; /* Move sidebar to the left */
+  width: 350px;
+  height: 100%;
+  background: linear-gradient(135deg, #635985, #7d5ba6);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Shadow on the right side */
+  overflow-y: auto;
+  padding: 20px;
+  transform: translateX(-100%); /* Hidden by default (slide out to the left) */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
 }
 
 .sidebar.open {
-  transform: translateX(0);
+  transform: translateX(0); /* Slide in when open */
 }
 
 /* Sidebar Header */
 .sidebar-header {
-  padding: 60px;
-  color: white;
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding-top: 60px; /* Add padding-top to push the header below the toggle button */
 }
 
 .sidebar-header h3 {
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #ffebcd;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  font-size: 1.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #a58fd6;
+  padding-bottom: 5px;
+  animation: fadeInDown 0.6s ease;
 }
 
 /* Transaction List */
@@ -39,101 +43,113 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  font-family: 'Arial', sans-serif;
+}
+
+.transaction-list li {
+  margin-bottom: 15px;
 }
 
 .transaction-item {
-  display: flex;
-  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
   padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .transaction-item:hover {
-  background: rgba(255, 255, 255, 0.1); /* Light hover effect */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Transaction Details */
 .transaction-details p {
-  margin: 3px 0;
-  color: #f0e6f6;
-  font-size: 0.95em;
+  margin: 5px 0;
+  color: #e4d8f7;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
 }
 
-.transaction-details p:first-child {
-  font-weight: bold;
-  color: #ffffff;
-  font-size: 1.05em;
+.transaction-details p strong {
+  color: #fff;
+  margin-left: 5px;
 }
 
-/* Sidebar Icons */
-.sidebar-icon {
-  font-size: 1.6em; /* Increased icon size */
-  color: #ffc371; /* Default icon color */
-  margin-right: 12  px; /* Space between icon and text */
-  transition: color 0.3s ease; /* Smooth color transition */
+.transaction-details i {
+  margin-right: 10px;
+  color: #a58fd6;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 }
 
-.sidebar-icon:hover {
-  color: #ffebcd; /* Color change on hover */
+.transaction-item:hover i {
+  transform: scale(1.2);
 }
 
 /* Toggle Button */
 .toggle-btn {
   position: fixed;
-  top: 110px; /* Set to 110px from the top */
-  left: 10px; /* Position it close to the sidebar */
-  width: 50px; /* Width for better visibility */
-  height: 50px; /* Height for better visibility */
-  background: none; /* No background */
-  color: #ffc371; /* Icon color */
+  top: 20px;
+  left: 20px; /* Positioned on the left */
+  z-index: 1100;
+  background: #7d5ba6;
   border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  z-index: 11; /* Ensure it stays above the sidebar */
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .toggle-btn:hover {
-  color: #ffebcd; /* Change color on hover */
-  transform: scale(1.1); /* Slightly enlarge on hover */
+  background: #635985;
+  transform: scale(1.1);
 }
 
-/* Scrollbar Styles */
-.sidebar::-webkit-scrollbar {
-  width: 8px; /* Wider scrollbar for better visibility */
+.toggle-btn i {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 }
 
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 4px; /* Slightly rounded edges */
+.toggle-btn:hover i {
+  transform: rotate(180deg);
 }
 
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.7); /* Darker on hover */
-}
-/* Animated Icon Style */
-.animated-receipt-icon {
-  font-size: 1.2em;
-  animation: colorPulse 3s ease-in-out infinite;
-  transition: transform 0.3s ease, color 0.3s ease;
-  color: violet;
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.animated-receipt-icon:hover {
-  transform: scale(1.15);
-}
+/* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%; /* Full width on smaller screens */
-    height: calc(100% - 60px); /* Adjust height for mobile (only navbar) */
+    width: 300px;
   }
 
   .toggle-btn {
-    left: auto;
-    right: 15px;
-    top: 110px; /* Match the position for responsiveness */
+    left: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+  }
+
+  .toggle-btn {
+    left: 10px;
   }
 }
