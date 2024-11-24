@@ -1,171 +1,209 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --primary-color: #8e44ad; /* Primary purple color */
+  --highlight-color: #fff; /* Highlight color */
 }
 
-payment-container {
+/* General payment form styles */
+.payment-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center the content vertically */
-  padding: 20px;
-  min-height: 100vh; /* Ensure the container takes up full height */
-  background: linear-gradient(135deg, #500e50, #342957); /* Updated gradient with purple */
-  font-family: 'Arial', sans-serif;
-  color: #fff;
+  justify-content: center;
+  height: 76vh;
+  padding: 30px;
+  color: var(--highlight-color);
 }
 
+/* Enhanced Heading Styles */
 .payment-container h2 {
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #a58fd6;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.form-container {
-  background: rgba(125, 91, 166, 0.2); /* Updated transparency color to match purple */
-  border-radius: 15px;
-  padding: 40px;
-  width: 100%;
-  max-width: 450px;
-  box-shadow: 0 10px 30px rgba(125, 91, 166, 0.4); /* Adjusted shadow with purple tint */
-  border: 1px solid #635985;
-  animation: slideIn 0.8s ease-out;
-  backdrop-filter: blur(10px);
-}
-
-.form-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.input-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: #443c68;
-  border: 2px solid #635985;
-  border-radius: 10px;
-  padding: 10px;
-  transition: all 0.3s ease;
-}
-
-.input-container:hover {
-  border-color: #7d5ba6; /* Purple highlight on hover */
-  box-shadow: 0 0 10px rgba(165, 143, 214, 0.5);
-}
-
-.input-container i {
-  color: #a58fd6;
-  font-size: 1.2rem;
-  margin-right: 10px;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.input-container:hover i {
-  transform: scale(1.1);
-  color: #7d5ba6; /* Icon color changes to purple on hover */
-}
-
-.input-container input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 1rem;
-  padding: 5px 10px;
-  background: transparent;
-  color: #fff;
-  font-family: 'Arial', sans-serif;
-}
-
-.input-container input::placeholder {
-  color: #b0a4c6;
-}
-
-.input-container input:focus::placeholder {
+  margin-bottom: 20px;
+  font-size: 36px;
+  background: linear-gradient(135deg, #a445b2, #d41872); /* Gradient color for text */
   color: transparent;
-  transition: color 0.3s ease;
-}
-
-button[type="submit"] {
-  border: 2px solid #635985;
-  border-radius: 15px;
-  padding: 15px 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari */
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #635985, #7d5ba6); /* Violet to purple gradient */
-  color: #fff;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  animation: slideDown 1s ease-out;
 }
 
-button[type="submit"]::before {
+/* Animated underline effect */
+.payment-container h2::before,
+.payment-container h2::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
+  height: 4px;
+  width: 50px;
+  background: linear-gradient(135deg, #ff5f6d, #ffc371); /* Gradient underline */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   transition: all 0.4s ease;
-  z-index: 0;
 }
 
-button[type="submit"]:hover::before {
-  left: 0;
+/* Left decorative line */
+.payment-container h2::before {
+  width: 30px;
+  left: 20%;
+  transform: translateX(0);
 }
 
-button[type="submit"]:hover {
-  color: #443c68;
-  border-color: #7d5ba6; /* Purple hover border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Right decorative line */
+.payment-container h2::after {
+  width: 30px;
+  left: 80%;
+  transform: translateX(0);
 }
 
-button[type="submit"]:active {
-  transform: scale(0.98);
+/* Hover effect on heading */
+.payment-container h2:hover::before,
+.payment-container h2:hover::after {
+  width: 60px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-@keyframes fadeIn {
-  from {
+/* Keyframe animation for slideDown effect */
+@keyframes slideDown {
+  0% {
+    transform: translateY(-50px);
     opacity: 0;
-    transform: translateY(-10px);
   }
-  to {
-    opacity: 1;
+  100% {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
-@keyframes slideIn {
-  from {
+/* Form container styles */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0,0, 0, 0.3);
+  border: 1px solid var(--primary-color);
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Input container styles */
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  padding: 10px;
+  transition: border 0.3s, box-shadow 0.3s;
+  border: 1px solid var(--highlight-color);
+}
+
+/* Hover effect for input containers */
+.input-container:hover {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon styles */
+.input-container i {
+  color: var(--primary-color);
+  margin-right: 10px;
+}
+
+/* Input styles */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  border: none;
+  background: transparent;
+  color: var(--primary-color);
+  padding: 10px;
+  flex-grow: 1;
+  font-size: 16px;
+  transition: border-bottom 0.3s;
+}
+
+/* Focus effect for inputs */
+input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/* Submit Button */
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #4b0082, #9b59b6);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Button hover effects */
+button:hover {
+  background: linear-gradient(135deg, #9b59b6, #4b0082);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Light animation effect on button */
+button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  animation: lightEffect 5s linear infinite;
+  z-index: -1;
+}
+
+/* Animation keyframe for light effect */
+@keyframes lightEffect {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.5);
     opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@media (max-width: 480px) {
-  .payment-container h2 {
-    font-size: 1.8rem;
+/* Responsive styles for payment form */
+@media (max-width: 768px) {
+  .payment-container {
+    padding: 20px;
   }
 
   .form-container {
-    padding: 30px;
+    padding: 20px;
+    width: 90%;
   }
 
-  button[type="submit"] {
-    padding: 10px 15px;
-    font-size: 1rem;
+  .payment-container h2 {
+    font-size: 24px;
+  }
+
+  .input-container {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
   }
 }
+
