@@ -3,7 +3,6 @@
   --highlight-color: #fff;
 }
 
-/* General payment form styles */
 .payment-container {
   display: flex;
   flex-direction: column;
@@ -14,7 +13,6 @@
   color: var(--highlight-color);
 }
 
-/* Enhanced Heading Styles */
 .payment-container h2 {
   margin-bottom: 20px;
   font-size: 36px;
@@ -31,7 +29,7 @@
   animation: slideDown 1s ease-out;
 }
 
-/* Animated underline effect */
+
 .payment-container h2::before,
 .payment-container h2::after {
   content: '';
