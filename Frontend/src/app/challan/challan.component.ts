@@ -19,7 +19,7 @@ export class ChallanComponent {
     endTime: '',
     violationTime: '',
     amount: 0,
-    status: 'Unpaid', // Default status
+    tokenId: '', // Default status
   };
 
   constructor(private challanService: ChallanService) {}
@@ -52,6 +52,14 @@ export class ChallanComponent {
     return now;
   }
 
+  // Function to generate a unique Token ID
+  generateTokenId(): void {
+    // Generate a random alphanumeric string
+    const randomString = Math.random().toString(36).substring(2, 12); // Random 10 characters
+    const timestamp = new Date().getTime(); // Current timestamp
+    this.challanData.tokenId = `${randomString}-${timestamp}`; // Combine them to make the token unique
+  }
+
   // Function to submit the form data
   onSubmit(form: NgForm) {
     // Prevent navigation if the form is invalid
@@ -60,15 +68,12 @@ export class ChallanComponent {
       return; // Stay on the same page if form is invalid
     }
 
-    // Set status to 'Paid' for Pay Now
-    this.challanData.status = 'Paid';
-
     // If valid, proceed with submission logic
     console.log('Submitting Challan Data:', this.challanData);
     this.challanService.createChallan(this.challanData).subscribe(
       (response) => {
         console.log('Challan stored successfully:', response);
-        alert('Challan submitted successfully. Status: Paid');
+        alert(`Challan submitted successfully. Token ID: ${this.challanData.tokenId} | Status: Paid`);
         // Optionally navigate to the payment confirmation page
       },
       (error) => {
@@ -76,41 +81,5 @@ export class ChallanComponent {
         alert('Failed to submit challan: ' + error.error); // Show error message
       }
     );
-  }
-
-  // Function for Pay At Station
-  payAtStation() {
-    const formFieldsFilled =
-      this.challanData.name &&
-      this.challanData.mobile &&
-      this.challanData.vehicleType &&
-      this.challanData.plateNumber &&
-      this.challanData.startTime &&
-      this.challanData.endTime;
-
-    if (formFieldsFilled) {
-      // Set status to 'Unpaid' for Pay at Station
-      this.challanData.status = 'Unpaid';
-
-      console.log(
-        'Submitting Challan Data for Pay at Station:',
-        this.challanData
-      );
-      this.challanService.createChallan(this.challanData).subscribe(
-        (response) => {
-          console.log('Challan stored successfully:', response);
-          alert('Challan submitted successfully. Status: Unpaid');
-          // Optionally navigate to another page or display confirmation
-        },
-        (error) => {
-          console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
-        }
-      );
-    } else {
-      alert(
-        'Please fill out all required fields before proceeding to payment.'
-      );
-    }
   }
 }
