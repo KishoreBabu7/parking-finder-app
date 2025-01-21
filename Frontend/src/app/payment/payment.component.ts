@@ -22,6 +22,7 @@ export class PaymentComponent {
   onSubmit(paymentForm: NgForm) {
     if (paymentForm.valid) {
       const paymentData = {
+        tokenId: paymentForm.value.tokenId,
         name: paymentForm.value.name || this.name, // Use name from input or fallback
         email: paymentForm.value.email,
         amount: paymentForm.value.amount

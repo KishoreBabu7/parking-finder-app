@@ -29,7 +29,6 @@
   animation: slideDown 1s ease-out;
 }
 
-
 .payment-container h2::before,
 .payment-container h2::after {
   content: '';
