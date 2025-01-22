@@ -7,5 +7,7 @@ export interface Challan {
   endTime: string;
   violationTime: string;
   amount: number;
-  tokenId?: string; // Added tokenId field
+  tokenId: string;
+  bookingDate: string; // Add this if it's not already there
+  date: string; // Add this line for the 'date' field
 }

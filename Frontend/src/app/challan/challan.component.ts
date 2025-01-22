@@ -9,7 +9,6 @@ import { Challan } from '../models/challan.model'; // Import the Challan model
   styleUrls: ['./challan.component.css'],
 })
 export class ChallanComponent {
-  // Initialize challanData using the Challan model
   challanData: Challan = {
     name: '',
     mobile: '',
@@ -19,12 +18,14 @@ export class ChallanComponent {
     endTime: '',
     violationTime: '',
     amount: 0,
-    tokenId: '', // Default status
+    tokenId: '',
+    bookingDate: '',
+    date: '',
   };
 
   constructor(private challanService: ChallanService) {}
 
-  // Function to handle the calculation of fee and violation time
+  // Function to calculate violation fee and violation time
   calculateFee() {
     if (this.challanData.startTime && this.challanData.endTime) {
       const startTime = this.convertToDate(this.challanData.startTime);
@@ -44,7 +45,7 @@ export class ChallanComponent {
     }
   }
 
-  // Function to convert time into a Date object
+  // Convert time string to Date object
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
@@ -52,33 +53,39 @@ export class ChallanComponent {
     return now;
   }
 
-  // Function to generate a unique Token ID
+  // Generate Token ID
   generateTokenId(): void {
-    // Generate a random alphanumeric string
     const randomString = Math.random().toString(36).substring(2, 12); // Random 10 characters
     const timestamp = new Date().getTime(); // Current timestamp
     this.challanData.tokenId = `${randomString}-${timestamp}`; // Combine them to make the token unique
+
+    // Set bookingDate to the current date and time
+    this.challanData.bookingDate = new Date().toLocaleDateString(); // Get current date in the format "MM/DD/YYYY"
   }
 
-  // Function to submit the form data
+  // Submit form data
   onSubmit(form: NgForm) {
-    // Prevent navigation if the form is invalid
+    console.log('Form submission triggered.');
+
     if (!form.valid) {
       alert('Please fill out all required fields.');
       return; // Stay on the same page if form is invalid
     }
 
-    // If valid, proceed with submission logic
-    console.log('Submitting Challan Data:', this.challanData);
+    this.generateTokenId(); // Generate Token ID before submitting
+    console.log('Generated Token ID:', this.challanData.tokenId);
+
+    // Ensure the request is a POST request and the URL is correct
     this.challanService.createChallan(this.challanData).subscribe(
       (response) => {
         console.log('Challan stored successfully:', response);
-        alert(`Challan submitted successfully. Token ID: ${this.challanData.tokenId} | Status: Paid`);
-        // Optionally navigate to the payment confirmation page
+        alert(
+          `Challan submitted successfully. Token ID: ${this.challanData.tokenId}`
+        );
       },
       (error) => {
         console.error('Error storing challan:', error);
-        alert('Failed to submit challan: ' + error.error); // Show error message
+        alert('Failed to submit challan: ' + error.error);
       }
     );
   }
