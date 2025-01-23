@@ -25,7 +25,6 @@ export class ChallanComponent {
 
   constructor(private challanService: ChallanService) {}
 
-  // Function to calculate violation fee and violation time
   calculateFee() {
     if (this.challanData.startTime && this.challanData.endTime) {
       const startTime = this.convertToDate(this.challanData.startTime);
@@ -45,7 +44,7 @@ export class ChallanComponent {
     }
   }
 
-  // Convert time string to Date object
+
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
