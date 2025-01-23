@@ -52,7 +52,7 @@ export class ChallanComponent {
     return now;
   }
 
-  // Generate Token ID
+  // Generate Token ID logic
   generateTokenId(): void {
     const randomString = Math.random().toString(36).substring(2, 12); // Random 10 characters
     const timestamp = new Date().getTime(); // Current timestamp
@@ -62,7 +62,7 @@ export class ChallanComponent {
     this.challanData.bookingDate = new Date().toLocaleDateString(); // Get current date in the format "MM/DD/YYYY"
   }
 
-  // Submit form data
+  // Submit form data logic
   onSubmit(form: NgForm) {
     console.log('Form submission triggered.');
 
