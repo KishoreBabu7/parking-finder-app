@@ -9,7 +9,6 @@ import { Challan } from '../models/challan.model'; // Import the Challan model
   styleUrls: ['./challan.component.css'],
 })
 export class ChallanComponent {
-  // Initialize challanData using the Challan model
   challanData: Challan = {
     name: '',
     mobile: '',
@@ -19,12 +18,13 @@ export class ChallanComponent {
     endTime: '',
     violationTime: '',
     amount: 0,
-    status: 'Unpaid', // Default status
+    tokenId: '',
+    bookingDate: '',
+    date: '',
   };
 
   constructor(private challanService: ChallanService) {}
 
-  // Function to handle the calculation of fee and violation time
   calculateFee() {
     if (this.challanData.startTime && this.challanData.endTime) {
       const startTime = this.convertToDate(this.challanData.startTime);
@@ -44,7 +44,7 @@ export class ChallanComponent {
     }
   }
 
-  // Function to convert time into a Date object
+
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
@@ -52,65 +52,40 @@ export class ChallanComponent {
     return now;
   }
 
-  // Function to submit the form data
+  // Generate Token ID logic
+  generateTokenId(): void {
+    const randomString = Math.random().toString(36).substring(2, 12); // Random 10 characters
+    const timestamp = new Date().getTime(); // Current timestamp
+    this.challanData.tokenId = `${randomString}-${timestamp}`; // Combine them to make the token unique
+
+    // Set bookingDate to the current date and time
+    this.challanData.bookingDate = new Date().toLocaleDateString(); // Get current date in the format "MM/DD/YYYY"
+  }
+
+  // Submit form data logic
   onSubmit(form: NgForm) {
-    // Prevent navigation if the form is invalid
+    console.log('Form submission triggered.');
+
     if (!form.valid) {
       alert('Please fill out all required fields.');
       return; // Stay on the same page if form is invalid
     }
 
-    // Set status to 'Paid' for Pay Now
-    this.challanData.status = 'Paid';
+    this.generateTokenId(); // Generate Token ID before submitting
+    console.log('Generated Token ID:', this.challanData.tokenId);
 
-    // If valid, proceed with submission logic
-    console.log('Submitting Challan Data:', this.challanData);
+    // Ensure the request is a POST request and the URL is correct
     this.challanService.createChallan(this.challanData).subscribe(
       (response) => {
         console.log('Challan stored successfully:', response);
-        alert('Challan submitted successfully. Status: Paid');
-        // Optionally navigate to the payment confirmation page
+        alert(
+          `Challan submitted successfully. Token ID: ${this.challanData.tokenId}`
+        );
       },
       (error) => {
         console.error('Error storing challan:', error);
-        alert('Failed to submit challan: ' + error.error); // Show error message
+        alert('Failed to submit challan: ' + error.error);
       }
     );
-  }
-
-  // Function for Pay At Station
-  payAtStation() {
-    const formFieldsFilled =
-      this.challanData.name &&
-      this.challanData.mobile &&
-      this.challanData.vehicleType &&
-      this.challanData.plateNumber &&
-      this.challanData.startTime &&
-      this.challanData.endTime;
-
-    if (formFieldsFilled) {
-      // Set status to 'Unpaid' for Pay at Station
-      this.challanData.status = 'Unpaid';
-
-      console.log(
-        'Submitting Challan Data for Pay at Station:',
-        this.challanData
-      );
-      this.challanService.createChallan(this.challanData).subscribe(
-        (response) => {
-          console.log('Challan stored successfully:', response);
-          alert('Challan submitted successfully. Status: Unpaid');
-          // Optionally navigate to another page or display confirmation
-        },
-        (error) => {
-          console.error('Error storing challan:', error);
-          alert('Failed to submit challan: ' + error.error); // Show error message
-        }
-      );
-    } else {
-      alert(
-        'Please fill out all required fields before proceeding to payment.'
-      );
-    }
   }
 }

@@ -3,18 +3,16 @@
   --highlight-color: #fff;
 }
 
-/* General payment form styles */
 .payment-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 76vh;
-  padding: 30px;
+  height: 80vh;
+  padding: 15px;
   color: var(--highlight-color);
 }
 
-/* Enhanced Heading Styles */
 .payment-container h2 {
   margin-bottom: 20px;
   font-size: 36px;
@@ -31,14 +29,13 @@
   animation: slideDown 1s ease-out;
 }
 
-/* Animated underline effect */
 .payment-container h2::before,
 .payment-container h2::after {
   content: '';
   position: absolute;
   height: 4px;
   width: 50px;
-  background: linear-gradient(135deg, #ff5f6d, #ffc371); 
+  background: linear-gradient(135deg, #ff5f6d, #ffc371);
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
