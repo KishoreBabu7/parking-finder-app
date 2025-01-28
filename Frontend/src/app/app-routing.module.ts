@@ -12,6 +12,9 @@ import { ChallanComponent } from './challan/challan.component';
 import { RegisterComponent } from './user-register/register.component';
 import { LoginComponent } from './user-login/login.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { MonthlyAnalysisComponent } from './monthly-analysis/monthly-analysis.component';
+import { MonthlyIncomeComponent } from './monthly-income/monthly-income.component';
+import { SpotIncomeComponent } from './spot-income/spot-income.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +26,9 @@ const routes: Routes = [
   { path: 'transaction-history', component: TransactionHistoryComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'report', component: ReportComponent },
+  { path: 'monthlyanalysis', component: MonthlyAnalysisComponent },
+  { path: 'monthlyincome', component: MonthlyIncomeComponent },
+  { path: 'spot-income/:spotName', component: SpotIncomeComponent },
   { path: 'challan', component: ChallanComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

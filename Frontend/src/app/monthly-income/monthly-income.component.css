@@ -1,0 +1,10 @@
+/* Add hover and transition effects */
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Center the container */
+.container {
+  max-width: 1200px;
+}
