@@ -157,10 +157,7 @@
       <div *ngIf="challanData.tokenId" class="token-display">
         <p><strong>Generated Token ID:</strong> {{ challanData.tokenId }}</p>
       </div>
-       <div class="pay-now-btn-wrapper">
-    <button type="button" class="btn btn-primary" [disabled]="!challanData.tokenId" (click)="navigateToPayment()">
-      <i class="fas fa-credit-card"></i> Pay Now
-    </button> 
+      
     </div>
   </form>
 </div>
