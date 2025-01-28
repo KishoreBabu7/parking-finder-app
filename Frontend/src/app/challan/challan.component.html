@@ -1,8 +1,5 @@
 <div class="challan-form">
-  <h2 class="form-heading">
-    Enter Your <i class="fa-regular fa-file-lines"></i> Details For Booking the Slot
-    <i class="fa-sharp fa-solid fa-map-location"></i>
-  </h2>
+  <h2 class="form-heading">Enter Your <i class="fa-regular fa-file-lines"></i> Details For Booking the Slot <i class="fa-sharp fa-solid fa-map-location"></i></h2>
   <form #challanForm="ngForm" (ngSubmit)="onSubmit(challanForm)">
     <div class="inline-group">
       <div class="form-group">
@@ -75,36 +72,41 @@
     <div class="inline-group">
       <div class="form-group">
         <label for="startTime"><i class="fas fa-clock"></i> Start Time:</label>
-        <input
-          id="startTime"
-          type="time"
-          class="form-control"
-          [(ngModel)]="challanData.startTime"
-          name="startTime"
-          required
-          (change)="calculateFee()"
-          #startTime="ngModel" />
+        <div class="time-group">
+          <input
+            id="startTime"
+            type="time"
+            class="form-control"
+            [(ngModel)]="challanData.startTime"
+            name="startTime"
+            required
+            (change)="calculateFee()"
+            #startTime="ngModel" />
+        </div>
         <div *ngIf="startTime.invalid && startTime.touched" class="error-message">
           Start Time is required
         </div>
       </div>
       <div class="form-group">
         <label for="endTime"><i class="fas fa-clock"></i> End Time:</label>
-        <input
-          id="endTime"
-          type="time"
-          class="form-control"
-          [(ngModel)]="challanData.endTime"
-          name="endTime"
-          required
-          (change)="calculateFee()"
-          #endTime="ngModel" />
+        <div class="time-group">
+          <input
+            id="endTime"
+            type="time"
+            class="form-control"
+            [(ngModel)]="challanData.endTime"
+            name="endTime"
+            required
+            (change)="calculateFee()"
+            #endTime="ngModel" />
+        </div>
         <div *ngIf="endTime.invalid && endTime.touched" class="error-message">
           End Time is required
         </div>
       </div>
     </div>
 
+    <!-- New Date Field -->
     <div class="form-group">
       <label for="date"><i class="fas fa-calendar-alt"></i> Select Date:</label>
       <input
@@ -147,7 +149,6 @@
           readonly/>
       </div>
     </div>
-
     <div class="form-group payment-options">
       <div class="generate-token-btn-wrapper">
         <button type="button" class="btn btn-secondary" (click)="generateTokenId()">
@@ -156,13 +157,6 @@
       </div>
       <div *ngIf="challanData.tokenId" class="token-display">
         <p><strong>Generated Token ID:</strong> {{ challanData.tokenId }}</p>
-      </div>
-
-      <!-- Pay Now Button with Direct Navigation -->
-      <div class="pay-now-btn-wrapper">
-        <button type="button" class="btn btn-primary" [routerLink]="'/payment'" [disabled]="!challanData.tokenId">
-          <i class="fas fa-credit-card"></i> Pay Now
-        </button>
       </div>
     </div>
   </form>
