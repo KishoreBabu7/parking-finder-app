@@ -12,13 +12,15 @@
   margin-bottom: 24px;
 }
 
-.header h2 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header h1 {
+  font-size: 2rem;
+  font-family: var(--font-family-secondary);
+  color: var(--highlight-color);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .header .icon {
@@ -35,17 +37,13 @@
 }
 
 .year-selection label {
-  font-size: 16px;
-  color: #555;
-  margin-right: 12px;
-  display: flex;
-  align-items: center;
+  font-size: 1.2rem;
+  color: #d586e9;
+  margin-right: 10px;
+  font-weight: bold;
 }
 
-.year-selection label i {
-  color: #2563eb;
-  margin-right: 8px;
-}
+
 
 .year-selection input {
   border: 1px solid #ccc;
@@ -103,15 +101,12 @@
 /* Empty State */
 .empty-state {
   text-align: center;
-  margin-top: 32px;
-  font-size: 16px;
-  color: #666;
+  font-size: 1.2rem;
+  color: #d9534f;
+  margin-top: 20px;
+  font-weight: bold;
 }
 
-.empty-state i {
-  color: #2563eb;
-  margin-left: 8px;
-}
 
 /* Responsive Styling */
 @media (max-width: 768px) {
