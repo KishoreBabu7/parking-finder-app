@@ -25,6 +25,7 @@ export class ChallanComponent {
 
   constructor(private challanService: ChallanService) {}
 
+  // Calculate the fee based on start and end time
   calculateFee() {
     if (this.challanData.startTime && this.challanData.endTime) {
       const startTime = this.convertToDate(this.challanData.startTime);
@@ -44,6 +45,7 @@ export class ChallanComponent {
     }
   }
 
+  // Convert time string to Date object
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
@@ -51,16 +53,15 @@ export class ChallanComponent {
     return now;
   }
 
+  // Generate a 5 or 6-character alphanumeric token
   generateTokenId(form: NgForm): void {
+    console.log('Form validity:', form.valid); // Debug form validity
     if (form.invalid) {
-      alert(
-        'Please fill out all required fields correctly before generating a token.'
-      );
+      this.showFormValidationErrors(form); // Show validation errors
       return;
     }
 
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let token = '';
     const tokenLength = Math.floor(Math.random() * 2) + 5; // Randomly choose 5 or 6
 
@@ -70,25 +71,57 @@ export class ChallanComponent {
 
     this.challanData.tokenId = token;
     this.challanData.bookingDate = new Date().toLocaleDateString();
+    console.log('Token generated:', this.challanData.tokenId); // Debug token generation
   }
 
+  // Show form validation errors in an alert
+  showFormValidationErrors(form: NgForm): void {
+    let errorMessage = 'Please correct the following errors:\n';
+
+    if (form.controls['name']?.invalid) {
+      errorMessage += '- Name is required.\n';
+    }
+    if (form.controls['mobile']?.invalid) {
+      errorMessage += '- Valid 10-digit Mobile Number is required.\n';
+    }
+    if (form.controls['vehicleType']?.invalid) {
+      errorMessage += '- Vehicle Type is required.\n';
+    }
+    if (form.controls['plateNumber']?.invalid) {
+      errorMessage += '- Plate Number is required.\n';
+    }
+    if (form.controls['startTime']?.invalid) {
+      errorMessage += '- Start Time is required.\n';
+    }
+    if (form.controls['endTime']?.invalid) {
+      errorMessage += '- End Time is required.\n';
+    }
+    if (form.controls['date']?.invalid) {
+      errorMessage += '- Date is required.\n';
+    }
+
+    alert(errorMessage); // Show the error message in an alert
+  }
+
+  // Submit form data logic
   onSubmit(form: NgForm) {
+    console.log('Form submitted. Form validity:', form.valid); // Debug form validity
     if (!form.valid) {
-      alert('Please fill out all required fields.');
+      this.showFormValidationErrors(form); // Show validation errors
       return;
     }
 
+    // Generate Token ID before submitting (if not already generated)
     if (!this.challanData.tokenId) {
       this.generateTokenId(form);
     }
 
+    // Submit the form data to the server
     this.challanService.createChallan(this.challanData).subscribe(
       (response) => {
-        alert(
-          `Challan submitted successfully. Token ID: ${this.challanData.tokenId}`
-        );
-        form.resetForm();
-        this.challanData.tokenId = '';
+        alert(`Challan submitted successfully. Token ID: ${this.challanData.tokenId}`);
+        form.resetForm(); // Reset the form after successful submission
+        this.challanData.tokenId = ''; // Clear the token ID
       },
       (error) => {
         alert('Failed to submit challan: ' + error.error);
