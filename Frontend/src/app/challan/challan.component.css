@@ -36,7 +36,15 @@
   font-weight: bold;
   color: #e4c2ff;
 }
+.copy-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #007bff; /* Blue color for the icon */
+}
 
+.copy-icon:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
 .form-group label i {
   margin: 8px;
   color: #d796e5;
@@ -115,7 +123,7 @@
 .payment-options {
   display: flex;
   gap: 20px;
-  justify-content: center; 
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -181,18 +189,18 @@
 }
 @media (max-width: 768px) {
   .challan-form {
-    max-width: 90%; 
-    padding: 20px; 
+    max-width: 90%;
+    padding: 20px;
    margin: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
 }
 
 @media (max-width: 480px) {
   .challan-form {
     margin: 10px;
-    max-width: 95%; 
-    padding: 15px; 
+    max-width: 95%;
+    padding: 15px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); /* Even softer shadow on smaller screens */
   }
 }

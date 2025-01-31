@@ -160,8 +160,15 @@
         </button>
       </div>
       <div *ngIf="challanData.tokenId" class="token-display">
-        <p><strong>Generated Token ID:</strong> {{ challanData.tokenId }}</p>
-      </div>
+  <p>
+    <strong>Generated Token ID:</strong> {{ challanData.tokenId }}
+    <i
+      class="fas fa-copy copy-icon"
+      (click)="copyTokenId()"
+      title="Copy Token ID"
+    ></i>
+  </p>
+</div>
     </div>
   </form>
 </div>

@@ -61,7 +61,8 @@ export class ChallanComponent {
       return;
     }
 
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let token = '';
     const tokenLength = Math.floor(Math.random() * 2) + 5; // Randomly choose 5 or 6
 
@@ -103,6 +104,21 @@ export class ChallanComponent {
     alert(errorMessage); // Show the error message in an alert
   }
 
+  // Copy Token ID to clipboard
+  copyTokenId(): void {
+    if (this.challanData.tokenId) {
+      navigator.clipboard
+        .writeText(this.challanData.tokenId)
+        .then(() => {
+          alert('Token ID copied to clipboard!');
+        })
+        .catch((err) => {
+          console.error('Failed to copy token ID:', err);
+          alert('Failed to copy token ID. Please try again.');
+        });
+    }
+  }
+
   // Submit form data logic
   onSubmit(form: NgForm) {
     console.log('Form submitted. Form validity:', form.valid); // Debug form validity
@@ -119,7 +135,9 @@ export class ChallanComponent {
     // Submit the form data to the server
     this.challanService.createChallan(this.challanData).subscribe(
       (response) => {
-        alert(`Challan submitted successfully. Token ID: ${this.challanData.tokenId}`);
+        alert(
+          `Challan submitted successfully. Token ID: ${this.challanData.tokenId}`
+        );
         form.resetForm(); // Reset the form after successful submission
         this.challanData.tokenId = ''; // Clear the token ID
       },
