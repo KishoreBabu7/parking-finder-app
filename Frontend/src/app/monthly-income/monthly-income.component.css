@@ -1,10 +1,176 @@
-/* Add hover and transition effects */
-.card:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-/* Center the container */
+/* General Styling */
 .container {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Section */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header .icon {
+  color: #2563eb;
+  margin-right: 8px;
+}
+
+/* Year Selection */
+.year-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.year-selection label {
+  font-size: 16px;
+  color: #555;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.year-selection label i {
+  color: #2563eb;
+  margin-right: 8px;
+}
+
+.year-selection input {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.year-selection input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-body h5 {
+  font-size: 18px;
+  color: #333;
+  margin: 12px 0;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #666;
+}
+
+.card-icon {
+  font-size: 32px;
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 16px;
+  color: #666;
+}
+
+.empty-state i {
+  color: #2563eb;
+  margin-left: 8px;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  /* For tablets and smaller devices */
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .year-selection label {
+    font-size: 14px;
+  }
+
+  .year-selection input {
+    font-size: 13px;
+  }
+
+  .card-body h5 {
+    font-size: 16px;
+  }
+
+  .card-body p {
+    font-size: 13px;
+  }
+
+  .card-icon {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For mobile phones */
+  .header h2 {
+    font-size: 18px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .year-selection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .year-selection label {
+    margin-bottom: 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card-body h5 {
+    font-size: 14px;
+  }
+
+  .card-body p {
+    font-size: 12px;
+  }
 }
