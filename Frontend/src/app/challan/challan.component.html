@@ -151,7 +151,11 @@
     </div>
     <div class="form-group payment-options">
       <div class="generate-token-btn-wrapper">
-        <button type="button" class="btn btn-secondary" (click)="generateTokenId()">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="generateTokenId(challanForm)"
+          [disabled]="!challanForm.valid">
           <i class="fas fa-key"></i> Generate Token
         </button>
       </div>

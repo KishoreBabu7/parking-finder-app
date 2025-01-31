@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ChallanService } from '../services/challan.service';
-import { Challan } from '../models/challan.model'; // Import the Challan model
+import { Challan } from '../models/challan.model';
 
 @Component({
   selector: 'app-challan',
@@ -44,7 +44,6 @@ export class ChallanComponent {
     }
   }
 
-
   convertToDate(time: string): Date {
     const [hours, minutes] = time.split(':').map(Number);
     const now = new Date();
@@ -52,38 +51,46 @@ export class ChallanComponent {
     return now;
   }
 
-  // Generate Token ID logic
-  generateTokenId(): void {
-    const randomString = Math.random().toString(36).substring(2, 12); // Random 10 characters
-    const timestamp = new Date().getTime(); // Current timestamp
-    this.challanData.tokenId = `${randomString}-${timestamp}`; // Combine them to make the token unique
-
-    // Set bookingDate to the current date and time
-    this.challanData.bookingDate = new Date().toLocaleDateString(); // Get current date in the format "MM/DD/YYYY"
-  }
-
-  // Submit form data logic
-  onSubmit(form: NgForm) {
-    console.log('Form submission triggered.');
-
-    if (!form.valid) {
-      alert('Please fill out all required fields.');
-      return; // Stay on the same page if form is invalid
+  generateTokenId(form: NgForm): void {
+    if (form.invalid) {
+      alert(
+        'Please fill out all required fields correctly before generating a token.'
+      );
+      return;
     }
 
-    this.generateTokenId(); // Generate Token ID before submitting
-    console.log('Generated Token ID:', this.challanData.tokenId);
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let token = '';
+    const tokenLength = Math.floor(Math.random() * 2) + 5; // Randomly choose 5 or 6
 
-    // Ensure the request is a POST request and the URL is correct
+    for (let i = 0; i < tokenLength; i++) {
+      token += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    this.challanData.tokenId = token;
+    this.challanData.bookingDate = new Date().toLocaleDateString();
+  }
+
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
+      alert('Please fill out all required fields.');
+      return;
+    }
+
+    if (!this.challanData.tokenId) {
+      this.generateTokenId(form);
+    }
+
     this.challanService.createChallan(this.challanData).subscribe(
       (response) => {
-        console.log('Challan stored successfully:', response);
         alert(
           `Challan submitted successfully. Token ID: ${this.challanData.tokenId}`
         );
+        form.resetForm();
+        this.challanData.tokenId = '';
       },
       (error) => {
-        console.error('Error storing challan:', error);
         alert('Failed to submit challan: ' + error.error);
       }
     );
