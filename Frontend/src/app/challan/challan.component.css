@@ -39,11 +39,11 @@
 .copy-icon {
   margin-left: 10px;
   cursor: pointer;
-  color: #007bff; /* Blue color for the icon */
+  color: #007bff; 
 }
 
 .copy-icon:hover {
-  color: #0056b3; /* Darker blue on hover */
+  color: #0056b3;
 }
 .form-group label i {
   margin: 8px;
