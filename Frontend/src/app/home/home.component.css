@@ -121,9 +121,9 @@
     flex-wrap: nowrap;
     padding: 10px;
     overflow-x: auto;
-    /* scrollbar-width: thin;
+    scrollbar-width: thin;
     scrollbar-color: var(--secondary-color) var(--background-color);
-} */
+}
 
 .features-grid::-webkit-scrollbar {
     width: 8px;
