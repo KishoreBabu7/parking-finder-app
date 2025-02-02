@@ -29,6 +29,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { MonthlyAnalysisComponent } from './monthly-analysis/monthly-analysis.component';
 import { MonthlyIncomeComponent } from './monthly-income/monthly-income.component';
 import { SpotIncomeComponent } from './spot-income/spot-income.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SpotIncomeComponent } from './spot-income/spot-income.component';
     MonthlyAnalysisComponent,
     MonthlyIncomeComponent,
     SpotIncomeComponent,
+    CancelComponent,
     // SpotWiseAnalysisComponent,
   ],
   imports: [

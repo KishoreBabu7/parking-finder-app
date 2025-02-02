@@ -56,8 +56,8 @@
 }
 
 .cta-button.pay-with-token:hover {
-    background-color: #FFC371; /* Hover effect for Pay with Token */
-    color: #2E073F; /* Dark color for text */
+    background-color: #ffffff; /* Hover effect for Pay with Token */
+    color: #FF5F6D; /* Dark color for text */
 }
 
 .home-content {
