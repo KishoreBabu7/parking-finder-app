@@ -39,7 +39,7 @@ a {
 a:hover {
   color: var(--highlight-color);
 }
-
+/*
 button {
   font-family: var(--font-family-primary);
   background-color: var(--primary-color);
@@ -55,7 +55,7 @@ button {
 button:hover {
   transform: translateY(-3px);
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-}
+} */
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -74,4 +74,3 @@ button:hover {
     scrollbar-width: thin;
     scrollbar-color: var(--secondary-color) var(--background-color);
   }
-  
