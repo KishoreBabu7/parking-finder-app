@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'challan', component: ChallanComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  {path: 'cancel', component: CancelComponent}, // Add the cancel route
+  {path: 'cancel-payment', component: CancelComponent}, // Add the cancel route
   { path: 'user-dashboard', component: UserDashboardComponent }, // Add the user-dashboard route
   { path: '**', redirectTo: '/home' } // Wildcard route at the end
 ];
