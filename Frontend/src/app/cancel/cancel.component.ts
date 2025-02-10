@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './cancel.component.css'
 })
 export class CancelComponent {
-
+  onCancel(cancelForm: any) {
+    if (cancelForm.valid) {
+      alert('Payment has been successfully canceled!');
+    }
+  }
 }
