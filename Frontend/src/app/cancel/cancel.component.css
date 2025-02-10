@@ -1,18 +1,24 @@
 :root {
-  --primary-color: #7A1CAC; /* Violet theme */
+  --primary-color: #7A1CAC; /* Violet Theme */
   --secondary-color: #EBD3F8; /* Light Lavender */
   --bg-color: #2E073F; /* Deep Purple */
   --highlight-color: #fff;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body, html {
   height: 100%;
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-color);
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
 
 /* Centering the Form */
@@ -21,41 +27,64 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
   width: 100%;
-  height: 100vh;
   padding: 20px;
-  text-align: center;
 }
 
 .cancel-payment-container h2 {
-  margin-bottom: 20px;
-  font-size: 34px;
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
   background: linear-gradient(135deg, #7A1CAC, #4b0082);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  animation: fadeIn 1s ease-out;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeInZoom 1s ease-out forwards, waveMotion 3s infinite ease-in-out;
 }
+
+/* Smooth Zoom & Fade In */
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Elegant Wave Motion */
+@keyframes waveMotion {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
 
 /* Form Container */
 .form-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   padding: 30px;
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   border: 2px solid var(--primary-color);
   width: 100%;
   max-width: 400px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   animation: scaleUp 0.8s ease-out;
 }
 
 .form-container:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Input Fields */
