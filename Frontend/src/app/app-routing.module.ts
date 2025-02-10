@@ -15,6 +15,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { MonthlyAnalysisComponent } from './monthly-analysis/monthly-analysis.component';
 import { MonthlyIncomeComponent } from './monthly-income/monthly-income.component';
 import { SpotIncomeComponent } from './spot-income/spot-income.component';
+import { CancelComponent } from './cancel/cancel.component'; // Import the CancelComponent
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'challan', component: ChallanComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  {path: 'cancel', component: CancelComponent}, // Add the cancel route
   { path: 'user-dashboard', component: UserDashboardComponent }, // Add the user-dashboard route
   { path: '**', redirectTo: '/home' } // Wildcard route at the end
 ];
