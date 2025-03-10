@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router'; // ✅ Import Router
 
 @Component({
   selector: 'app-login',
@@ -14,19 +15,19 @@ export class LoginComponent {
 
   message: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {} // ✅ Inject Router
 
   loginUser() {
     this.authService.login(this.user).subscribe(
       response => {
         this.message = response.message;
         if (response.success) {
-          this.authService.setUserDetails(response.user); // Store user details
-          this.authService.navigateToHome(); // Navigate to user-dashboard
+          this.authService.setUserDetails(response.user); // ✅ Store user details
+          this.router.navigate(['/user-dashboard']); // ✅ Corrected navigation
         }
       },
       error => {
-        this.message = error.error.message || 'Login failed';
+        this.message = error.error?.message || 'Login failed';
       }
     );
   }

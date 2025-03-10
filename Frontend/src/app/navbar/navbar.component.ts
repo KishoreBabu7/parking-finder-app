@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +10,25 @@ import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/co
 export class NavbarComponent implements OnInit {
   @ViewChild('menuToggle', { static: true }) menuToggle!: ElementRef;
   @ViewChild('navLinks', { static: true }) navLinks!: ElementRef;
-  @ViewChild('loginBtn', { static: true }) loginBtn!: ElementRef;
   @ViewChild('loginModal', { static: true }) loginModal!: ElementRef;
   @ViewChild('closeModal', { static: true }) closeModal!: ElementRef;
 
-  constructor(private renderer: Renderer2) { }
+  isLoggedIn: boolean = false;
+  user: any = null;
+
+  constructor(private renderer: Renderer2, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    this.authService.user$.subscribe((user: any) => {
+      this.user = user;
+      this.isLoggedIn = !!user; // Navbar updates when user logs in/out
+    });
+
     this.initEventListeners();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
   private initEventListeners(): void {
@@ -31,10 +44,6 @@ export class NavbarComponent implements OnInit {
         this.navLinks.nativeElement.classList.remove('active');
         this.scrollToTop();
       }
-    });
-
-    this.renderer.listen(this.loginBtn.nativeElement, 'click', () => {
-      this.openLoginModal();
     });
 
     this.renderer.listen(this.closeModal.nativeElement, 'click', () => {
@@ -55,10 +64,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  openLoginModal(): void {
-    this.renderer.setStyle(this.loginModal.nativeElement, 'display', 'block');
-  }
-
   closeLoginModal(): void {
     this.renderer.setStyle(this.loginModal.nativeElement, 'display', 'none');
   }
@@ -70,5 +75,3 @@ export class NavbarComponent implements OnInit {
     });
   }
 }
-
-
