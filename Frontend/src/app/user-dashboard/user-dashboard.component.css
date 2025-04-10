@@ -1,21 +1,113 @@
+/* Dashboard Container */
 .dashboard-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .user-details {
-    margin-bottom: 20px;
-  }
-  
-  .actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .edit-button,
-  .logout-button {
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #2d013d; /* Matching home page background */
+  padding: 20px;
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background: #4a015c; /* Matching home card background */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 60%;
+  text-align: center;
+  color: white;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-bottom: 10px;
+}
+
+/* Headings */
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffdd57; /* Gold color for heading */
+}
+
+h3 {
+  font-size: 20px;
+  color: #ffdd57; /* Gold color for sections */
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+
+/* User & Vehicle Details */
+.user-details, .vehicle-details {
+  text-align: left;
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #f5f5f5;
+  margin: 8px 0;
+}
+
+i {
+  color: #ffdd57;
+  margin-right: 8px;
+}
+
+/* Buttons */
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  background: #ffdd57;
+  color: #4a015c;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #fff;
+  color: #4a015c;
+}
+
+/* Logout Button Special Style */
+.logout-button {
+  background: #e63946;
+  color: white;
+}
+
+.logout-button:hover {
+  background: white;
+  color: #e63946;
+}
+
+/* Message */
+.message {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #ffdd57;
+  font-weight: bold;
+}

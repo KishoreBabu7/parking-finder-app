@@ -44,4 +44,3 @@ export interface SpotMonthlyIncome {
   spotName: string;
   year: number;
 }
-

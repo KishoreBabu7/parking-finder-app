@@ -23,7 +23,7 @@ export class MonthlyAnalysisComponent implements OnInit {
 
   // Fetch the available years from the backend
   fetchAvailableYears(): void {
-    this.http.get<number[]>('http://localhost:8080/api/reports/available-years').subscribe(
+    this.http.get<number[]>('http://localhost:8081/api/reports/available-years').subscribe(
       years => {
         this.availableYears = years;
 
@@ -44,7 +44,7 @@ export class MonthlyAnalysisComponent implements OnInit {
   // Load monthly user growth data for the selected year
   loadMonthlyUserGrowth(year: number): void {
     this.isLoading = true; // Show loading indicator
-    this.http.get<any[]>(`http://localhost:8080/api/reports/spot-monthly-users/${year}`).subscribe(
+    this.http.get<any[]>(`http://localhost:8081/api/reports/spot-monthly-users/${year}`).subscribe(
       data => {
         const categories = data.map(item => item.month);
         const userCounts = data.map(item => item.count);
