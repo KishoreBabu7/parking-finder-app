@@ -1,35 +1,98 @@
-<div class="dashboard-container">
-  <div class="dashboard-card">
-    <!-- Profile Section -->
-    <div class="profile-section">
-      <img src="images/profile-icon.png" alt="Profile Photo" class="profile-photo" />
-      <h2>Welcome, {{ user.name }}</h2>
-    </div>
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>User Dashboard</h2>
+    <ul>
+      <li [class.active]="selectedSection === 'dashboard'" (click)="selectSection('dashboard')">📊 Dashboard</li>
+      <li [class.active]="selectedSection === 'profile'" (click)="selectSection('profile')">👤 Profile</li>
+      <li [class.active]="selectedSection === 'paymentHistory'" (click)="selectSection('paymentHistory')">💳 Payment History</li>
+      <li [class.active]="selectedSection === 'parkingHistory'" (click)="selectSection('parkingHistory')">🅿️ Parking History</li>
+      <li (click)="logout()">🚪 Logout</li>
+    </ul>
+  </div>
 
-    <!-- User Details -->
-    <div class="user-details">
-      <h3>Your Details</h3>
-      <p><i class="fas fa-user"></i> <strong>Name:</strong> {{ user.name }}</p>
-      <p><i class="fas fa-id-badge"></i> <strong>Username:</strong> {{ user.username }}</p>
-      <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ user.email }}</p>
-      <p><i class="fas fa-phone"></i> <strong>Mobile Number:</strong> {{ user.mobileNumber }}</p>
-    </div>
-
-    <!-- Vehicle Information -->
-    <div class="vehicle-details">
-      <h3>Vehicle Information</h3>
-      <div *ngFor="let vehicle of user.vehicles">
-        <p><i class="fas fa-car"></i> <strong>Vehicle Reg No:</strong> {{ vehicle.vehicleRegNo }}</p>
-        <p><i class="fas fa-car-side"></i> <strong>Vehicle Type:</strong> {{ vehicle.vehicleType }}</p>
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Dashboard Section -->
+    <div *ngIf="selectedSection === 'dashboard'">
+      <h2>📊 Dashboard Insights</h2>
+      <div class="dashboard-insights">
+        <div class="dashboard-box">
+          <h3>📌 My Bookings</h3>
+          <p>{{ user.totalBookings || 0 }}</p>
+        </div>
+        <div class="dashboard-box">
+          <h3>🅿️ Available Slots</h3>
+          <p>{{ availableSlots || 0 }}</p>
+        </div>
+        <div class="dashboard-box">
+          <h3>💰 Total Payments</h3>
+          <p>₹{{ totalPayments || 0 }}</p>
+        </div>
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="actions">
-      <button class="edit-button" (click)="editDetails()"><i class="fas fa-edit"></i> Edit Details</button>
-      <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    <!-- Profile Section -->
+    <div *ngIf="selectedSection === 'profile'" class="dashboard-card">
+      <div class="profile-section">
+        <img src="assets/profile-icon.png" alt="Profile Photo" class="profile-photo" />
+        <h2>Welcome, {{ user.name }}</h2>
+      </div>
+
+      <div class="user-details">
+        <h3>Your Details</h3>
+        <p><i class="fas fa-user"></i> <strong>Name:</strong> {{ user.name }}</p>
+        <p><i class="fas fa-id-badge"></i> <strong>Username:</strong> {{ user.username }}</p>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ user.email }}</p>
+        <p><i class="fas fa-phone"></i> <strong>Mobile Number:</strong> {{ user.mobileNumber }}</p>
+      </div>
+
+      <div class="vehicle-details" *ngIf="user.vehicles?.length">
+        <h3>Vehicle Information</h3>
+        <div *ngFor="let vehicle of user.vehicles">
+          <p><i class="fas fa-car"></i> <strong>Vehicle Reg No:</strong> {{ vehicle.vehicleRegNo }}</p>
+          <p><i class="fas fa-car-side"></i> <strong>Vehicle Type:</strong> {{ vehicle.vehicleType }}</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="edit-button" (click)="editDetails()"><i class="fas fa-edit"></i> Edit Details</button>
+        <button class="logout-button" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+
+      <p class="message">{{ message }}</p>
     </div>
 
-    <p class="message">{{ message }}</p>
+    <!-- Payment History Section -->
+    <div *ngIf="selectedSection === 'paymentHistory'" class="dashboard-card">
+      <h2>💳 Payment History</h2>
+      <div *ngIf="user.paymentHistory?.length; else noPayments">
+        <div *ngFor="let payment of user.paymentHistory" class="history-item">
+          <p><strong>Date:</strong> {{ payment.date }}</p>
+          <p><strong>Amount:</strong> ₹{{ payment.amount }}</p>
+          <p><strong>Status:</strong> {{ payment.status }}</p>
+          <hr />
+        </div>
+      </div>
+      <ng-template #noPayments>
+        <p>No payment history available.</p>
+      </ng-template>
+    </div>
+
+    <!-- Parking History Section -->
+    <div *ngIf="selectedSection === 'parkingHistory'" class="dashboard-card">
+      <h2>🅿️ Parking History</h2>
+      <div *ngIf="user.parkingHistory?.length; else noParking">
+        <div *ngFor="let parking of user.parkingHistory" class="history-item">
+          <p><strong>Slot:</strong> {{ parking.slot }}</p>
+          <p><strong>Date:</strong> {{ parking.date }}</p>
+          <p><strong>Time:</strong> {{ parking.time }}</p>
+          <hr />
+        </div>
+      </div>
+      <ng-template #noParking>
+        <p>No parking history found.</p>
+      </ng-template>
+    </div>
   </div>
 </div>

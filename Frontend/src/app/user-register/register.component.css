@@ -4,23 +4,23 @@
   color: white;
   padding: 15px;
   text-align: center;
-  margin-bottom: 50px; /* Adds space below the navbar */
+  margin-bottom: 50px;
 }
 
 /* Main container styling for form */
 .register-container {
-  width: 90%; /* Full width on mobile */
-  max-width: 500px; /* Set a maximum width for better readability */
-  margin: 50px auto; /* Space around the container (top and bottom) */
+  width: 90%;
+  max-width: 500px;
+  margin: 50px auto;
   padding: 20px;
-  display: flex; /* Enable flexbox */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center content horizontally */
-  justify-content: center; /* Center content vertically */
-  text-align: center; /* Center text */
-  background-color: transparent; /* Make the container background transparent */
-  border: none; /* Remove the border */
-  box-shadow: none; /* Remove the shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 /* Form header styling */
@@ -41,7 +41,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center input fields */
+  align-items: center;
   width: 100%;
 }
 
@@ -53,10 +53,10 @@
 
 .form-group input,
 .form-group select {
-  width: 90%; /* Adjusted width */
-  padding: 15px; /* Consistent padding */
+  width: 90%;
+  padding: 15px;
   border: none;
-  border-radius: 50px; /* Rounded input fields */
+  border-radius: 50px;
   background-color: #f0f0f0;
   color: #333;
   font-size: 1rem;
@@ -75,8 +75,8 @@
 /* Button styling */
 .submit-button,
 .add-vehicle-button {
-  width: 90%; /* Adjusted width */
-  padding: 15px; /* Comfortable padding */
+  width: 90%;
+  padding: 15px;
   border: none;
   border-radius: 50px;
   color: white;
@@ -91,7 +91,7 @@
 /* Submit button specific styling */
 .submit-button {
   background-color: #315197;
-  margin-top: 20px; /* Adds space above the "Register" button */
+  margin-top: 20px;
 }
 
 .submit-button:hover {
@@ -106,45 +106,55 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Add Another Vehicle button styling */
+/* Add Another Vehicle button styling — styled like submit */
 .add-vehicle-button {
-  background-color: #007bff; /* Blue background for the add vehicle button */
-  margin-top: 10px; /* Adds space above the "Add Another Vehicle" button */
+  background-color: #315197;
+  margin-top: 10px;
 }
 
-/* Footer styling with added margin-top */
+.add-vehicle-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.add-vehicle-button:active {
+  background-color: #281d72;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styling */
 footer {
-  background-color: #333; /* Footer color */
+  background-color: #333;
   color: white;
   text-align: center;
   padding: 20px;
-  position: relative; /* Relative positioning to keep it under the content */
+  position: relative;
   bottom: 0;
   width: 100%;
 }
 
-/* Responsive styling for mobile devices in general */
+/* Responsive styling for mobile devices */
 @media (max-width: 768px) {
   .form-group input,
   .form-group select,
   .submit-button,
   .add-vehicle-button {
-      width: 100%; /* Full width on small screens */
+    width: 100%;
   }
 }
 
-/* Responsive styling to fit the form container on iPhone XR (and similar devices) */
 @media (max-width: 414px) {
   .register-container {
-      width: 90%; /* Adjust width to 90% of the viewport */
-      margin: 20px auto; /* Reduce margins for smaller screens */
-      padding: 15px; /* Adjust padding for smaller screens */
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
   }
 }
 
-/* Responsive styling to hide form container on very small screens */
 @media (max-width: 320px) {
   .register-container {
-      display: none; /* Hide the form container for screens smaller than 320px */
+    display: none;
   }
 }

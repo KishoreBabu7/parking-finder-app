@@ -1,25 +1,80 @@
-/* Dashboard Container */
-.dashboard-container {
+.container { 
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #2d013d; /* Matching home page background */
-  padding: 20px;
+  height: 100vh;
 }
 
-/* Dashboard Card */
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #6a1b9a;
+  color: white;
+  padding: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  padding: 12px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.sidebar ul li:hover {
+  background-color: #9532db;
+}
+
+/* Main Content */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background: #ecf0f1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dashboard Insights Layout */
+.dashboard-insights {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.dashboard-box {
+  background: #9532db;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  flex-basis: 250px;
+  color: white;
+}
+
+/* Profile Card Styles */
 .dashboard-card {
-  background: #4a015c; /* Matching home card background */
+  background: #4a015c;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   width: 60%;
-  text-align: center;
   color: white;
 }
 
-/* Profile Section */
 .profile-section {
   display: flex;
   flex-direction: column;
@@ -34,21 +89,19 @@
   margin-bottom: 10px;
 }
 
-/* Headings */
 h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #ffdd57; /* Gold color for heading */
+  color: #ffdd57;
 }
 
 h3 {
   font-size: 20px;
-  color: #ffdd57; /* Gold color for sections */
+  color: #ffdd57;
   margin-top: 15px;
   text-transform: uppercase;
 }
 
-/* User & Vehicle Details */
 .user-details, .vehicle-details {
   text-align: left;
   margin-top: 20px;
@@ -66,6 +119,38 @@ p {
 i {
   color: #ffdd57;
   margin-right: 8px;
+}
+
+/* Payment & Parking History Styles */
+.history-section {
+  width: 100%;
+  max-width: 900px;
+  background-color: #4a015c;
+  color: white;
+  margin-top: 20px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.history-section h3 {
+  color: #ffdd57;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.history-entry {
+  background-color: rgba(255, 255, 255, 0.08);
+  margin: 10px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-entry span {
+  margin-bottom: 5px;
 }
 
 /* Buttons */
@@ -93,7 +178,6 @@ button:hover {
   color: #4a015c;
 }
 
-/* Logout Button Special Style */
 .logout-button {
   background: #e63946;
   color: white;
@@ -104,10 +188,29 @@ button:hover {
   color: #e63946;
 }
 
-/* Message */
 .message {
   margin-top: 15px;
   font-size: 14px;
   color: #ffdd57;
   font-weight: bold;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .dashboard-insights {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dashboard-card, .history-section {
+    width: 90%;
+  }
 }

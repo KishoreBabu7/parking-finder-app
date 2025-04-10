@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Transaction {
+  transactionId: any;
+  date: any;
   name: string;
   email: string;
   amount: number;
