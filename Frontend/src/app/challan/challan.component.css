@@ -39,7 +39,7 @@
 .copy-icon {
   margin-left: 10px;
   cursor: pointer;
-  color: #007bff; 
+  color: #007bff;
 }
 
 .copy-icon:hover {
@@ -116,6 +116,29 @@
 .violation-time input:focus, .amount-to-pay input:focus {
   border-color: #8000c4;
   background-color: #52008c;
+}
+.payment-options .generate-token-btn-wrapper button {
+  background: linear-gradient(135deg, #7a1cac, #d41872);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.payment-options .generate-token-btn-wrapper button:hover {
+  background: linear-gradient(135deg, #9b59b6, #ff5f6d);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.token-display {
+  margin-top: 15px;
+  text-align: center;
+  color: #e4c2ff;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 
