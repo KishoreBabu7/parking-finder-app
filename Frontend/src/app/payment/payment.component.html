@@ -5,21 +5,73 @@
     <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
       <div class="input-container">
         <i class="fas fa-id-badge"></i>
-        <input type="text" placeholder="Token ID" name="tokenId" ngModel required />
+        <input
+          type="text"
+          placeholder="Token ID"
+          name="tokenId"
+          ngModel
+          required
+          #tokenId="ngModel"
+        />
+        <small *ngIf="tokenId.invalid && tokenId.touched" class="warning">Token ID is required</small>
       </div>
+
       <div class="input-container">
         <i class="fas fa-user"></i>
-        <input type="text" placeholder="Name" name="name" ngModel required />
+        <input
+          type="text"
+          placeholder="Name"
+          name="name"
+          ngModel
+          required
+          #name="ngModel"
+        />
+        <small *ngIf="name.invalid && name.touched" class="warning">Name is required</small>
       </div>
+
       <div class="input-container">
         <i class="fas fa-envelope"></i>
-        <input type="email" placeholder="Email" name="email" ngModel required />
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          ngModel
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          #email="ngModel"
+        />
+        <small *ngIf="email.errors?.['required'] && email.touched" class="warning">Email is required</small>
+        <small *ngIf="email.errors?.['pattern'] && email.touched" class="warning">Enter a valid email address</small>
       </div>
+
       <div class="input-container">
         <i class="fas fa-dollar-sign"></i>
-        <input type="number" placeholder="Amount" name="amount" ngModel required />
+        <input
+          type="number"
+          placeholder="Amount"
+          name="amount"
+          ngModel
+          required
+          min="1"
+          pattern="^[0-9]+$"
+          #amount="ngModel"
+        />
+        <small *ngIf="amount.errors?.['required'] && amount.touched" class="warning">Amount is required</small>
+        <small *ngIf="amount.errors?.['min'] && amount.touched" class="warning">Amount must be greater than 0</small>
       </div>
+
       <button type="submit">Pay Now</button>
     </form>
   </div>
 </div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+  .warning {
+    color: red;
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 4px;
+  }
+</style>

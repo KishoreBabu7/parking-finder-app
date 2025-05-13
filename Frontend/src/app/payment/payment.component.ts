@@ -47,6 +47,7 @@ export class PaymentComponent {
   // Method to open the Razorpay checkout
   openRazorpay(orderDetails: any) {
     const options = {
+      key: 'rzp_test_okPia1ieStBCMx',
       amount: orderDetails.amount, // Amount in paise
       currency: 'INR',
       name: 'Parking Space Finder',
